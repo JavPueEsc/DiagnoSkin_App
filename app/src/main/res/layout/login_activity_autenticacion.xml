@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    style="@style/ColorFondoLogin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="es.studium.login.AutenticacionActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="365dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/logoapp" />
+
+    <EditText
+        android:id="@+id/LO_txt_Usuario"
+        style="@style/EditTextRedondeado"
+        android:layout_width="319dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/LO_hintEditTextUsuario"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.486" />
+
+    <EditText
+        android:id="@+id/LO_txt_Clave"
+        style="@style/EditTextRedondeado"
+        android:layout_width="319dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="@string/LO_hintEditTextClave"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LO_txt_Usuario"
+        app:layout_constraintVertical_bias="0.06" />
+
+    <Switch
+        android:id="@+id/LO_btnMostrarClave"
+        style="@style/SwitchBoxAzul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/LO_switchMostrarClave"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LO_txt_Clave"
+        app:layout_constraintVertical_bias="0.071" />
+
+    <View
+        android:id="@+id/rectangulo_izqSup"
+        android:layout_width="257dp"
+        android:layout_height="110dp"
+        android:background="@drawable/rectangulo_celeste"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LO_btnMostrarClave"
+        app:layout_constraintVertical_bias="0.171" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/LO_lblBiometria"
+        app:layout_constraintBottom_toBottomOf="@+id/rectangulo_izqSup"
+        app:layout_constraintEnd_toEndOf="@+id/rectangulo_izqSup"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/rectangulo_izqSup"
+        app:layout_constraintTop_toTopOf="@+id/rectangulo_izqSup"
+        app:layout_constraintVertical_bias="0.824" />
+</androidx.constraintlayout.widget.ConstraintLayout>

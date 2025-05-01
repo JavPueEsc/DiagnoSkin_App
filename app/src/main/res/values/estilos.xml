@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Loggin-->
+    <!-- Color de fondo -->
+    <style name="ColorFondoLogin" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/celesteFondoLogin</item>
+    </style>
+    <!--Edit text personalizado-->
+    <style name="EditTextRedondeado">
+        <item name="android:background">@drawable/edittext_redondeado</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:textColorHint">#A6A6A6</item>
+        <item name="android:textColor">#A6A6A6</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <!-- Switch con colores personalizados-->
+    <style name="SwitchBoxAzul">
+        <item name="android:textColor">#007BFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

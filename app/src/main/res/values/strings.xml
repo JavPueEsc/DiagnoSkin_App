@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DiagnoSkin_app</string>
+
+    <!-- LOGIN -->
+    <string name="LO_hintEditTextUsuario">Nombre de usuario</string>
+    <string name="LO_hintEditTextClave">Contraseña</string>
+    <string name="LO_switchMostrarClave">Mostrar contraseña</string>
+    <string name="LO_lblBiometria">Acceda con Biometría</string>
+
+</resources>
