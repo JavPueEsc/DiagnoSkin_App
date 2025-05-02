@@ -49,6 +49,12 @@
     <string name="LO_lbl_camposObligatorios">Los campos con * son obligatorios.</string>
     <string name="LO_btn_AceptarDatosAcceso">Aceptar</string>
 
+    <string name="LO_Toast_NombreUsuarioVacio">Debe introducir un nombre de usuario</string>
+    <string name="LO_Toast_NumColegiadoVacio">Debe introducir su número de colegiado/a</string>
+    <string name="LO_Toast_Clave1Vacia">Debe introducir una contraseña</string>
+    <string name="LO_Toast_Clave2Vacia">Debe introducir la contraseña por segunda vez</string>
+    <string name="LO_Toast_NombreUsuarioExiste">Nombre de usuario no disponible</string>
+
     <!--AltaDatosPersonalesActivity -->
     <string name="LO_lbl_subTituloDatosPersonales">Datos Personales</string>
     <string name="LO_lbl_preguntaNombrePersonal">Escriba su nombre.</string>
