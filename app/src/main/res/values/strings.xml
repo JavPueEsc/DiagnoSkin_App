@@ -2,9 +2,25 @@
     <string name="app_name">DiagnoSkin_app</string>
 
     <!-- LOGIN -->
+    <!-- AutenticacionActivity -->
     <string name="LO_hintEditTextUsuario">Nombre de usuario</string>
     <string name="LO_hintEditTextClave">Contraseña</string>
     <string name="LO_switchMostrarClave">Mostrar contraseña</string>
     <string name="LO_lblBiometria">Acceda con Biometría</string>
+    <string name="LO_btnIniciarSesion">Iniciar sesión</string>
+    <string name="LO_lblCrearNuevaCuenta">Crear una nueva cuenta</string>
 
+    <!--AltaDatosDeAccesoActivity -->
+    <string name="LO_lbl_tituloNuevaCuentaUsuario">Nueva cuenta de usuario</string>
+    <string name="LO_lbl_subTituloNuevaCuentaUsuario">Datos de Acceso</string>
+    <string name="LO_lbl_preguntaNombreUsuario">¿Que nombre de usuario/a desea utilizar?</string>
+    <string name="LO_hintNombreUsuario">Nombre de usuario/a*</string>
+    <string name="LO_lbl_preguntaNumColegiado">Escriba su número de colegiado/a.</string>
+    <string name="LO_hintNumColegiado">Num. colegiado/a*</string>
+    <string name="LO_lbl_claveSegura">Escriba una contraseña segura.</string>
+    <string name="LO_lbl_digitosClave">La contraseña ha de tener al menos 6 caracteres.</string>
+    <string name="LO_hintClave">Contraseña*</string>
+    <string name="LO_lbl_repitaClave">Repita la contraseña.</string>
+    <string name="LO_lbl_camposObligatorios">Los campos con * son obligatorios.</string>
+    <string name="LO_btn_AceptarDatosAcceso">Aceptar</string>
 </resources>
