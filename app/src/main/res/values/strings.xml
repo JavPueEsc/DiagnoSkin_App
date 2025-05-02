@@ -23,4 +23,19 @@
     <string name="LO_lbl_repitaClave">Repita la contraseña.</string>
     <string name="LO_lbl_camposObligatorios">Los campos con * son obligatorios.</string>
     <string name="LO_btn_AceptarDatosAcceso">Aceptar</string>
+
+    <!--AltaDatosPersonalesActivity -->
+    <string name="LO_lbl_subTituloDatosPersonales">Datos Personales</string>
+    <string name="LO_lbl_preguntaNombrePersonal">Escriba su nombre.</string>
+    <string name="LO_hintNombrePersonal">Nombre*</string>
+    <string name="LO_lbl_preguntaApellidos">Escriba sus apellidos.</string>
+    <string name="LO_hintApellidos">Apellidos*</string>
+    <string name="LO_lbl_preguntaEspecialidad">Indique su especialidad médica.</string>
+    <string name="LO_hintEspecialidad">Especialidad*</string>
+    <string name="LO_lbl_preguntaCentroDeTrabajo">Seleccione su centro de trabajo.</string>
+    <string name="LO_lbl_preguntaTelefono">Introduzca su teléfono de contacto.</string>
+    <string name="LO_hintTelefono">Teléfono de contacto*</string>
+    <string name="LO_lbl_preguntaEmail">Introduzca su email.</string>
+    <string name="LO_hintEmail">Email*</string>
+    <string name="LO_btn_AceptarDatosPersonales">Aceptar</string>
 </resources>

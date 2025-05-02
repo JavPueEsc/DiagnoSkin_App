@@ -13,11 +13,13 @@
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
         <activity
-            android:name="es.studium.login.AltaDatosDeAccesoActivity"
-            android:exported="false" />
+            android:name="es.studium.login.AltaDatosPersonalesActivity"
+            android:exported="false" >
+
+        </activity>
         <activity
-            android:name="es.studium.login.AutenticacionActivity"
-            android:exported="true">
+            android:name="es.studium.login.AltaDatosDeAccesoActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,8 +27,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="es.studium.login.AutenticacionActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>

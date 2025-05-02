@@ -13,17 +13,18 @@
         style="@style/TextosAzul_tam30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="@string/LO_lbl_tituloNuevaCuentaUsuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/LO_lbl_DatosDeAcceso"
         style="@style/TextosGris_tam30"
+        android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/LO_lbl_subTituloNuevaCuentaUsuario"
@@ -31,25 +32,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_lbl_TituloNuevaCuentaUsuario"
-        app:layout_constraintVertical_bias="0.027" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/LO_lbl_preguntaNombreUsuario"
         style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/LO_lbl_preguntaNombreUsuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_lbl_DatosDeAcceso"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/LO_txt_IntroducirUsuario"
         style="@style/EditTextRedondeado"
         android:layout_width="275dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/LO_hintNombreUsuario"
         android:inputType="text"
@@ -57,26 +60,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_lbl_preguntaNombreUsuario"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/LO_lbl_preguntaNumColegiado"
         style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/LO_lbl_preguntaNumColegiado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_txt_IntroducirUsuario"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/LO_txt_IntroducirNumColegiado"
         style="@style/EditTextRedondeado"
         android:layout_width="275dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/LO_hintNumColegiado"
         android:inputType="text"
@@ -85,39 +90,42 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_lbl_preguntaNumColegiado"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/LO_lbl_claveSegura"
         style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/LO_lbl_claveSegura"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_txt_IntroducirNumColegiado"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/LO_lbl_digitosClave"
         style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/LO_lbl_digitosClave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_lbl_claveSegura"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/LO_txt_IntroducirClave1"
         style="@style/EditTextRedondeado"
         android:layout_width="275dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/LO_hintEditTextClave"
         android:inputType="text"
@@ -126,26 +134,28 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_lbl_digitosClave"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/LO_lbl_repitaClave"
         style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/LO_lbl_repitaClave"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_txt_IntroducirClave1"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/LO_txt_IntroducirClave2"
         style="@style/EditTextRedondeado"
         android:layout_width="275dp"
         android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/LO_hintEditTextClave"
         android:inputType="text"
@@ -153,30 +163,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_lbl_repitaClave"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/LO_btn_AceptarDatosAcceso"
         style="@style/EstiloBotonesLogin"
         android:layout_width="275dp"
         android:layout_height="50dp"
+        android:layout_marginTop="16dp"
         android:text="@string/LO_btn_AceptarDatosAcceso"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_txt_IntroducirClave2"
-        app:layout_constraintVertical_bias="0.483" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/LO_lbl_camposObligatorios"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         style="@style/TextosGris_tam16"
         android:text="@string/LO_lbl_camposObligatorios"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/LO_btn_AceptarDatosAcceso"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
