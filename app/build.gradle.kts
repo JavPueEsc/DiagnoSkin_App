@@ -45,4 +45,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    //Consultas
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    //Biometria
+    implementation ("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation ("androidx.biometric:biometric:1.2.0-alpha04")
 }

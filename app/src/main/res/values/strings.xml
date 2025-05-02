@@ -10,6 +10,31 @@
     <string name="LO_btnIniciarSesion">Iniciar sesión</string>
     <string name="LO_lblCrearNuevaCuenta">Crear una nueva cuenta</string>
 
+    <string name="LO_Toast_ErrorCampoUsuarioVacio">Debe introducir un Nombre de usuario</string>
+    <string name="LO_Toast_ErrorCampoClaveVacio">Debe introducir la contraseña</string>
+    <string name="LO_Toast_CredencialesCorrectas">Credenciales correctas</string>
+    <string name="LO_Toast_CredencialesIncorrectas">Credenciales incorrectas</string>
+
+    <string name="LO_Dialogo_tituloGuardarCredenciales">Guardar credenciales</string>
+    <string name="LO_Dialogo_mensajeGuardarCredenciales">¿Deseas guardar tu usuario y contraseña para próximos accesos con huella?</string>
+    <string name="LO_Dialogo_GuardarCredencialesOpcionSi">Si</string>
+    <string name="LO_Dialogo_GuardarCredencialesOpcionNo">No</string>
+    <string name="LO_Toast_Dialogo_GuardarCredencialesExito">Credenciales guardadas con éxito</string>
+
+    <string name="LO_Dialogo_tituloSobrescribirCredenciales">Sobrescribir credenciales</string>
+    <string name="LO_Dialogo_mensajeSobrescribirCredenciales">Ya existen credenciales guardadas. ¿Deseas sobrescribirlas con las nuevas?</string>
+    <string name="LO_Dialogo_SobrescribirCredencialesOpcionSi">Si</string>
+    <string name="LO_Dialogo_SobrescribirCredencialesOpcionNo">No</string>
+    <string name="LO_Toast_Dialogo_SobrescribirCredencialesExito">Credenciales guardadas con éxito</string>
+
+    <string name="LO_Toast_HuellaExito">Verificación exitosa</string>
+    <string name="LO_Toast_HuellaError">Error</string>
+    <string name="LO_Toast_HuellaFallo">Autenticación fallida</string>
+
+    <string name="LO_DialogoBiometria_titulo">DiagnoSkin</string>
+    <string name="LO_DialogoBiometria_subtitulo">Acceso Biométrico</string>
+    <string name="LO_DialogoBiometria_mensaje">Pulse el sensor de huellas digitales</string>
+
     <!--AltaDatosDeAccesoActivity -->
     <string name="LO_lbl_tituloNuevaCuentaUsuario">Nueva cuenta de usuario</string>
     <string name="LO_lbl_subTituloNuevaCuentaUsuario">Datos de Acceso</string>
