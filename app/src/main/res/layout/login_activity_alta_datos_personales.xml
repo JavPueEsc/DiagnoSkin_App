@@ -109,7 +109,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/LO_spinner_centrosMedicos"
         style="@style/EditTextRedondeado"
         android:layout_width="275dp"
         android:layout_height="50dp"
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/LO_lbl_preguntaTelefono"
-        app:layout_constraintTop_toBottomOf="@id/spinner"
+        app:layout_constraintTop_toBottomOf="@id/LO_spinner_centrosMedicos"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

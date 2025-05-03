@@ -73,4 +73,15 @@
     <string name="LO_lbl_preguntaEmail">Introduzca su email.</string>
     <string name="LO_hintEmail">Email*</string>
     <string name="LO_btn_AceptarDatosPersonales">Aceptar</string>
+
+    <string name="LO_tituloSpiner">Seleccione su centro de trabajo</string>
+    <string name="LO_NoExistenCentrosMedicos">No existen Centros médicos disponibles</string>
+
+    <string name="LO_Toast_debeSeleccionarCentroTranajo">Debe seleccionar un centro de trabajo</string>
+    <string name="LO_Toast_ErrorNombre">Debe introducir su nombre</string>
+    <string name="LO_Toast_ErrorApellidos">Debe introducir sus Apellidos</string>
+    <string name="LO_Toast_ErrorEspecialidad">Debe introducir su especialidad médica</string>
+    <string name="LO_Toast_ErrorCentro">Debe seleccionar su centro de trabajo</string>
+    <string name="LO_Toast_ErrorTelefono">Debe introducir su teléfono de contacto</string>
+    <string name="LO_Toast_ErrorEmail">Debe introducir su email</string>
 </resources>

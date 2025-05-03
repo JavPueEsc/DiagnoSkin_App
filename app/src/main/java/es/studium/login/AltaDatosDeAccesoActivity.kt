@@ -32,7 +32,7 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
     private lateinit var clave1Introducida: String
     private lateinit var clave2Introducida: String
 
-    //Declaración bjetos consulta
+    //Declaración objetos consulta
     private lateinit var result: JSONArray
     private lateinit var jsonObject: JSONObject
     lateinit var idUsuarioBD: String
@@ -134,10 +134,25 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
         result = consultaRemotaMedicos.obtenerMedicoPorNumCol(numColegiadoMedico)
         //Verificamos que result no está vacío
         try {
-            if (result.length() == 1) {
-                existeMedico = true
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    var idMedicoBD = jsonObject.getString("idMedico")
+                    var nombreMedicoBD = jsonObject.getString("nombreMedico")
+                    var apellidosMedicoBD = jsonObject.getString("apellidosMedico")
+                    var telefonoMedicoBD = jsonObject.getString("telefonoMedico")
+                    var emailMedicoBD = jsonObject.getString("emailMedico")
+                    var especialidadMedicoBD = jsonObject.getString("especialidadMedico")
+                    var numColegiadoMedicoBD = jsonObject.getString("numColegiadoMedico")
+                    var esAdminMedicoBD = jsonObject.getString("esAdminMedico")
+                    var idCentroMedicoFKBD = jsonObject.getString("idCentroMedicoFK")
+                    var idUsuarioFKBD = jsonObject.getString("idUsuarioFK")
+                    if (numColegiadoMedicoBD == numColegiadoMedico) {
+                        existeMedico = true
+                        break //<-- salimos del bucle
+                    }
+                }
             } else {
-                existeMedico = false
                 Log.e("MainActivity", "El JSONObject está vacío")
             }
         } catch (e: JSONException) {
