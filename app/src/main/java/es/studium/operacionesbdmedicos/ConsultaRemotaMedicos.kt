@@ -1,19 +1,26 @@
-package es.studium.operacionesbdusuarios
+package es.studium.operacionesbdmedicos
 import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okio.IOException
 import org.json.JSONArray
 import org.json.JSONException
-class ConsultaRemotaUsuarios {
+class ConsultaRemotaMedicos {
     //Crear una instancia de okHttpClient
     val client = OkHttpClient()
     var resultado : JSONArray = JSONArray()
 
-    //obtener listado de todos los usuarios
+    //obtener listado de todos los médicos
     fun obtenerListado():JSONArray{
         val request = Request.Builder()
-            .url("http://192.168.1.49/ApiRestDiagnoSkin/usuarios.php")
+            .url("http://192.168.1.49/ApiRestDiagnoSkin/medicos.php")
+            .build()
+        return ejecutarPeticion(request)
+    }
+
+    fun obtenerMedicoPorNumCol(numColegiadoMedico:String):JSONArray{
+        val request = Request.Builder()
+            .url("http://192.168.1.49/ApiRestDiagnoSkin/medicos.php?numColegiadoMedico=$numColegiadoMedico")
             .build()
         return ejecutarPeticion(request)
     }
@@ -36,5 +43,4 @@ class ConsultaRemotaUsuarios {
         }
         return resultado
     }
-
 }

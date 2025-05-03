@@ -54,6 +54,10 @@
     <string name="LO_Toast_Clave1Vacia">Debe introducir una contraseña</string>
     <string name="LO_Toast_Clave2Vacia">Debe introducir la contraseña por segunda vez</string>
     <string name="LO_Toast_NombreUsuarioExiste">Nombre de usuario no disponible</string>
+    <string name="LO_Toast_MedicoExiste">Ya existe un usuario con ese número de colegiado</string>
+    <string name="LO_Toast_ClavesNoCoinciden">Las contraseñas introducidas no coinciden</string>
+    <string name="LO_Toast_CleveMenos6caracteres">La contraseña ha de tener al menos 6 caracteres</string>
+
 
     <!--AltaDatosPersonalesActivity -->
     <string name="LO_lbl_subTituloDatosPersonales">Datos Personales</string>
