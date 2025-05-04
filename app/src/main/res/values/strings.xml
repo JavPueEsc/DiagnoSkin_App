@@ -84,4 +84,10 @@
     <string name="LO_Toast_ErrorCentro">Debe seleccionar su centro de trabajo</string>
     <string name="LO_Toast_ErrorTelefono">Debe introducir su teléfono de contacto</string>
     <string name="LO_Toast_ErrorEmail">Debe introducir su email</string>
+
+    <string name="LO_ErrorExtraNoRecibido">No encontrado</string>
+    <string name="LO_ErrorObtencionIdUsuario">No encontrado</string>
+    <string name="LO_ErrorObtencionIdCentroMedico">No encontrado</string>
+    <string name="LO_AltaExito">Usuario registrado correctamente</string>
+
 </resources>

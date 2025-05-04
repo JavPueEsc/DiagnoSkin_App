@@ -19,6 +19,14 @@ class ConsultaRemotaCentrosMedicos {
             .build()
         return ejecutarPeticion(request)
     }
+    //Obtener centromedico por nombre
+    fun obtenerIdCentroMedicoPorNombre(nombreCentroMedico: String): JSONArray {
+        val url = "http://192.168.1.49/ApiRestDiagnoSkin/centrosmedicos.php?nombreCentroMedico=$nombreCentroMedico"
+        val request = Request.Builder()
+            .url(url)
+            .build()
+        return ejecutarPeticion(request)
+    }
 
     private fun ejecutarPeticion(request: Request): JSONArray {
         try {

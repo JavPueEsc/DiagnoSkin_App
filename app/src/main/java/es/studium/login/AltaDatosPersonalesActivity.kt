@@ -13,9 +13,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.diagnoskin_app.R
 import es.studium.operacionesbdcentrosmedicos.ConsultaRemotaCentrosMedicos
+import es.studium.operacionesbdmedicos.AltaRemotaMedicos
+import es.studium.operacionesbdusuarios.AltaRemotaUsuarios
+import es.studium.operacionesbdusuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class AltaDatosPersonalesActivity : AppCompatActivity() {
@@ -27,6 +33,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     private lateinit var txt_telefono: EditText
     private lateinit var txt_email: EditText
     private lateinit var btn_Aceptar: Button
+
 
     //Declaración de datos introducidos
     private lateinit var nombreIntroducido: String
@@ -40,7 +47,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     private var listaCentrosMedicosSpinner: MutableList<String> = mutableListOf()
     private lateinit var adaptadorSpinner: ArrayAdapter<String>
 
-    //Declaración objetos consulta
+    //Declaración objetos consulta tabla médicos
     private lateinit var result: JSONArray
     private lateinit var jsonObject: JSONObject
     private lateinit var idCentroMedicoBD: String
@@ -54,6 +61,12 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     private lateinit var provinciaCentroMedicoBD: String
     private lateinit var esHospitalCentroMedicoBD: String
 
+    //Declaración objetos consulta usuarios
+    private lateinit var idUsuarioBD: String
+    private lateinit var nombreUsuarioBD: String
+    private lateinit var claveUsuarioBD: String
+    private lateinit var fechaAltaUsuarioBD: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_activity_alta_datos_personales)
@@ -65,7 +78,6 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         txt_telefono = findViewById(R.id.LO_txt_Telefono)
         txt_email = findViewById(R.id.LO_txt_Email)
         btn_Aceptar = findViewById(R.id.LO_btn_AceptarDatosPersonales)
-
 
         //Montar el spinner
         cargarCentrosMedicosParaSpinner()
@@ -85,6 +97,8 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
                     itemSeleccionado != getString(R.string.LO_NoExistenCentrosMedicos)
                 ) {
                     centroMedicoSeleccionado = itemSeleccionado
+                    Log.d("Spinner", "Centro Médico Seleccionado: $itemSeleccionado")
+
                 }
             }
 
@@ -98,23 +112,61 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
             //Control de errores
             if (txt_Nombre.text.toString().isEmpty()) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorNombre, Toast.LENGTH_SHORT).show()
-            }
-            else if (txt_Apellidos.text.toString().isEmpty()) {
+            } else if (txt_Apellidos.text.toString().isEmpty()) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorApellidos, Toast.LENGTH_SHORT).show()
-            }
-            else if (txt_Especialidad.text.toString().isEmpty()) {
+            } else if (txt_Especialidad.text.toString().isEmpty()) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorEspecialidad, Toast.LENGTH_SHORT).show()
-            }
-            else if (spiner_CentroMedico.selectedItemPosition == 0) {
+            } else if (spiner_CentroMedico.selectedItemPosition == 0) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCentro, Toast.LENGTH_SHORT).show()
-            }
-            else if (txt_telefono.text.toString().isEmpty()) {
+            } else if (txt_telefono.text.toString().isEmpty()) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorTelefono, Toast.LENGTH_SHORT).show()
-            }
-            else if (txt_email.text.toString().isEmpty()) {
+            } else if (txt_email.text.toString().isEmpty()) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorEmail, Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Todo ok", Toast.LENGTH_SHORT).show()
+
+                //Recepción de la información de la Activity anterior
+                val extras = intent.extras
+                if (extras != null) {
+                    val nombreUsuarioRecibido = extras.getString("nombreUsuario")
+                        ?: getString(R.string.LO_ErrorExtraNoRecibido)
+                    val claveUsuarioRecibida = extras.getString("claveUsuario")
+                        ?: getString(R.string.LO_ErrorExtraNoRecibido)
+                    val numColegiadoRecibido = extras.getString("numColegiadoMedico")
+                        ?: getString(R.string.LO_ErrorExtraNoRecibido)
+
+                    //Inserción del nuevo usuario en la tabla usuarios de la BBDD
+                    var altaUsuario = AltaRemotaUsuarios()
+                    val formatoFecha = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+                    var fechaAltaUsuario = formatoFecha.format(Date())
+                    var altaUsuarioCorrecta: Boolean = altaUsuario.darAltaUsuarioEnBD(
+                        nombreUsuarioRecibido,
+                        claveUsuarioRecibida,
+                        fechaAltaUsuario
+                    )
+                    //Obtención del idUsuario introducido
+                    if (altaUsuarioCorrecta) {
+                        var idUsuarioRegistrado = obtenerIdUsuario(nombreUsuarioRecibido)
+                        //Inserción de datos médico en tabla médico
+                        if (idUsuarioRegistrado != getString(R.string.LO_ErrorObtencionIdUsuario)) {
+                            var altaMedico = AltaRemotaMedicos()
+                            nombreIntroducido = txt_Nombre.text.toString()
+                            apellidosIntroducidos = txt_Apellidos.text.toString()
+                            especialidadIntroducida = txt_Especialidad.text.toString()
+                            telefonoIntroducido = txt_Especialidad.text.toString()
+                            emailIntroducido = txt_email.text.toString()
+                            var centroMedicoIntroducido = obtenerIdCentroMedico(centroMedicoSeleccionado)
+                            //txt_email.setText(centroMedicoIntroducido)
+                            if(centroMedicoIntroducido!= getString(R.string.LO_ErrorObtencionIdCentroMedico)){
+                                var altaMedicoCorrecta = altaMedico.darAltaMedicoEnBD(nombreIntroducido,apellidosIntroducidos,telefonoIntroducido,emailIntroducido,especialidadIntroducida,numColegiadoRecibido,"0",centroMedicoIntroducido,idUsuarioRegistrado)
+                                if(altaMedicoCorrecta){
+                                    Toast.makeText(this,R.string.LO_AltaExito,Toast.LENGTH_SHORT).show()
+                                    //Pasar a AutenticationActivity
+                                }
+                            }
+                        }
+
+                    }
+                }
             }
         }
     }
@@ -167,5 +219,74 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
 
         //Asignar el adaptador al spinner
         spiner_CentroMedico.adapter = adaptadorSpinner
+    }
+
+    fun obtenerIdUsuario(nombreUsuario: String): String {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var consultaRemotaUsuarios = ConsultaRemotaUsuarios()
+        result = consultaRemotaUsuarios.obtenerIdUsuarioPorNombre(nombreUsuario)
+        //Verificamos que result no está vacío
+        try {
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    idUsuarioBD = jsonObject.getString("idUsuario")
+                    nombreUsuarioBD = jsonObject.getString("nombreUsuario")
+                    claveUsuarioBD = jsonObject.getString("contrasenaUsuario")
+                    fechaAltaUsuarioBD = jsonObject.getString("fechaAltaUsuario")
+
+                    if (nombreUsuarioBD == nombreUsuario) {
+                        return idUsuarioBD
+                        break //<-- salimos del bucle
+                    }
+                }
+            } else {
+                Log.e("MainActivity", "El JSONObject de usuario está vacío")
+            }
+        } catch (e: JSONException) {
+            Log.e("MainActivity", "Error al procesar el JSON", e)
+        }
+        return getString(R.string.LO_ErrorObtencionIdUsuario)
+    }
+
+    fun obtenerIdCentroMedico(nombreCentroMedico: String): String {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var consultaRemotaCentrosMedicos = ConsultaRemotaCentrosMedicos()
+        result = consultaRemotaCentrosMedicos.obtenerIdCentroMedicoPorNombre(nombreCentroMedico)
+        //Verificamos que result no está vacío
+        try {
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    idCentroMedicoBD = jsonObject.getString("idCentroMedico")
+                    nombreCentroMedicoBD = jsonObject.getString("nombreCentroMedico")
+                    telefonoCentroMedicoBD = jsonObject.getString("telefonoCentroMedico")
+                    latitudCentroMedicoBD = jsonObject.getString("latitudCentroMedico")
+                    longitudCentroMedicoBD = jsonObject.getString("longitudCentroMedico")
+                    direccionCentroMedicoBD = jsonObject.getString("direccionCentroMedico")
+                    localidadCentroMedicoBD = jsonObject.getString("localidadCentroMedico")
+                    codigoPostalCentroMedicoBD = jsonObject.getString("codigoPostalCentroMedico")
+                    provinciaCentroMedicoBD = jsonObject.getString("provinciaCentroMedico")
+                    esHospitalCentroMedicoBD = jsonObject.getString("esHospitalCentroMedico")
+
+                    if (nombreCentroMedicoBD == nombreCentroMedico) {
+                        return idCentroMedicoBD
+                        break //<-- salimos del bucle
+                    }
+
+                }
+            } else {
+                Log.e("MainActivity", "El JSONObject de centro medico está vacío")
+            }
+        } catch (e: JSONException) {
+            Log.e("MainActivity", "Error al procesar el JSON", e)
+        }
+        return getString(R.string.LO_ErrorObtencionIdCentroMedico)
     }
 }
