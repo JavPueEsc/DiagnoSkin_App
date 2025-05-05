@@ -1,5 +1,6 @@
 package es.studium.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
@@ -160,7 +161,8 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
                                 var altaMedicoCorrecta = altaMedico.darAltaMedicoEnBD(nombreIntroducido,apellidosIntroducidos,telefonoIntroducido,emailIntroducido,especialidadIntroducida,numColegiadoRecibido,"0",centroMedicoIntroducido,idUsuarioRegistrado)
                                 if(altaMedicoCorrecta){
                                     Toast.makeText(this,R.string.LO_AltaExito,Toast.LENGTH_SHORT).show()
-                                    //Pasar a AutenticationActivity
+                                    val intent = Intent(this,AutenticacionActivity::class.java)
+                                    startActivity(intent)
                                 }
                             }
                         }

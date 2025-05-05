@@ -26,7 +26,7 @@ class AltaRemotaMedicos {
             .build()
 
         var request : Request = Request.Builder()
-            .url("http://192.168.1.49/ApiRestDiagnoSkin/medicos.php")
+            .url("http://192.168.0.217/ApiRestDiagnoSkin/medicos.php")
             .post(formBody)
             .build()
 
