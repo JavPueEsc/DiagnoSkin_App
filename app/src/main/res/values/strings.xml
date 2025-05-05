@@ -90,4 +90,10 @@
     <string name="LO_ErrorObtencionIdCentroMedico">No encontrado</string>
     <string name="LO_AltaExito">Usuario registrado correctamente</string>
 
+    <!--AltaDatosPersonalesActivity -->
+    <string name="MP_btnPacientes">Consultar \n pacientes</string>
+    <string name="MP_btnDiagnosticos">Realizar \n diagnóstico</string>
+    <string name="MP_btnInformes">Emitir \n informe</string>
+    <string name="MP_btn_estadisticas">Consultar \n estadísticas</string>
+
 </resources>

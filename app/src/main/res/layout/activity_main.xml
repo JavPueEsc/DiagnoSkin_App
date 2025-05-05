@@ -3,18 +3,166 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    style="@style/ColorFondoAplicacion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <ImageView
+        android:id="@+id/MP_img_logo"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.082"
+        app:srcCompat="@drawable/logoapp" />
 
+    <View
+        android:id="@+id/MP_btn_Pacientes"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/rectangulo_botones_menuprincipal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MP_img_logo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/MP_btn_Diagnosticos"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/rectangulo_botones_menuprincipal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MP_img_logo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <View
+        android:id="@+id/MP_btn_Informes"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/rectangulo_botones_menuprincipal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintVertical_bias="0.425" />
+
+    <View
+        android:id="@+id/MP_btn_Estadisticas"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/rectangulo_botones_menuprincipal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintVertical_bias="0.425" />
+
+    <ImageView
+        android:id="@+id/MP_img_Pacientes"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintVertical_bias="0.746"
+        app:srcCompat="@drawable/icono_pacientes" />
+
+    <ImageView
+        android:id="@+id/MP_img_diagnosticos"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintVertical_bias="0.746"
+        app:srcCompat="@drawable/icono_diagnosticos" />
+
+    <ImageView
+        android:id="@+id/MP_img_informes"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/MP_btn_Informes"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Informes"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Informes"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Informes"
+        app:layout_constraintVertical_bias="0.746"
+        app:srcCompat="@drawable/icono_informes" />
+
+    <ImageView
+        android:id="@+id/MP_img_estadisticas"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        app:layout_constraintBottom_toBottomOf="@+id/MP_btn_Estadisticas"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Estadisticas"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Estadisticas"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Estadisticas"
+        app:layout_constraintVertical_bias="0.746"
+        app:srcCompat="@drawable/icono_estadisticas" />
+
+    <TextView
+        android:id="@+id/MP_lbl_Pacientes"
+        style="@style/TextosBlanco_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MP_btnPacientes"
+        app:layout_constraintBottom_toTopOf="@+id/MP_img_Pacientes"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Pacientes"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/MP_lbl_Diagnosticos"
+        style="@style/TextosBlanco_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MP_btnDiagnosticos"
+        app:layout_constraintBottom_toTopOf="@+id/MP_img_diagnosticos"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Diagnosticos"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/MP_lbl_Informes"
+        style="@style/TextosBlanco_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MP_btnInformes"
+        app:layout_constraintBottom_toTopOf="@+id/MP_img_informes"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Informes"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Informes"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Informes"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/MP_lbl_Estadisticas"
+        style="@style/TextosBlanco_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/MP_btn_estadisticas"
+        app:layout_constraintBottom_toTopOf="@+id/MP_img_estadisticas"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Estadisticas"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Estadisticas"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Estadisticas"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
