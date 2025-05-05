@@ -10,14 +10,15 @@
 
     <ImageView
         android:id="@+id/MP_img_logo"
-        android:layout_width="330dp"
-        android:layout_height="330dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.082"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/logoapp" />
 
     <View
@@ -31,7 +32,7 @@
         app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MP_img_logo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <View
         android:id="@+id/MP_btn_Diagnosticos"
@@ -44,7 +45,7 @@
         app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MP_img_logo"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.05" />
 
     <View
         android:id="@+id/MP_btn_Informes"
@@ -56,7 +57,7 @@
         app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MP_btn_Pacientes"
-        app:layout_constraintVertical_bias="0.425" />
+        android:layout_marginTop="10dp" />
 
     <View
         android:id="@+id/MP_btn_Estadisticas"
@@ -68,7 +69,7 @@
         app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MP_btn_Diagnosticos"
-        app:layout_constraintVertical_bias="0.425" />
+        android:layout_marginTop="10dp" />
 
     <ImageView
         android:id="@+id/MP_img_Pacientes"
@@ -165,4 +166,51 @@
         app:layout_constraintStart_toStartOf="@+id/MP_btn_Estadisticas"
         app:layout_constraintTop_toTopOf="@+id/MP_btn_Estadisticas"
         app:layout_constraintVertical_bias="1.0" />
+
+    <View
+        android:id="@+id/MP_btn_Perfil"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/circulo_botones_menuprincipal"
+        android:layout_marginTop="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.11"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/MP_img_Perfil"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/MP_btn_Perfil"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Perfil"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Perfil"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Perfil"
+        app:srcCompat="@drawable/icono_perfil" />
+
+    <View
+        android:id="@+id/MP_btn_Admin"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/circulo_botones_menuprincipal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.886"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/MP_img_Admin"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/MP_btn_Admin"
+        app:layout_constraintEnd_toEndOf="@+id/MP_btn_Admin"
+        app:layout_constraintStart_toStartOf="@+id/MP_btn_Admin"
+        app:layout_constraintTop_toTopOf="@+id/MP_btn_Admin"
+        app:srcCompat="@drawable/icono_admin" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
