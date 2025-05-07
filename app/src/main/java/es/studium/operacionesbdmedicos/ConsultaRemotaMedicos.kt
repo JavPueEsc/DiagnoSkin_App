@@ -25,6 +25,13 @@ class ConsultaRemotaMedicos {
         return ejecutarPeticion(request)
     }
 
+    fun obtenerMedicoPorIdUsuarioFK(idUsuarioFK:String):JSONArray{
+        val request = Request.Builder()
+            .url("http://192.168.0.217/ApiRestDiagnoSkin/medicos.php?idUsuarioFK=$idUsuarioFK")
+            .build()
+        return ejecutarPeticion(request)
+    }
+
     private fun ejecutarPeticion(request: Request): JSONArray {
         try {
             val response = client.newCall(request).execute()

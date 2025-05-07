@@ -138,7 +138,6 @@ class AutenticacionActivity : AppCompatActivity() {
                     //1. El dispositivo cuenta con el hardware adecuado.
                     BiometricManager.BIOMETRIC_SUCCESS -> {
                         showBiometricPrompt()
-                        //aquí iria el acceso a la aplicación.
                     }
                     //2. El dispositivo no cuenta con el hardware adecuado.
                     BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
@@ -275,9 +274,6 @@ class AutenticacionActivity : AppCompatActivity() {
     fun enviarIntent() {
         val bundle = Bundle()
         bundle.putString("idUsuario", idUsuarioBD)
-        bundle.putString("nombreUsuario", nombreUsuarioBD)
-        bundle.putString("claveUsuario", claveUsuarioBD)
-        bundle.putString("fechaAltaUsuario", fechaAltaUsuarioBD)
 
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtras(bundle)

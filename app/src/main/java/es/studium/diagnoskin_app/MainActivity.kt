@@ -1,14 +1,22 @@
 package es.studium.diagnoskin_app
 
 import android.os.Bundle
+import android.os.StrictMode
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import es.studium.modelos.ModeloMedico
+import es.studium.operacionesbdmedicos.ConsultaRemotaMedicos
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
+    //Declaración de las vistas
     private lateinit var btn_pacientes : View
     private lateinit var btn_diagnosticos : View
     private lateinit var btn_informes : View
@@ -16,7 +24,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btn_perfil : View
     private lateinit var btn_administrador : View
 
-    var esAdminPrueba = "1"
+    //Declaración del usuario recibido del Login
+    private lateinit var idUsuarioRecibido : String
+
+    //Declaración objetos consulta de los datos del médico usuario
+    private lateinit var result: JSONArray
+    private lateinit var jsonObject: JSONObject
+    private lateinit var idMedicoBD : String
+    private lateinit var nombreMedicoBD : String
+    private lateinit var apellidosMedicoBD : String
+    private lateinit var telefonoMedicoBD : String
+    private lateinit var emailMedicoBD : String
+    private lateinit var especialidadMedicoBD : String
+    private lateinit var numColegiadoMedicoBD : String
+    private lateinit var esAdminMedicoBD : String
+    private lateinit var idCentroMedicoFKBD : String
+    private lateinit var idUsuarioFKBD : String
+
+    //Datos usuario Medico que maneja la sesión
+    private lateinit var usuarioMedico : ModeloMedico
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,14 +55,15 @@ class MainActivity : AppCompatActivity() {
         btn_perfil = findViewById(R.id.MP_btn_Perfil)
         btn_administrador = findViewById(R.id.MP_btn_Admin)
 
-        //Recibimos los extras del intent del Loging <---------------------------
-
-        //Consulta a la base de datos de medicos por idUsuarioFK <---------------
-
-        //Se oculta el botón de Administrador si el usuario no lo es.
-        if(esAdminPrueba=="0"){
-            btn_administrador.visibility = View.GONE
+        //Recepción del idUsuario proveniente del Login
+        val extras = intent.extras
+        if (extras != null) {
+            idUsuarioRecibido = extras.getString("idUsuario")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
         }
+
+        //Consulta a la base de datos de medicos por idUsuarioFK
+        consultarDatosMedicoUsuario(idUsuarioRecibido)
 
         //1. Gestión del botón Pacientes
         btn_pacientes.setOnClickListener {
@@ -61,5 +89,49 @@ class MainActivity : AppCompatActivity() {
         btn_administrador.setOnClickListener {
             Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun consultarDatosMedicoUsuario(idUsuarioFK: String): Boolean {
+        var datosExtraidos: Boolean = false
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var consultaRemotaMedicos = ConsultaRemotaMedicos()
+        result = consultaRemotaMedicos.obtenerMedicoPorIdUsuarioFK(idUsuarioFK)
+        //Verificamos que result no está vacío
+        try {
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                     idMedicoBD = jsonObject.getString("idMedico")
+                     nombreMedicoBD = jsonObject.getString("nombreMedico")
+                     apellidosMedicoBD = jsonObject.getString("apellidosMedico")
+                     telefonoMedicoBD = jsonObject.getString("telefonoMedico")
+                     emailMedicoBD = jsonObject.getString("emailMedico")
+                     especialidadMedicoBD = jsonObject.getString("especialidadMedico")
+                     numColegiadoMedicoBD = jsonObject.getString("numColegiadoMedico")
+                     esAdminMedicoBD = jsonObject.getString("esAdminMedico")
+                     idCentroMedicoFKBD = jsonObject.getString("idCentroMedicoFK")
+                     idUsuarioFKBD = jsonObject.getString("idUsuarioFK")
+                    if (idUsuarioFKBD == idUsuarioFK) {
+                        datosExtraidos = true
+                        usuarioMedico = ModeloMedico(idMedicoBD, nombreMedicoBD, apellidosMedicoBD, telefonoMedicoBD, emailMedicoBD,
+                            especialidadMedicoBD, numColegiadoMedicoBD, esAdminMedicoBD, idCentroMedicoFKBD, idUsuarioFKBD)
+                        //Se oculta el botón de Administrador si el usuario no lo es.
+                        if(usuarioMedico.esAdminMedicoBD=="0"){
+                            Log.d("esAdmin", "esAdminRecibido: $usuarioMedico.esAdminMedicoBD")
+                            btn_administrador.visibility = View.GONE
+                        }
+                        break //<-- salimos del bucle
+                    }
+                }
+            } else {
+                Log.e("MainActivity", "El JSONObject está vacío")
+            }
+        } catch (e: JSONException) {
+            Log.e("MainActivity", "Error al procesar el JSON", e)
+        }
+        return datosExtraidos
     }
 }
