@@ -7,13 +7,10 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
-import es.studium.operacionesbdmedicos.ConsultaRemotaMedicos
-import es.studium.operacionesbdusuarios.ConsultaRemotaUsuarios
+import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
+import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

@@ -1,4 +1,4 @@
-package es.studium.operacionesbdusuarios
+package es.studium.operacionesbd_usuarios
 import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -31,15 +31,15 @@ class ConsultaRemotaUsuarios {
             val response = client.newCall(request).execute()
             if (response.isSuccessful) {
                 val responseBody = response.body?.string()
-                Log.d("AccesoRemoto", "Respuesta cruda: $responseBody") // Muestra el JSON recibido
+                Log.d("ConsultaRemotaUsuarios", "Respuesta cruda: $responseBody") // Muestra el JSON recibido
                 resultado = JSONArray(responseBody)
             } else {
-                Log.e("AccesoRemoto", "Error HTTP: ${response.message}")
+                Log.e("ConsultaRemotaUsuarios", "Error HTTP: ${response.message}")
             }
         } catch (e: IOException) {
-            Log.e("AccesoRemoto", "IOException: ${e.message}")
+            Log.e("ConsultaRemotaUsuarios", "IOException: ${e.message}")
         } catch (e: JSONException) {
-            Log.e("AccesoRemoto", "JSONException: ${e.message}")
+            Log.e("ConsultaRemotaUsuarios", "JSONException: ${e.message}")
             throw RuntimeException(e)
         }
         return resultado

@@ -1,16 +1,15 @@
 package es.studium.diagnoskin_app
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import es.studium.modelos.ModeloMedico
-import es.studium.operacionesbdmedicos.ConsultaRemotaMedicos
+import es.studium.modelos_y_utiles.ModeloMedico
+import es.studium.opcionpacientes.PrincipalPacientesActivity
+import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -67,7 +66,10 @@ class MainActivity : AppCompatActivity() {
 
         //1. Gestión del botón Pacientes
         btn_pacientes.setOnClickListener {
-            Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, PrincipalPacientesActivity::class.java)
+            //intent.putExtra("usuarioMedico",usuarioMedico)
+            startActivity(intent)
         }
         //2. Gestión del botón Diagnósticos
         btn_diagnosticos.setOnClickListener {
@@ -119,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                         usuarioMedico = ModeloMedico(idMedicoBD, nombreMedicoBD, apellidosMedicoBD, telefonoMedicoBD, emailMedicoBD,
                             especialidadMedicoBD, numColegiadoMedicoBD, esAdminMedicoBD, idCentroMedicoFKBD, idUsuarioFKBD)
                         //Se oculta el botón de Administrador si el usuario no lo es.
-                        if(usuarioMedico.esAdminMedicoBD=="0"){
+                        if(usuarioMedico.esAdminMedico=="0"){
                             Log.d("esAdmin", "esAdminRecibido: $usuarioMedico.esAdminMedicoBD")
                             btn_administrador.visibility = View.GONE
                         }

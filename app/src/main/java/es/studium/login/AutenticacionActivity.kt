@@ -15,7 +15,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
@@ -23,7 +22,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
-import es.studium.operacionesbdusuarios.ConsultaRemotaUsuarios
+import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

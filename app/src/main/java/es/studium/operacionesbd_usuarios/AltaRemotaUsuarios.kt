@@ -1,10 +1,9 @@
-package es.studium.operacionesbdusuarios
+package es.studium.operacionesbd_usuarios
 
 import android.util.Log
 import okhttp3.FormBody
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.RequestBody
 import okio.IOException
 class AltaRemotaUsuarios {
     val client = OkHttpClient()
@@ -28,7 +27,7 @@ class AltaRemotaUsuarios {
 
         try{
             val response = call.execute()
-            Log.d("RESPUESTA", response.body?.string() ?: "Sin cuerpo")
+            Log.d("AltaRemotaUsuarios", response.body?.string() ?: "Sin cuerpo")
             return response.isSuccessful
         }
         catch(e : IOException){

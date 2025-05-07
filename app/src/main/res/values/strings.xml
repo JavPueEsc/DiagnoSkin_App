@@ -90,10 +90,24 @@
     <string name="LO_ErrorObtencionIdCentroMedico">No encontrado</string>
     <string name="LO_AltaExito">Usuario registrado correctamente</string>
 
-    <!--AltaDatosPersonalesActivity -->
+    <!--MainActivity -->
     <string name="MP_btnPacientes">Consultar \n pacientes</string>
     <string name="MP_btnDiagnosticos">Realizar \n diagnóstico</string>
     <string name="MP_btnInformes">Emitir \n informe</string>
     <string name="MP_btn_estadisticas">Consultar \n estadísticas</string>
+
+    <!--PrincipalPacientesActivity -->
+    <string name="PA_lbl_tituloPacientes">Pacientes</string>
+    <string name="PA_lbl_subTituloFiltrar">Filtar por NUHSA</string>
+    <string name="PA_hint_txt_filtroNuhsa">Introduzca un NUHSA</string>
+    <string name="PA_btn_buscar">Buscar</string>
+    <string name="PA_btn_NuevoPaciente">Nuevo paciente</string>
+
+    <!-- Tarjeta Pacientes -->
+    <string name="PA_lbl_idPaciente_tarjeta">Identificador: #</string>
+    <string name="PA_lbl_apellidoNombre_tarjeta">Nombre:</string>
+    <string name="PA_lbl_nuhsa_tarjeta">NUHSA:</string>
+    <string name="PA_lbl_dni_tarjeta">DNI:</string>
+
 
 </resources>

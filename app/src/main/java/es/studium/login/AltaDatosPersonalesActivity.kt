@@ -13,10 +13,10 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.diagnoskin_app.R
-import es.studium.operacionesbdcentrosmedicos.ConsultaRemotaCentrosMedicos
-import es.studium.operacionesbdmedicos.AltaRemotaMedicos
-import es.studium.operacionesbdusuarios.AltaRemotaUsuarios
-import es.studium.operacionesbdusuarios.ConsultaRemotaUsuarios
+import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
+import es.studium.operacionesbd_medicos.AltaRemotaMedicos
+import es.studium.operacionesbd_usuarios.AltaRemotaUsuarios
+import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

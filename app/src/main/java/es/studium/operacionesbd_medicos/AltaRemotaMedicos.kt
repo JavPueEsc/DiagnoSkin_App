@@ -1,4 +1,4 @@
-package es.studium.operacionesbdmedicos
+package es.studium.operacionesbd_medicos
 
 import android.util.Log
 import okhttp3.FormBody
@@ -34,7 +34,7 @@ class AltaRemotaMedicos {
 
         try{
             val response = call.execute()
-            Log.d("RESPUESTA", response.body?.string() ?: "Sin cuerpo")
+            Log.d("AltaRemotaMedicos", response.body?.string() ?: "Sin cuerpo")
             return response.isSuccessful
         }
         catch(e : IOException){

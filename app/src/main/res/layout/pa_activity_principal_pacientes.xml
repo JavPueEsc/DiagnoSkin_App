@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="es.studium.opcionpacientes.PrincipalPacientesActivity">
+
+    <TextView
+        android:id="@+id/PA_lbl_tituloPacientes"
+        style="@style/TextosAzul_tam30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/PA_lbl_tituloPacientes"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_tituloPacientes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/PA_txt_filtroNuhsa"
+        style="@style/EditTextRedondeado"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/PA_hint_txt_filtroNuhsa"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/PA_recyclerView_Pacientes"
+        android:layout_width="410dp"
+        android:layout_height="575dp"
+        android:layout_marginTop="8dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PA_txt_filtroNuhsa"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/PA_btn_NuevoPaciente"
+        style="@style/EstiloBotonesLogin"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/PA_btn_NuevoPaciente"
+        app:layout_constraintTop_toBottomOf="@id/PA_recyclerView_Pacientes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

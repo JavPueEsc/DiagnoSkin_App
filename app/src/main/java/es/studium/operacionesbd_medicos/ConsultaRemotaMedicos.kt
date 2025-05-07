@@ -1,4 +1,4 @@
-package es.studium.operacionesbdmedicos
+package es.studium.operacionesbd_medicos
 import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -37,15 +37,15 @@ class ConsultaRemotaMedicos {
             val response = client.newCall(request).execute()
             if (response.isSuccessful) {
                 val responseBody = response.body?.string()
-                Log.d("AccesoRemoto", "Respuesta cruda: $responseBody") // Muestra el JSON recibido
+                Log.d("ConsultaRemotaMedicos", "Respuesta cruda: $responseBody") // Muestra el JSON recibido
                 resultado = JSONArray(responseBody)
             } else {
-                Log.e("AccesoRemoto", "Error HTTP: ${response.message}")
+                Log.e("ConsultaRemotaMedicos", "Error HTTP: ${response.message}")
             }
         } catch (e: IOException) {
-            Log.e("AccesoRemoto", "IOException: ${e.message}")
+            Log.e("ConsultaRemotaMedicos", "IOException: ${e.message}")
         } catch (e: JSONException) {
-            Log.e("AccesoRemoto", "JSONException: ${e.message}")
+            Log.e("ConsultaRemotaMedicos", "JSONException: ${e.message}")
             throw RuntimeException(e)
         }
         return resultado
