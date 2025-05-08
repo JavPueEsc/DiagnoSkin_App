@@ -117,21 +117,58 @@
     <string name="PA_lbl_dni_tarjeta">DNI:</string>
 
     <!-- DatosDelPacienteActivity-->
-    <string name="PA_lbl_idPaciente_datosDelPaciente">Datos del paciente #</string>
-    <string name="PA_lbl_nombrePaciente_datosDelPaciente">Nombre:</string>
-    <string name="PA_lbl_apellidosPaciente_datosDelPaciente">Apellidos:</string>
-    <string name="PA_lbl_sexoPaciente_datosDelPaciente">Sexo:</string>
-    <string name="PA_lbl_fechaNacPaciente_datosDelPaciente">Fecha de Nacimiento:</string>
-    <string name="PA_lbl_nuhsaPaciente_datosDelPaciente">NUHSA:</string>
-    <string name="PA_lbl_telefonoPaciente_datosDelPaciente">Teléfono:</string>
-    <string name="PA_lbl_emailPaciente_datosDelPaciente">Email:</string>
-    <string name="PA_lbl_dniPaciente_datosDelPaciente">DNI:</string>
-    <string name="PA_lbl_direccionPaciente_datosDelPaciente">Dirección:</string>
-    <string name="PA_lbl_localidadPaciente_datosDelPaciente">Localidad:</string>
-    <string name="PA_lbl_provinciaPaciente_datosDelPaciente">Provincia:</string>
-    <string name="PA_lbl_codigoPostalPaciente_datosDelPaciente">Código postal:</string>
+    <string name="PA_lbl_idPaciente_datosDelPaciente">Datos del paciente #%1$s</string>
+    <string name="PA_lbl_nombrePaciente_datosDelPaciente">Nombre: %1$s</string>
+    <string name="PA_lbl_apellidosPaciente_datosDelPaciente">Apellidos: %1$s</string>
+    <string name="PA_lbl_sexoPaciente_datosDelPaciente">Sexo: %1$s</string>
+    <string name="PA_lbl_fechaNacPaciente_datosDelPaciente">Fecha de Nacimiento: %1$s</string>
+    <string name="PA_lbl_nuhsaPaciente_datosDelPaciente">NUHSA: %1$s</string>
+    <string name="PA_lbl_telefonoPaciente_datosDelPaciente">Teléfono: %1$s</string>
+    <string name="PA_lbl_emailPaciente_datosDelPaciente">Email: %1$s</string>
+    <string name="PA_lbl_dniPaciente_datosDelPaciente">DNI: %1$s</string>
+    <string name="PA_lbl_direccionPaciente_datosDelPaciente">Dirección: %1$s</string>
+    <string name="PA_lbl_localidadPaciente_datosDelPaciente">Localidad: %1$s</string>
+    <string name="PA_lbl_provinciaPaciente_datosDelPaciente">Provincia: %1$s</string>
+    <string name="PA_lbl_codigoPostalPaciente_datosDelPaciente">Código postal: %1$s</string>
+
     <string name="PA_btn_modificar_datosDelPaciente">Modificar</string>
     <string name="PA_btn_verDiagnosticos_datosDelPaciente">Ver diagnósticos</string>
 
+    <string name="PA_btn_errorFechaNoDisponible">Fecha no disponible</string>
 
+    <!-- ModificarPacienteActivity-->
+    <string name="PA_lbl_idPaciente_modificarPaciente">Paciente #%1$s</string>
+    <string name="PA_lbl_nombrePaciente_modificarPaciente">Nombre</string>
+    <string name="PA_lbl_apellidosPaciente_modificarPaciente">Apellidos</string>
+    <string name="PA_lbl_sexoPaciente_modificarPaciente">Sexo</string>
+    <string name="PA_lbl_fechaNacPaciente_modificarPaciente">Fecha de Nacimiento</string>
+    <string name="PA_lbl_nuhsaPaciente_modificarPaciente">NUHSA</string>
+    <string name="PA_lbl_telefonoPaciente_modificarPaciente">Teléfono</string>
+    <string name="PA_lbl_emailPaciente_modificarPaciente">Email</string>
+    <string name="PA_lbl_dniPaciente_modificarPaciente">DNI</string>
+    <string name="PA_lbl_direccionPaciente_modificarPaciente">Dirección</string>
+    <string name="PA_lbl_localidadPaciente_modificarPaciente">Localidad</string>
+    <string name="PA_lbl_provinciaPaciente_modificarPaciente">Provincia</string>
+    <string name="PA_lbl_codigoPostalPaciente_modificarPaciente">Código postal</string>
+
+    <string name="PA_hint_nombrePaciente_modificarPaciente">Nombre</string>
+    <string name="PA_hint_apellidosPaciente_modificarPaciente">Apellidos</string>
+    <string name="PA_hint_sexoPaciente_modificarPaciente">Sexo</string>
+    <string name="PA_hint_fechaNacPaciente_modificarPaciente">Fecha de Nacimiento</string>
+    <string name="PA_hint_nuhsaPaciente_modificarPaciente">NUHSA</string>
+    <string name="PA_hint_telefonoPaciente_modificarPaciente">Teléfono</string>
+    <string name="PA_hint_emailPaciente_modificarPaciente">Email</string>
+    <string name="PA_hint_dniPaciente_modificarPaciente">DNI</string>
+    <string name="PA_hint_direccionPaciente_modificarPaciente">Dirección</string>
+    <string name="PA_hint_localidadPaciente_modificarPaciente">Localidad</string>
+    <string name="PA_hint_provinciaPaciente_modificarPaciente">Provincia</string>
+    <string name="PA_hint_codigoPostalPaciente_modificarPaciente">Código postal</string>
+
+    <string name="PA_btn_aceptar_modificarPaciente">Aceptar</string>
+
+    <string-array name="PA_spinner_sexoPaciente_modificarPaciente">
+        <item>Seleccione el sexo del paciente</item>
+        <item>Hombre</item>
+        <item>Mujer</item>
+    </string-array>
 </resources>

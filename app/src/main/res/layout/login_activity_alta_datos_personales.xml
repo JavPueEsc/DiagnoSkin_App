@@ -108,9 +108,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Spinner
+    <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/LO_spinner_centrosMedicos"
         style="@style/EditTextRedondeado"
+        android:popupBackground="@drawable/rectangulo_blanco"
         android:layout_width="275dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"

@@ -86,6 +86,8 @@ class AutenticacionActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.LO_Toast_CredencialesCorrectas, Toast.LENGTH_SHORT)
                     .show()
                 credencialesCorrectas = false //Reseteo de booleano
+                txt_usuario.setText("")
+                txt_clave.setText("")
                 //Comprobación de si hay Shared preferences guardadas
                 shared = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE)
                 val isShared = shared.getString(USUARIO_KEY, "")

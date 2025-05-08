@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="es.studium.opcionpacientes.DatosDelPacienteActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/PA_lbl_idPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/PA_lbl_idPaciente_modificarPaciente"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_nombrePaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/PA_lbl_nombrePaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_nombrePaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_nombrePaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_apellidosPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_apellidosPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_apellidosPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_apellidosPaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_sexoPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_sexoPaciente_modificarPaciente" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/PA_spinner_sexoPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:popupBackground="@drawable/rectangulo_blanco"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_fechaNacPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_fechaNacPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_fechaNacPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_fechaNacPaciente_modificarPaciente"
+                android:inputType="date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_nuhsaPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_nuhsaPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_nuhsaPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_nuhsaPaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_telefonoPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_telefonoPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_telefonoPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_telefonoPaciente_modificarPaciente"
+                android:inputType="phone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_emailPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_emailPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_emailPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_emailPaciente_modificarPaciente"
+                android:inputType="textEmailAddress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_dniPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_dniPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_dniPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_dniPaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_direccionPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_direccionPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_direccionPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_direccionPaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_localidadPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_localidadPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_localidadPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_localidadPaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_provinciaPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_provinciaPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_provinciaPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_provinciaPaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <TextView
+                android:id="@+id/PA_lbl_codigoPostalPaciente_modificarDatosPaciente"
+                style="@style/TextosAzul_tam16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/PA_lbl_codigoPostalPaciente_modificarPaciente" />
+
+            <EditText
+                android:id="@+id/PA_txt_codigoPostalPaciente_modificarDatosPaciente"
+                style="@style/EditTextRedondeado"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:hint="@string/PA_hint_codigoPostalPaciente_modificarPaciente"
+                android:inputType="text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/PA_btn_aceptar_modificarDatosPaciente"
+                style="@style/EstiloBotonesLogin"
+                android:layout_width="275dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/PA_btn_aceptar_modificarPaciente"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

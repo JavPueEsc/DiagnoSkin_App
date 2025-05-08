@@ -17,11 +17,14 @@
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
         <activity
+            android:name="es.studium.opcionpacientes.ModificarPacienteActivity"
+            android:exported="false" />
+        <activity
             android:name="es.studium.opcionpacientes.DatosDelPacienteActivity"
             android:exported="false" />
         <activity
             android:name="es.studium.opcionpacientes.PrincipalPacientesActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name="es.studium.login.AltaDatosPersonalesActivity"
             android:exported="false" />

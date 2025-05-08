@@ -12,6 +12,7 @@ import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.AltaRemotaMedicos
@@ -30,7 +31,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     private lateinit var txt_Nombre: EditText
     private lateinit var txt_Apellidos: EditText
     private lateinit var txt_Especialidad: EditText
-    private lateinit var spiner_CentroMedico: Spinner
+    private lateinit var spiner_CentroMedico: AppCompatSpinner
     private lateinit var txt_telefono: EditText
     private lateinit var txt_email: EditText
     private lateinit var btn_Aceptar: Button
