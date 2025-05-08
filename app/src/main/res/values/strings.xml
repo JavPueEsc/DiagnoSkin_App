@@ -116,5 +116,22 @@
     <string name="PA_lbl_nuhsa_tarjeta">NUHSA:</string>
     <string name="PA_lbl_dni_tarjeta">DNI:</string>
 
+    <!-- DatosDelPacienteActivity-->
+    <string name="PA_lbl_idPaciente_datosDelPaciente">Datos del paciente #</string>
+    <string name="PA_lbl_nombrePaciente_datosDelPaciente">Nombre:</string>
+    <string name="PA_lbl_apellidosPaciente_datosDelPaciente">Apellidos:</string>
+    <string name="PA_lbl_sexoPaciente_datosDelPaciente">Sexo:</string>
+    <string name="PA_lbl_fechaNacPaciente_datosDelPaciente">Fecha de Nacimiento:</string>
+    <string name="PA_lbl_nuhsaPaciente_datosDelPaciente">NUHSA:</string>
+    <string name="PA_lbl_telefonoPaciente_datosDelPaciente">Teléfono:</string>
+    <string name="PA_lbl_emailPaciente_datosDelPaciente">Email:</string>
+    <string name="PA_lbl_dniPaciente_datosDelPaciente">DNI:</string>
+    <string name="PA_lbl_direccionPaciente_datosDelPaciente">Dirección:</string>
+    <string name="PA_lbl_localidadPaciente_datosDelPaciente">Localidad:</string>
+    <string name="PA_lbl_provinciaPaciente_datosDelPaciente">Provincia:</string>
+    <string name="PA_lbl_codigoPostalPaciente_datosDelPaciente">Código postal:</string>
+    <string name="PA_btn_modificar_datosDelPaciente">Modificar</string>
+    <string name="PA_btn_verDiagnosticos_datosDelPaciente">Ver diagnósticos</string>
+
 
 </resources>

@@ -6,6 +6,8 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -88,6 +90,20 @@ class PrincipalPacientesActivity : AppCompatActivity() {
             adaptadorPacientes.notifyDataSetChanged()
         }
 
+        //Gestión de búsqueda dinámica por nuhsa
+        txt_buscarPorNuhsa.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val nuhsaIntroducido = s.toString()
+                listaPacientes.clear()
+                cargarPacientesPorNuhsa(nuhsaIntroducido)
+                //Hay que indicarle al adaptador que los datos han cambiado
+                adaptadorPacientes.notifyDataSetChanged()
+            }
+            override fun afterTextChanged(s: Editable?) {}
+        })
+
         //Ponemos la lista al adaptador y configuramos el recyclerView
         val mLayoutManager = LinearLayoutManager(this)
         recyclerView = findViewById(R.id.PA_recyclerView_Pacientes)
@@ -95,22 +111,31 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adaptadorPacientes
 
+
         //Gestión de pulsaciones sobre las tarjetas del recyclerView
         recyclerView.addOnItemTouchListener(
             RecyclerTouchListener(this, recyclerView, object : RecyclerTouchListener.ClickListener {
                 //Consultar datos Paciente
                 override fun onClick(view: View, position: Int) {
-                    /*var diagnosticoSeleccionado = listaDiagnosticos[position]
-                    var intentModificar = Intent(this@MainActivity,ModificarActivity::class.java)
-                    intentModificar.putExtra("idDiagnostico", diagnosticoSeleccionado.idDiagnostico)
-                    intentModificar.putExtra("imagenDiagnostico", diagnosticoSeleccionado.imagenDiagnostico)
-                    intentModificar.putExtra("fechaDiagnostico", diagnosticoSeleccionado.fechaDiagnostico)
-                    intentModificar.putExtra("diagnosticoDiagnostico", diagnosticoSeleccionado.diagnosticoDiagnostico)
-                    intentModificar.putExtra("gravedadDiagnostico", diagnosticoSeleccionado.gravedadDiagnostico)
-                    intentModificar.putExtra("doctorDiagnostico", diagnosticoSeleccionado.doctorDiagnostico)
-                    intentModificar.putExtra("centroDiagnostico", diagnosticoSeleccionado.centroDiagnostico)
-                    startActivity(intentModificar)*/
-                    Toast.makeText(view.context,"Pulsación corta",Toast.LENGTH_SHORT).show()
+                    var pacienteSeleccionado = listaPacientes[position]
+                    var intentModificar = Intent(this@PrincipalPacientesActivity,DatosDelPacienteActivity::class.java)
+                    intentModificar.putExtra("idPaciente", pacienteSeleccionado.idPaciente)
+                    intentModificar.putExtra("nombrePaciente", pacienteSeleccionado.nombrePaciente)
+                    intentModificar.putExtra("apellidosPaciente", pacienteSeleccionado.apellidosPaciente)
+                    intentModificar.putExtra("sexoPaciente", pacienteSeleccionado.sexoPaciente)
+                    intentModificar.putExtra("fechaNacPaciente", pacienteSeleccionado.fechaNacPaciente)
+                    intentModificar.putExtra("nuhsaPaciente", pacienteSeleccionado.nuhsaPaciente)
+                    intentModificar.putExtra("telefonoPaciente", pacienteSeleccionado.telefonoPaciente)
+                    intentModificar.putExtra("emailPaciente", pacienteSeleccionado.emailPaciente)
+                    intentModificar.putExtra("dniPaciente", pacienteSeleccionado.dniPaciente)
+                    intentModificar.putExtra("direccionPaciente", pacienteSeleccionado.direccionPaciente)
+                    intentModificar.putExtra("localidadPaciente", pacienteSeleccionado.localidadPaciente)
+                    intentModificar.putExtra("provinciaPaciente", pacienteSeleccionado.provinciaPaciente)
+                    intentModificar.putExtra("codigoPostalPaciente", pacienteSeleccionado.codigoPostalPaciente)
+                    intentModificar.putExtra("esMedicoAdmin", esMedicoAdminRecibido)
+
+                    startActivity(intentModificar)
+                    //Toast.makeText(view.context,"Pulsación corta",Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onLongClick(view: View, position: Int) {
@@ -176,6 +201,47 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         }
         var consultaRemotaPacientes = ConsultaRemotaPacientes()
         result = consultaRemotaPacientes.obtenerListado() //<-------AQUÍ HAY QUE LLAMAR A CARGAR PACIENTES!!!
+        //verificamos que result no está vacio
+        try{
+            if(result.length() > 0){
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    idPacienteBD = jsonObject.getString("idPaciente")
+                    nombrePacienteBD = jsonObject.getString("nombrePaciente")
+                    apellidosPacienteBD = jsonObject.getString("apellidosPaciente")
+                    sexoPacienteBD = jsonObject.getString("sexoPaciente")
+                    fechaNacPacienteBD = jsonObject.getString("fechaNacPaciente")
+                    nuhsaPacienteBD = jsonObject.getString("nuhsaPaciente")
+                    telefonoPacienteBD = jsonObject.getString("telefonoPaciente")
+                    emailPacienteBD = jsonObject.getString("emailPaciente")
+                    dniPacienteBD = jsonObject.getString("dniPaciente")
+                    direccionPacienteBD = jsonObject.getString("direccionPaciente")
+                    localidadPacienteBD = jsonObject.getString("localidadPaciente")
+                    provinciaPacienteBD = jsonObject.getString("provinciaPaciente")
+                    codigoPostalPacienteBD = jsonObject.getString("codigoPostalPaciente")
+
+                    listaPacientes.add(ModeloPaciente(idPacienteBD,nombrePacienteBD,apellidosPacienteBD,sexoPacienteBD,
+                        fechaNacPacienteBD,nuhsaPacienteBD,telefonoPacienteBD,emailPacienteBD,dniPacienteBD,direccionPacienteBD,
+                        localidadPacienteBD,provinciaPacienteBD,codigoPostalPacienteBD))
+                }
+            }
+            else{
+                Log.e("PrincipalPacientesActivity", "El JSONObject está vacío")
+            }
+        }
+        catch(e : JSONException){
+            Log.e("PrincipalPacientesActivity", "Error al procesar el JSON", e)
+        }
+    }
+
+    fun cargarPacientesPorNuhsa(nuhsa:String){
+        //-----Cominucacion con la API-Rest-----------
+        if(android.os.Build.VERSION.SDK_INT > 9){
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var consultaRemotaPacientes = ConsultaRemotaPacientes()
+        result = consultaRemotaPacientes.obtenerPacientePorNuhsa(nuhsa)
         //verificamos que result no está vacio
         try{
             if(result.length() > 0){
