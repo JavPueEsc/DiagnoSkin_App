@@ -103,6 +103,13 @@
     <string name="PA_btn_buscar">Buscar</string>
     <string name="PA_btn_NuevoPaciente">Nuevo paciente</string>
 
+    <string name="PA_dlg_opcionSi">Si</string>
+    <string name="PA_dlg_opcionNo">No</string>
+    <string name="PA_dlg_titulo">Confirmar eliminación</string>
+    <string name="PA_dlg_mensaje">¿Desea eliminar este paciente?</string>
+    <string name="PA_toast_errorEliminacion">Se ha producido un error al intentar eliminar el paciente</string>
+    <string name="PA_toast_NoEsAdmin">No cuenta con permisos de administrador</string>
+
     <!-- Tarjeta Pacientes -->
     <string name="PA_lbl_idPaciente_tarjeta">Identificador: #</string>
     <string name="PA_lbl_apellidoNombre_tarjeta">Nombre:</string>

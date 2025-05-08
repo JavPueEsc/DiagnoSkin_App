@@ -12,7 +12,7 @@
         android:id="@+id/MP_img_logo"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

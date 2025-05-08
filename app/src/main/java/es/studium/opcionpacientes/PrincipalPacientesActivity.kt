@@ -1,21 +1,32 @@
 package es.studium.opcionpacientes
 
+import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.AdaptadorPacientes
+import es.studium.modelos_y_utiles.ModeloMedico
 import es.studium.modelos_y_utiles.ModeloPaciente
+import es.studium.modelos_y_utiles.RecyclerTouchListener
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
+import es.studium.operacionesbd_pacientes.EliminacionRemotaPacientes
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -47,13 +58,20 @@ class PrincipalPacientesActivity : AppCompatActivity() {
     private lateinit var provinciaPacienteBD : String
     private lateinit var codigoPostalPacienteBD : String
 
+    //Variable para extra recibido
+    private lateinit var esMedicoAdminRecibido : String
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pa_activity_principal_pacientes)
 
         //Recibir EXTRA con los datos del usuario médico
-        //val usuarioMedico = intent.getParcelableExtra("usuarioMedico",ModeloMedico::class.java)
+        val extras = intent.extras
+        if (extras != null) {
+             esMedicoAdminRecibido = extras.getString("esAdminMedico")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        }
 
         //Enlazar variables con vistas
         txt_buscarPorNuhsa = findViewById(R.id.PA_txt_filtroNuhsa)
@@ -76,6 +94,78 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adaptadorPacientes
+
+        //Gestión de pulsaciones sobre las tarjetas del recyclerView
+        recyclerView.addOnItemTouchListener(
+            RecyclerTouchListener(this, recyclerView, object : RecyclerTouchListener.ClickListener {
+                //Consultar datos Paciente
+                override fun onClick(view: View, position: Int) {
+                    /*var diagnosticoSeleccionado = listaDiagnosticos[position]
+                    var intentModificar = Intent(this@MainActivity,ModificarActivity::class.java)
+                    intentModificar.putExtra("idDiagnostico", diagnosticoSeleccionado.idDiagnostico)
+                    intentModificar.putExtra("imagenDiagnostico", diagnosticoSeleccionado.imagenDiagnostico)
+                    intentModificar.putExtra("fechaDiagnostico", diagnosticoSeleccionado.fechaDiagnostico)
+                    intentModificar.putExtra("diagnosticoDiagnostico", diagnosticoSeleccionado.diagnosticoDiagnostico)
+                    intentModificar.putExtra("gravedadDiagnostico", diagnosticoSeleccionado.gravedadDiagnostico)
+                    intentModificar.putExtra("doctorDiagnostico", diagnosticoSeleccionado.doctorDiagnostico)
+                    intentModificar.putExtra("centroDiagnostico", diagnosticoSeleccionado.centroDiagnostico)
+                    startActivity(intentModificar)*/
+                    Toast.makeText(view.context,"Pulsación corta",Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onLongClick(view: View, position: Int) {
+                        // Eliminación de un diagnostico - Pulsación larga
+                        val pacienteAEliminar = listaPacientes[position]
+                        val tituloPersonalizado = layoutInflater.inflate(R.layout.xx_titulo_dialogo_personalizado, null)
+                        val dialogo = AlertDialog
+                            .Builder(this@PrincipalPacientesActivity)
+                            .setPositiveButton(view.context.getString(R.string.PA_dlg_opcionSi), object : DialogInterface.OnClickListener {
+                                override fun onClick(dialogo: DialogInterface, which: Int) {
+                                    if(esMedicoAdminRecibido=="0"){
+                                        Toast.makeText(this@PrincipalPacientesActivity, R.string.PA_toast_NoEsAdmin, Toast.LENGTH_SHORT).show()
+                                    }
+                                    else{
+                                        val eliminacionRemota = EliminacionRemotaPacientes()
+                                        val resultado = eliminacionRemota.eliminarPaciente(pacienteAEliminar.idPaciente)
+
+                                        if (resultado) {
+                                            listaPacientes.clear()
+                                            cargarPacientes()
+                                            adaptadorPacientes.notifyDataSetChanged()
+
+                                        } else {
+                                            Toast.makeText(this@PrincipalPacientesActivity, R.string.PA_toast_errorEliminacion, Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                }
+                            })
+                            .setNegativeButton(view.context.getString(R.string.PA_dlg_opcionNo), object : DialogInterface.OnClickListener {
+                                override fun onClick(dialogo: DialogInterface, which: Int) {
+                                    dialogo.dismiss()
+                                }
+                            })
+                            .setCustomTitle(tituloPersonalizado)
+                            .setMessage(view.context.getString(R.string.PA_dlg_mensaje))
+                            .create()
+
+                    //El setOnShowListener permite que se apliquen los cambios en los colores cuando se muestre el dialogo
+                    dialogo.setOnShowListener {
+                        val fondoDialogo = ContextCompat.getDrawable(this@PrincipalPacientesActivity, R.drawable.rectangulo_tarjetas)
+                        val textoAzulDialogo = ContextCompat.getColor(this@PrincipalPacientesActivity, R.color.azulBrillante)
+
+                        dialogo.window?.setBackgroundDrawable(fondoDialogo)
+
+                        dialogo.findViewById<TextView>(android.R.id.message)?.setTextColor(textoAzulDialogo)
+                        dialogo.findViewById<TextView>(resources.getIdentifier("alertTitle", "id", "android"))?.setTextColor(textoAzulDialogo)
+
+                        dialogo.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(textoAzulDialogo)
+                        dialogo.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(textoAzulDialogo)
+                    }
+
+                    dialogo.show()
+                }
+            })
+        )
     }
 
     fun cargarPacientes(){

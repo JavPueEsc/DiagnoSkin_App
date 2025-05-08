@@ -1,0 +1,13 @@
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dlg_ituloPersonalizado"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="24dp"
+    android:paddingTop="16dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="2dp"
+    android:textSize="20sp"
+    android:textColor="@color/azulBrillante"
+    android:textStyle="bold"
+    android:gravity="start"
+    android:text="@string/PA_dlg_titulo" />

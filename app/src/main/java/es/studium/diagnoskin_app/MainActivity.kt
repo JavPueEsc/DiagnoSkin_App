@@ -67,8 +67,11 @@ class MainActivity : AppCompatActivity() {
         //1. Gestión del botón Pacientes
         btn_pacientes.setOnClickListener {
 
+            val bundle = Bundle()
+            bundle.putString("esAdminMedico", usuarioMedico.esAdminMedico)
+
             val intent = Intent(this, PrincipalPacientesActivity::class.java)
-            //intent.putExtra("usuarioMedico",usuarioMedico)
+            intent.putExtras(bundle)
             startActivity(intent)
         }
         //2. Gestión del botón Diagnósticos
