@@ -46,6 +46,8 @@ class DatosDelPacienteActivity : AppCompatActivity() {
     private var provinciaPacienteRecibido: String? = ""
     private var codigoPostalPacienteRecibido: String? = ""
     private var esAdminMedicoRecibido: String? = ""
+    private var idMedicoRecibido: String? = ""
+    private var idUsuarioRecibido: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +82,7 @@ class DatosDelPacienteActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            enviarIntentAPrincipal(esAdminMedicoRecibido)
+            enviarIntentAPrincipal(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
         }
 
         // Establecer los datos del paciente en las vistas usando strings con placeholders
@@ -133,6 +135,8 @@ class DatosDelPacienteActivity : AppCompatActivity() {
             intentModificar.putExtra("provinciaPaciente", provinciaPacienteRecibido)
             intentModificar.putExtra("codigoPostalPaciente", codigoPostalPacienteRecibido)
             intentModificar.putExtra("esAdminMedico", esAdminMedicoRecibido)
+            intentModificar.putExtra("idMedico", idMedicoRecibido)
+            intentModificar.putExtra("idUsuario", idUsuarioRecibido)
 
             startActivity(intentModificar)
         }
@@ -170,12 +174,18 @@ class DatosDelPacienteActivity : AppCompatActivity() {
         codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
         esAdminMedicoRecibido = extras.getString("esAdminMedico")
             ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idMedicoRecibido = extras.getString("idMedico")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idUsuarioRecibido = extras.getString("idUsuario")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
     }
 
     //Enviar intent de vuelta
-    fun enviarIntentAPrincipal(esAdminMedico:String?){
+    fun enviarIntentAPrincipal(esAdminMedico:String?, idMedico : String?, idUsuario : String?){
         val intent = Intent(this@DatosDelPacienteActivity,PrincipalPacientesActivity::class.java)
-        intent.putExtra("esAdminMedico", esAdminMedicoRecibido)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
         startActivity(intent)
     }
 }

@@ -17,6 +17,9 @@
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
         <activity
+            android:name="es.studium.opcionpacientes.AltaPacienteActivity"
+            android:exported="false" />
+        <activity
             android:name="es.studium.opcionpacientes.ModificarPacienteActivity"
             android:exported="false" />
         <activity

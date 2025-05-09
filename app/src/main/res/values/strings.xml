@@ -138,18 +138,18 @@
 
     <!-- ModificarPacienteActivity-->
     <string name="PA_lbl_idPaciente_modificarPaciente">Paciente #%1$s</string>
-    <string name="PA_lbl_nombrePaciente_modificarPaciente">Nombre</string>
-    <string name="PA_lbl_apellidosPaciente_modificarPaciente">Apellidos</string>
-    <string name="PA_lbl_sexoPaciente_modificarPaciente">Sexo</string>
-    <string name="PA_lbl_fechaNacPaciente_modificarPaciente">Fecha de Nacimiento</string>
-    <string name="PA_lbl_nuhsaPaciente_modificarPaciente">NUHSA</string>
-    <string name="PA_lbl_telefonoPaciente_modificarPaciente">Teléfono</string>
+    <string name="PA_lbl_nombrePaciente_modificarPaciente">Nombre*</string>
+    <string name="PA_lbl_apellidosPaciente_modificarPaciente">Apellidos*</string>
+    <string name="PA_lbl_sexoPaciente_modificarPaciente">Sexo*</string>
+    <string name="PA_lbl_fechaNacPaciente_modificarPaciente">Fecha de Nacimiento*</string>
+    <string name="PA_lbl_nuhsaPaciente_modificarPaciente">NUHSA*</string>
+    <string name="PA_lbl_telefonoPaciente_modificarPaciente">Teléfono*</string>
     <string name="PA_lbl_emailPaciente_modificarPaciente">Email</string>
     <string name="PA_lbl_dniPaciente_modificarPaciente">DNI</string>
-    <string name="PA_lbl_direccionPaciente_modificarPaciente">Dirección</string>
-    <string name="PA_lbl_localidadPaciente_modificarPaciente">Localidad</string>
-    <string name="PA_lbl_provinciaPaciente_modificarPaciente">Provincia</string>
-    <string name="PA_lbl_codigoPostalPaciente_modificarPaciente">Código postal</string>
+    <string name="PA_lbl_direccionPaciente_modificarPaciente">Dirección*</string>
+    <string name="PA_lbl_localidadPaciente_modificarPaciente">Localidad*</string>
+    <string name="PA_lbl_provinciaPaciente_modificarPaciente">Provincia*</string>
+    <string name="PA_lbl_codigoPostalPaciente_modificarPaciente">Código postal*</string>
 
     <string name="PA_hint_nombrePaciente_modificarPaciente">Nombre</string>
     <string name="PA_hint_apellidosPaciente_modificarPaciente">Apellidos</string>
@@ -189,4 +189,9 @@
         <item>Hombre</item>
         <item>Mujer</item>
     </string-array>
+
+    <!-- AltaPacienteActivity-->
+    <string name="PA_lbl_idPaciente_AltaPaciente">Nuevo/a paciente</string>
+    <string name="PA_toastExitoAlta_AltaPaciente">Paciente dadod e alta con éxito</string>
+    <string name="PA_toastErrorAlta_AltaPaciente">Ha ocurrido un error</string>
 </resources>

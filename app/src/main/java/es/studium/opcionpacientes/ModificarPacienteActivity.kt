@@ -56,6 +56,8 @@ class ModificarPacienteActivity : AppCompatActivity() {
     private var provinciaPacienteRecibido: String? = ""
     private var codigoPostalPacienteRecibido: String? = ""
     private var esAdminMedicoRecibido: String? = ""
+    private var idMedicoRecibido: String? = ""
+    private var idUsuarioRecibido: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,6 +79,10 @@ class ModificarPacienteActivity : AppCompatActivity() {
             provinciaPacienteRecibido = extras.getString("provinciaPaciente")
             codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
             esAdminMedicoRecibido = extras.getString("esAdminMedico")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            idMedicoRecibido = extras.getString("idMedico")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            idUsuarioRecibido = extras.getString("idUsuario")
                 ?: getString(R.string.LO_ErrorExtraNoRecibido)
         }
         //Enlazar variables con vistas
@@ -111,7 +117,7 @@ class ModificarPacienteActivity : AppCompatActivity() {
                 "ModificarPacienteActivity", idPacienteRecibido, nombrePacienteRecibido, apellidosPacienteRecibido,
                 sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido, emailPacienteRecibido,
                 dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
-                esAdminMedicoRecibido
+                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido
             )
         }
 
@@ -161,62 +167,25 @@ class ModificarPacienteActivity : AppCompatActivity() {
 
             //control de errores
             if (nombrePacienteModificado.isEmpty()) {
-                Toast.makeText(this, R.string.PA_toastErrorVacio_NombrePaciente, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_NombrePaciente, Toast.LENGTH_SHORT).show()
             } else if (apellidosPacienteModificado.toString().isEmpty()) {
-                Toast.makeText(
-                    this,
-                    R.string.PA_toastErrorVacio_apellidosPaciente,
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_apellidosPaciente, Toast.LENGTH_SHORT).show()
             } else if (sexoPacienteModificado == getString(R.string.PA_itemCeroSpinner)) {
-                Toast.makeText(this, R.string.PA_toastErrorVacio_sexoPaciente, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_sexoPaciente, Toast.LENGTH_SHORT).show()
             } else if (nuhsaPacienteModificado.isEmpty()) {
-                Toast.makeText(this, R.string.PA_toastErrorVacio_nuhsaPaciente, Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_nuhsaPaciente, Toast.LENGTH_SHORT).show()
             } else if (telefonoPacienteModificado.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    R.string.PA_toastErrorVacio_telefonoPaciente,
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else if (emailPacienteModificado.isEmpty()) {
-                Toast.makeText(this, R.string.PA_toastErrorVacio_emailPaciente, Toast.LENGTH_SHORT)
-                    .show()
-            } else if (dniPacienteModificado.isEmpty()) {
-                Toast.makeText(this, R.string.PA_toastErrorVacio_dniPaciente, Toast.LENGTH_SHORT)
-                    .show()
-            } else if (direccionPacienteModificado.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    R.string.PA_toastErrorVacio_direccionPaciente,
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_telefonoPaciente, Toast.LENGTH_SHORT).show()
+            }  else if (direccionPacienteModificado.isEmpty()) {
+                Toast.makeText(this, R.string.PA_toastErrorVacio_direccionPaciente, Toast.LENGTH_SHORT).show()
             } else if (localidadPacienteModificado.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    R.string.PA_toastErrorVacio_localidadPaciente,
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_localidadPaciente, Toast.LENGTH_SHORT).show()
             } else if (provinciaPacienteModificado.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    R.string.PA_toastErrorVacio_provinciaPaciente,
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_provinciaPaciente, Toast.LENGTH_SHORT).show()
             } else if (codigoPostalPacienteModificado.isEmpty()) {
-                Toast.makeText(
-                    this,
-                    R.string.PA_toastErrorVacio_codigoPostalPaciente,
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, R.string.PA_toastErrorVacio_codigoPostalPaciente, Toast.LENGTH_SHORT).show()
             } else if (codigoPostalPacienteModificado.length != 5) {
-                Toast.makeText(
-                    this,
-                    R.string.PA_toastErrorDistintoCinco_codigoPostalPaciente,
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, R.string.PA_toastErrorDistintoCinco_codigoPostalPaciente, Toast.LENGTH_SHORT).show()
             } else {
                 // Realizar la actualización eb bbdd
                 val modificarcionPaciente = ModificacionRemotaPacientes()
@@ -246,7 +215,7 @@ class ModificarPacienteActivity : AppCompatActivity() {
                                 "ModificarPacienteActivity", idPacienteModificado, nombrePacienteModificado, apellidosPacienteModificado,
                                 sexoPacienteModificado, fechaNacPacienteModificado, nuhsaPacienteModificado, telefonoPacienteModificado, emailPacienteModificado,
                                 dniPacienteModificado, direccionPacienteModificado, localidadPacienteModificado, provinciaPacienteModificado, codigoPostalPacienteModificado,
-                                esAdminMedicoRecibido
+                                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido
                             )
                         } else {
                             Toast.makeText(
@@ -259,10 +228,6 @@ class ModificarPacienteActivity : AppCompatActivity() {
                 }
 
             }
-
-            //3. Mndar el intent a la ventana anterior con extras de los nuevos valores
-            //si la actualización se ha realizado con exito. Poner un extra para que la activity anterior
-            //sepa de donde le viene el intent.
         }
 
     }
@@ -322,7 +287,7 @@ class ModificarPacienteActivity : AppCompatActivity() {
     fun enviarIntent(
         origenModificarPacienteActivity: String, idPaciente: String?, nombrePaciente: String?, apellidosPaciente: String?, sexoPaciente: String?, fechaNacPaciente: String?,
         nuhsaPaciente: String?, telefonoPaciente: String?, emailPaciente: String?, dniPaciente: String?, direccionPaciente: String?, localidadPaciente: String?,
-        provinciaPaciente: String?, codigoPostalPaciente: String?, esAdminMedico: String?
+        provinciaPaciente: String?, codigoPostalPaciente: String?, esAdminMedico: String?,idMedico: String?, idUsuario : String?
     ) {
         val intent = Intent(this, DatosDelPacienteActivity::class.java)
         intent.putExtra("origenModificarPacienteActivity", origenModificarPacienteActivity)
@@ -340,6 +305,8 @@ class ModificarPacienteActivity : AppCompatActivity() {
         intent.putExtra("provinciaPaciente", provinciaPaciente)
         intent.putExtra("codigoPostalPaciente", codigoPostalPaciente)
         intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
 
         startActivity(intent)
     }

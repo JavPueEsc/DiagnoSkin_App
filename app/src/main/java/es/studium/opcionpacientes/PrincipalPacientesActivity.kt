@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.AdaptadorPacientes
 import es.studium.modelos_y_utiles.ModeloMedico
@@ -64,6 +65,8 @@ class PrincipalPacientesActivity : AppCompatActivity() {
 
     //Variable para extra recibido
     private lateinit var esMedicoAdminRecibido : String
+    private lateinit var idMedicoRecibido : String
+    private lateinit var idUsuarioRecibido : String
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,6 +78,10 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         if (extras != null) {
              esMedicoAdminRecibido = extras.getString("esAdminMedico")
                 ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            idMedicoRecibido = extras.getString("idMedico")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            idUsuarioRecibido = extras.getString("idUsuario")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
         }
 
         //Enlazar variables con vistas
@@ -84,7 +91,7 @@ class PrincipalPacientesActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            onBackPressedDispatcher.onBackPressed()
+            enviarIntentAMenu(idUsuarioRecibido)
         }
 
         cargarPacientes()
@@ -119,6 +126,10 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adaptadorPacientes
 
+        //Gestión de pulsación botón nuevo paciente
+        btn_NuevoPaciente.setOnClickListener {
+            enviarIntentNuevoPaciente(esMedicoAdminRecibido,idMedicoRecibido,idUsuarioRecibido)
+        }
 
         //Gestión de pulsaciones sobre las tarjetas del recyclerView
         recyclerView.addOnItemTouchListener(
@@ -126,6 +137,7 @@ class PrincipalPacientesActivity : AppCompatActivity() {
                 //Consultar datos Paciente
                 override fun onClick(view: View, position: Int) {
                     var pacienteSeleccionado = listaPacientes[position]
+
                     var intentConsultar = Intent(this@PrincipalPacientesActivity,DatosDelPacienteActivity::class.java)
                     intentConsultar.putExtra("origenPrincipalPacienteActivity", "PrincipalPacienteActivity")
                     intentConsultar.putExtra("idPaciente", pacienteSeleccionado.idPaciente)
@@ -142,9 +154,10 @@ class PrincipalPacientesActivity : AppCompatActivity() {
                     intentConsultar.putExtra("provinciaPaciente", pacienteSeleccionado.provinciaPaciente)
                     intentConsultar.putExtra("codigoPostalPaciente", pacienteSeleccionado.codigoPostalPaciente)
                     intentConsultar.putExtra("esAdminMedico", esMedicoAdminRecibido)
+                    intentConsultar.putExtra("idMedico", idMedicoRecibido)
+                    intentConsultar.putExtra("idUsuario", idUsuarioRecibido)
 
                     startActivity(intentConsultar)
-                    //Toast.makeText(view.context,"Pulsación corta",Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onLongClick(view: View, position: Int) {
@@ -282,5 +295,21 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         catch(e : JSONException){
             Log.e("PrincipalPacientesActivity", "Error al procesar el JSON", e)
         }
+    }
+
+    //Enviar intent de vuelta
+    fun enviarIntentAMenu(idUsuario:String?){
+        val intent = Intent(this@PrincipalPacientesActivity,MainActivity::class.java)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
+    }
+
+    //Enviar intent a Activity Alta
+    fun enviarIntentNuevoPaciente(esAdminMedico:String?, idMedico:String?, idUsuario:String?){
+        val intent = Intent(this@PrincipalPacientesActivity,AltaPacienteActivity::class.java)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
     }
 }

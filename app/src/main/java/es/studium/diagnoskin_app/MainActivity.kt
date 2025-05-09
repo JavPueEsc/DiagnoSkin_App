@@ -69,6 +69,8 @@ class MainActivity : AppCompatActivity() {
 
             val bundle = Bundle()
             bundle.putString("esAdminMedico", usuarioMedico.esAdminMedico)
+            bundle.putString("idMedico", usuarioMedico.idMedico)
+            bundle.putString("idUsuario", idUsuarioRecibido)
 
             val intent = Intent(this, PrincipalPacientesActivity::class.java)
             intent.putExtras(bundle)
