@@ -80,7 +80,7 @@ class DatosDelPacienteActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            finish()
+            enviarIntentAPrincipal(esAdminMedicoRecibido)
         }
 
         // Establecer los datos del paciente en las vistas usando strings con placeholders
@@ -148,7 +148,7 @@ class DatosDelPacienteActivity : AppCompatActivity() {
         if (elementosFecha.size == 3) {
             fechaTransformada = "${elementosFecha[2]}/${elementosFecha[1]}/${elementosFecha[0]}"
         } else {
-            fechaTransformada = "Error al formatear fechas"
+            fechaTransformada = getString(R.string.PA_error_ModificarFecha)
         }
         return fechaTransformada
     }
@@ -170,5 +170,12 @@ class DatosDelPacienteActivity : AppCompatActivity() {
         codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
         esAdminMedicoRecibido = extras.getString("esAdminMedico")
             ?: getString(R.string.LO_ErrorExtraNoRecibido)
+    }
+
+    //Enviar intent de vuelta
+    fun enviarIntentAPrincipal(esAdminMedico:String?){
+        val intent = Intent(this@DatosDelPacienteActivity,PrincipalPacientesActivity::class.java)
+        intent.putExtra("esAdminMedico", esAdminMedicoRecibido)
+        startActivity(intent)
     }
 }

@@ -86,7 +86,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
         //Montar el spinner
         cargarCentrosMedicosParaSpinner()

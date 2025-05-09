@@ -84,7 +84,7 @@ class PrincipalPacientesActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         cargarPacientes()

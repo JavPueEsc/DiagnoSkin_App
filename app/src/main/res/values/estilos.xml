@@ -35,6 +35,28 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!-- Etilo calendario datapicker -->
+    <!-- Calendario-->
+    <style name= "Estilo_ColoresCalendario" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/azulBrillante</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:buttonBarPositiveButtonStyle">@style/Estilo_BotonAceptar</item>
+        <item name="android:buttonBarNegativeButtonStyle">@style/Estilo_BotonCancelar</item>
+    </style>
+
+    <!--Botones del calendario, heredan de otro parent para que no sean redondeados los botones-->
+    <style name="Estilo_BotonAceptar" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/azulBrillante</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
+    <style name="Estilo_BotonCancelar" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/azulBrillante</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+    </style>
+
     <!-- ESTILOS LOGING-->
     <!-- Color de fondo -->
     <style name="ColorFondoLogin" parent="Theme.AppCompat.Light.NoActionBar">

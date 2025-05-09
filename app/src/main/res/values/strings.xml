@@ -165,6 +165,24 @@
     <string name="PA_hint_codigoPostalPaciente_modificarPaciente">Código postal</string>
 
     <string name="PA_btn_aceptar_modificarPaciente">Aceptar</string>
+    <string name="PA_error_ModificarFecha">Error al modificar fecha</string>
+
+    <string name="PA_toastErrorVacio_NombrePaciente">Debe introducir el nombre del paciente</string>
+    <string name="PA_toastErrorVacio_apellidosPaciente">Debe introducir los apellidos del paciente</string>
+    <string name="PA_toastErrorVacio_sexoPaciente">Debe seleccionar el sexo del paciente</string>
+    <string name="PA_toastErrorVacio_nuhsaPaciente">Debe introducir el nuhsa del paciente</string>
+    <string name="PA_toastErrorVacio_telefonoPaciente">Debe introducir el telefono del paciente</string>
+    <string name="PA_toastErrorVacio_emailPaciente">Debe introducir el email del paciente</string>
+    <string name="PA_toastErrorVacio_dniPaciente">Debe introducir el dni del paciente</string>
+    <string name="PA_toastErrorVacio_direccionPaciente">Debe introducir la dirección del paciente</string>
+    <string name="PA_toastErrorVacio_localidadPaciente">Debe introducir la localidad del paciente</string>
+    <string name="PA_toastErrorVacio_provinciaPaciente">Debe introducir la provincia del paciente</string>
+    <string name="PA_toastErrorVacio_codigoPostalPaciente">Debe introducir el código postal del paciente</string>
+    <string name="PA_toastErrorDistintoCinco_codigoPostalPaciente">El código postal ha de contar con 5 dígitos</string>
+
+    <string name="PA_itemCeroSpinner">Seleccione el sexo del paciente</string>
+    <string name="PA_toastExitoModificacion_ModificarPaciente">Datos del paciente modificados</string>
+    <string name="PA_toastErrorModificacion_ModificarPaciente">Ha ocurrido un error</string>
 
     <string-array name="PA_spinner_sexoPaciente_modificarPaciente">
         <item>Seleccione el sexo del paciente</item>

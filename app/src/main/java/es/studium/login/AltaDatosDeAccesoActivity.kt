@@ -51,7 +51,7 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         //Gestión del botón Aceptar
