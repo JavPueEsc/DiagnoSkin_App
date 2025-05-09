@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     private lateinit var txt_telefono: EditText
     private lateinit var txt_email: EditText
     private lateinit var btn_Aceptar: Button
+    private lateinit var btn_volver : ImageView
 
 
     //Declaración de datos introducidos
@@ -80,7 +82,12 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         txt_telefono = findViewById(R.id.LO_txt_Telefono)
         txt_email = findViewById(R.id.LO_txt_Email)
         btn_Aceptar = findViewById(R.id.LO_btn_AceptarDatosPersonales)
+        btn_volver = findViewById(R.id.btnVolver_AltaDatosPersonalesActivity)
 
+        //Gestion del Botón volver
+        btn_volver.setOnClickListener {
+            finish()
+        }
         //Montar el spinner
         cargarCentrosMedicosParaSpinner()
         montarSpinnerAdapter(listaCentrosMedicosSpinner)

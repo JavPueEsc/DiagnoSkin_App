@@ -6,6 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/btnVolver_AltaDatosPersonalesActivity"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icono_flecha" />
+
     <TextView
         android:id="@+id/LO_lbl_tituloNuevaCuentaUsuarioPersonales"
         style="@style/TextosAzul_tam30"
@@ -172,7 +186,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:text="@string/LO_btn_AceptarDatosPersonales"
-        app:layout_constraintTop_toBottomOf="@id/LO_txt_Email"
+        app:layout_constraintBottom_toTopOf="@+id/LO_lbl_camposObligatorios2"
+        android:layout_marginBottom="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -181,9 +196,8 @@
         style="@style/TextosGris_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="@string/LO_lbl_camposObligatorios"
-        app:layout_constraintTop_toBottomOf="@id/LO_btn_AceptarDatosPersonales"
+        android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

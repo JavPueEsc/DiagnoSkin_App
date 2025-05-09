@@ -6,6 +6,7 @@ import android.os.StrictMode
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.diagnoskin_app.R
@@ -22,6 +23,7 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
     private lateinit var txt_clave1: EditText
     private lateinit var txt_clave2: EditText
     private lateinit var btn_Aceptar: Button
+    private lateinit var btn_volver : ImageView
 
     //Declaración datos introducidos
     private lateinit var nombreUsuarioIntroducido: String
@@ -45,6 +47,12 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
         txt_clave1 = findViewById(R.id.LO_txt_IntroducirClave1)
         txt_clave2 = findViewById(R.id.LO_txt_IntroducirClave2)
         btn_Aceptar = findViewById(R.id.LO_btn_AceptarDatosAcceso)
+        btn_volver = findViewById(R.id.btnVolver_AltaDatosDeAccesoActivity)
+
+        //Gestion del Botón volver
+        btn_volver.setOnClickListener {
+            finish()
+        }
 
         //Gestión del botón Aceptar
         btn_Aceptar.setOnClickListener {

@@ -3,6 +3,7 @@ package es.studium.opcionpacientes
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -28,6 +29,7 @@ class DatosDelPacienteActivity : AppCompatActivity() {
     private lateinit var lbl_codigoPostalPaciente: TextView
     private lateinit var btn_modificar: Button
     private lateinit var btn_verDiagnosticos: Button
+    private lateinit var btn_volver : ImageView
 
     //Declaración de extras recibidos
     private var idPacienteRecibido: String? = ""
@@ -74,6 +76,12 @@ class DatosDelPacienteActivity : AppCompatActivity() {
         lbl_codigoPostalPaciente = findViewById(R.id.PA_lbl_codigoPostalPaciente_datosPaciente)
         btn_modificar = findViewById(R.id.PA_btn_Modificar_datosPaciente)
         btn_verDiagnosticos = findViewById(R.id.PA_btn_verDiagnosticos_datosPaciente)
+        btn_volver = findViewById(R.id.btnVolver_DatosDelPacienteActivity)
+
+        //Gestion del Botón volver
+        btn_volver.setOnClickListener {
+            finish()
+        }
 
         // Establecer los datos del paciente en las vistas usando strings con placeholders
         lbl_idPaciente.text =

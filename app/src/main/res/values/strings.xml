@@ -36,7 +36,7 @@
     <string name="LO_DialogoBiometria_mensaje">Pulse el sensor de huellas digitales</string>
 
     <!--AltaDatosDeAccesoActivity -->
-    <string name="LO_lbl_tituloNuevaCuentaUsuario">Nueva cuenta de usuario</string>
+    <string name="LO_lbl_tituloNuevaCuentaUsuario">Crear nueva cuenta</string>
     <string name="LO_lbl_subTituloNuevaCuentaUsuario">Datos de Acceso</string>
     <string name="LO_lbl_preguntaNombreUsuario">¿Que nombre de usuario/a desea utilizar?</string>
     <string name="LO_hintNombreUsuario">Nombre de usuario/a*</string>

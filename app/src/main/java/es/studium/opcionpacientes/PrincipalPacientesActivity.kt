@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
@@ -37,6 +38,7 @@ class PrincipalPacientesActivity : AppCompatActivity() {
     //Declaración de las vistas
     private lateinit var txt_buscarPorNuhsa : EditText
     private lateinit var btn_NuevoPaciente : Button
+    private lateinit var btn_volver : ImageView
 
     //Variables para mostrar las tarjetas
     private var listaPacientes: MutableList<ModeloPaciente> = mutableListOf()
@@ -78,6 +80,12 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         //Enlazar variables con vistas
         txt_buscarPorNuhsa = findViewById(R.id.PA_txt_filtroNuhsa)
         btn_NuevoPaciente = findViewById(R.id.PA_btn_NuevoPaciente)
+        btn_volver = findViewById(R.id.btnVolver_PrincipalPacientesActivity)
+
+        //Gestion del Botón volver
+        btn_volver.setOnClickListener {
+            finish()
+        }
 
         cargarPacientes()
 

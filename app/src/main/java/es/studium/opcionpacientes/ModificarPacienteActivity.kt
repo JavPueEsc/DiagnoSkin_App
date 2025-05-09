@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,8 @@ class ModificarPacienteActivity : AppCompatActivity() {
     private lateinit var txt_provinciaPaciente: EditText
     private lateinit var txt_codigoPostalPaciente: EditText
     private lateinit var btn_aceptar: Button
+    private lateinit var btn_volver : ImageView
+
     //Declaración de extras recibidos
     private var idPacienteRecibido: String? = ""
     private var nombrePacienteRecibido: String? = ""
@@ -80,6 +83,12 @@ class ModificarPacienteActivity : AppCompatActivity() {
         txt_provinciaPaciente = findViewById(R.id.PA_txt_provinciaPaciente_modificarDatosPaciente)
         txt_codigoPostalPaciente = findViewById(R.id.PA_txt_codigoPostalPaciente_modificarDatosPaciente)
         btn_aceptar = findViewById(R.id.PA_btn_aceptar_modificarDatosPaciente)
+        btn_volver = findViewById(R.id.btnVolver_ModificarPacienteActivity)
+
+        //Gestion del Botón volver
+        btn_volver.setOnClickListener {
+            finish()
+        }
 
         //Montar spinner
         AdaptadorSpinnerSexo(R.array.PA_spinner_sexoPaciente_modificarPaciente)
