@@ -20,7 +20,7 @@ class AdaptadorPacientes(
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val lbl_idPaciente : TextView =itemView.findViewById(R.id.PA_lbl_idPaciente_tarjeta)
-        val lbl_apellidos_nombre : TextView =itemView.findViewById(R.id.lbl_apellidos_nombre_tarjeta)
+        val lbl_apellidos_nombre : TextView =itemView.findViewById(R.id.PA_lbl_apellidos_nombre_tarjeta)
         val lbl_nuhsa : TextView =itemView.findViewById(R.id.PA_lbl_Nuhsa_tarjeta)
         val lbl_dni : TextView =itemView.findViewById(R.id.PA_lbl_dni_tarjeta)
     }

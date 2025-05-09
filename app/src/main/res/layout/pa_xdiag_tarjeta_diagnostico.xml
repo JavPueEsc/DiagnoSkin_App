@@ -26,39 +26,59 @@
                 android:padding="12dp"
                 android:background="@drawable/rectangulo_tarjetas">
 
-                <TextView
-                    android:id="@+id/PA_lbl_idPaciente_tarjeta"
-                    style="@style/TextosAzul_tam16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/PA_lbl_idPaciente_tarjeta" />
+                <ImageView
+                    android:id="@+id/PA_XDIA_img_fotoDiagnostico"
+                    android:layout_width="95dp"
+                    android:layout_height="95dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="3dp"
+                    card_view:srcCompat="@drawable/rectangulo_tarjetas" />
 
                 <TextView
-                    android:id="@+id/PA_lbl_apellidos_nombre_tarjeta"
+                    android:id="@+id/PA_XDIA_lbl_idDiagnostico_tarjeta"
                     style="@style/TextosAzul_tam16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/PA_lbl_idPaciente_tarjeta"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/PA_lbl_apellidoNombre_tarjeta" />
+                    android:layout_toEndOf="@+id/PA_XDIA_img_fotoDiagnostico"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/PA_XDIA_lbl_idDiagnostico_tarjeta" />
 
                 <TextView
-                    android:id="@+id/PA_lbl_Nuhsa_tarjeta"
+                    android:id="@+id/PA_XDIA_lbl_diagnosticoDiagnostico_tarjeta"
                     style="@style/TextosAzul_tam16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/PA_lbl_apellidos_nombre_tarjeta"
+                    android:layout_below="@id/PA_XDIA_lbl_idDiagnostico_tarjeta"
+                    android:layout_toEndOf="@+id/PA_XDIA_img_fotoDiagnostico"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="4dp"
-                    android:text="@string/PA_lbl_nuhsa_tarjeta" />
+                    android:text="@string/PA_XDIA_lbl_diagnosticoDiagnostico_tarjeta" />
 
                 <TextView
-                    android:id="@+id/PA_lbl_dni_tarjeta"
+                    android:id="@+id/PA_XDIA_lbl_pronosticoDiagnostico_tarjeta"
                     style="@style/TextosAzul_tam16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/PA_lbl_Nuhsa_tarjeta"
+                    android:layout_below="@id/PA_XDIA_lbl_diagnosticoDiagnostico_tarjeta"
+                    android:layout_toEndOf="@+id/PA_XDIA_img_fotoDiagnostico"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="4dp"
-                    android:text="@string/PA_lbl_dni_tarjeta" />
+                    android:text="@string/PA_XDIA_lbl_pronosticoDiagnostico_tarjeta" />
+
+                <TextView
+                    android:id="@+id/PA_XDIA_lbl_fechaDiagnostico_tarjeta"
+                    style="@style/TextosAzul_tam16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/PA_XDIA_lbl_pronosticoDiagnostico_tarjeta"
+                    android:layout_toEndOf="@+id/PA_XDIA_img_fotoDiagnostico"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/PA_XDIA_lbl_fechaDiagnostico_tarjeta" />
+
+
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </FrameLayout>
