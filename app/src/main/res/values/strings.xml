@@ -227,5 +227,18 @@
     <string name="PA_XDIAG_ErrorProcesarImagen_RealizarDiagnostico">Error al procesar la imagen</string>
     <string name="PA_XDIAG_ImagenNoValida_RealizarDiagnostico">No es posible realizar un diagnóstico en base a esta imagen</string>
     <string name="PA_XDIAG_Exito_RealizarDiagnostico">Procesando diagnóstico...)</string>
+    <string name="PA_XDIA_Benigna">Benigna</string>
+    <string name="PA_XDIA_Maligna">Maligna</string>
+
+    <!--ResumenActivity-->
+    <string name="PA_XDIA_lbl_titulo_ResumenDiagnosticos">Resumen Diagnóstico</string>
+    <string name="PA_XDIA_lbl_apellidosNombre_ResumenDiagnosticos">Apellido1 Apellido2, Nombre</string>
+    <string name="PA_XDIA_lbl_fecha_ResumenDiagnosticos">Fecha diag.:</string>
+    <string name="PA_XDIA_lbl_diagnostico_ResumenDiagnosticos">Diagnóstico:</string>
+    <string name="PA_XDIA_lbl_tipo_ResumenDiagnosticos">Tipo de diagnóstico:</string>
+    <string name="PA_XDIA_lbl_medico_ResumenDiagnosticos">Médico:</string>
+    <string name="PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos">Centro:</string>
+
+
 
 </resources>

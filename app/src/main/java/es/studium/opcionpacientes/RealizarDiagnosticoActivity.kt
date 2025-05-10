@@ -1,7 +1,9 @@
 package es.studium.opcionpacientes
 
 import android.Manifest
+import android.app.Activity
 import android.content.ContentValues
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -28,6 +30,7 @@ import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.ModeloIA
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -39,6 +42,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
     private lateinit var btn_tomarFoto : Button
     private lateinit var btn_cargarFoto : Button
     private lateinit var btn_diagnosticar : Button
+    private lateinit var btn_volver : Button
 
     //Variables para usar la cámara
     private var imageCapture: ImageCapture? = null
@@ -47,6 +51,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
     //Variables para realizar el diagnóstico
     private lateinit var modeloIA: ModeloIA
     private lateinit var prediccion : String
+    private lateinit var tipoLesion : String
 
     //Variable para permitir el poder cargar imágenes
     private val pickImageLauncher = registerForActivityResult(
@@ -57,16 +62,57 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
             photoView.setImageURI(it)
         }
     }
+    //Variable para extra recibido
+    private var idPacienteRecibido: String? = ""
+    private var nombrePacienteRecibido: String? = ""
+    private var apellidosPacienteRecibido: String? = ""
+    private var sexoPacienteRecibido: String? = ""
+    private var fechaNacPacienteRecibido: String? = ""
+    private var nuhsaPacienteRecibido: String? = ""
+    private var telefonoPacienteRecibido: String? = ""
+    private var emailPacienteRecibido: String? = ""
+    private var dniPacienteRecibido: String? = ""
+    private var direccionPacienteRecibido: String? = ""
+    private var localidadPacienteRecibido: String? = ""
+    private var provinciaPacienteRecibido: String? = ""
+    private var codigoPostalPacienteRecibido: String? = ""
+    private var esAdminMedicoRecibido: String? = ""
+    private var idMedicoRecibido: String? = ""
+    private var idUsuarioRecibido: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pa_xdiag_activity_realizar_diagnostico)
+        //Recibir EXTRA con los datos del usuario médico y paciente
+        val extras = intent.extras
+        if (extras != null) {
+            idPacienteRecibido = extras.getString("idPaciente")
+            nombrePacienteRecibido = extras.getString("nombrePaciente")
+            apellidosPacienteRecibido = extras.getString("apellidosPaciente")
+            sexoPacienteRecibido = extras.getString("sexoPaciente")
+            fechaNacPacienteRecibido = extras.getString("fechaNacPaciente")
+            nuhsaPacienteRecibido = extras.getString("nuhsaPaciente")
+            telefonoPacienteRecibido = extras.getString("telefonoPaciente")
+            emailPacienteRecibido = extras.getString("emailPaciente")
+            dniPacienteRecibido = extras.getString("dniPaciente")
+            direccionPacienteRecibido = extras.getString("direccionPaciente")
+            localidadPacienteRecibido = extras.getString("localidadPaciente")
+            provinciaPacienteRecibido = extras.getString("provinciaPaciente")
+            codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
+            esAdminMedicoRecibido = extras.getString("esAdminMedico")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            idMedicoRecibido = extras.getString("idMedico")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            idUsuarioRecibido = extras.getString("idUsuario")
+                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        }
         //Enlazar las vistas
         camara = findViewById(R.id.PA_XDIAG_camara_RealizarDiagnosticos)
         img_foto = findViewById(R.id.PA_XDIAG_fotoDiagnostico_RealizarDiagnosticos)
         btn_tomarFoto = findViewById(R.id.PA_XDIAG_btn_tomarFoto_RealizarDiagnostico)
         btn_cargarFoto = findViewById(R.id.PA_XDIAG_btn_cargarFoto_RealizarDiagnostico)
         btn_diagnosticar = findViewById(R.id.PA_XDIAG_btn_predecir_RealizarDiagnostico)
+        btn_volver = findViewById(R.id.btnVolver_RealizarDiagnosticos)
 
         //Inicializar el Modelo predictor
         modeloIA = ModeloIA(this)
@@ -78,7 +124,13 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
-
+        //Gestión del boton volver
+        btn_volver.setOnClickListener{
+            enviarIntentVuelta(PrincipalDiagnosticosActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+        }
         //Gestión del botón tomar foto
         btn_tomarFoto.setOnClickListener {
             takePhoto()
@@ -105,7 +157,19 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
                     else{
                         Toast.makeText(this, R.string.PA_XDIAG_Exito_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
 
-                        //Intent a la siguiente Activity <-------------------------
+                        var fechaActual = LocalDate.now().toString()
+                        var uriImagen = imageUri.toString()
+                        if(prediccion == getString(R.string.ModeloIA_Melanoma)){
+                            tipoLesion = getString(R.string.PA_XDIA_Maligna)
+                        }
+                        else{
+                            tipoLesion = getString(R.string.PA_XDIA_Benigna)
+                        }
+
+                        enviarIntentSiguiente(ResumenDiagnosticoActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                            sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                            emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                            esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido,fechaActual,prediccion,tipoLesion,uriImagen)
                     }
                 } catch (e: Exception) {
                     // En caso de error al procesar la imagen
@@ -262,5 +326,62 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
                 finish()
             }
         }
+    }
+    //Enviar intent de vuelta (a PrincipalDiagnosticosActivity)
+    private fun enviarIntentVuelta(
+        activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?
+    ) {
+        val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino::class.java)
+        intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
+    }
+
+    //Enviar intent de vuelta (a ResumenDiagnosticosActivity)
+    private fun enviarIntentSiguiente(
+        activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?, fechaDiagnostico: String, diagnostico: String, tipoDiagnostico : String, fotoDiagnostico : String
+    ) {
+        val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino::class.java)
+        intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        intent.putExtra("fechaDiagnostico", fechaDiagnostico)
+        intent.putExtra("diagnosticoDiagnostico", diagnostico)
+        intent.putExtra("tipoDiagnostico", tipoDiagnostico)
+        intent.putExtra("idUsuario", fotoDiagnostico)
+        startActivity(intent)
     }
 }

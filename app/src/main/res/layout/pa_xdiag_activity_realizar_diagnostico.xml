@@ -9,7 +9,7 @@
     tools:context="es.studium.opcionpacientes.RealizarDiagnosticoActivity">
 
     <ImageView
-        android:id="@+id/btnVolver_PrincipalPrincipalDiagnosticos"
+        android:id="@+id/btnVolver_RealizarDiagnosticos"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
