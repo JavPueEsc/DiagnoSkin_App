@@ -132,6 +132,13 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adaptadorDiagnosticos
+
+        //Gestión del botón Nuevo diagnóstico
+        btn_NuevoDiagnostico.setOnClickListener {
+            var intent = Intent(this@PrincipalDiagnosticosActivity,RealizarDiagnosticoActivity::class.java)
+            //FALTAN LOS EXTRAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<------------
+            startActivity(intent)
+        }
     }
 
     //Enviar intent de vuelta (a DatosDelPacienteActivity)

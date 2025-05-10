@@ -79,7 +79,7 @@
 
     <!-- ESTILOS APLICACIÓN-->
     <style name="ColorFondoAplicacion" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/celesteFondoLogin</item>
     </style>
 
     <style name="TextosBlanco_tam16" parent="Theme.Material3.DayNight.NoActionBar">

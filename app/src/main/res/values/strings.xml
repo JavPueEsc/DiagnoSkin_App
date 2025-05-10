@@ -192,17 +192,40 @@
 
     <!-- AltaPacienteActivity-->
     <string name="PA_lbl_idPaciente_AltaPaciente">Nuevo/a paciente</string>
-    <string name="PA_toastExitoAlta_AltaPaciente">Paciente dadod e alta con éxito</string>
+    <string name="PA_toastExitoAlta_AltaPaciente">Paciente dado de alta con éxito</string>
     <string name="PA_toastErrorAlta_AltaPaciente">Ha ocurrido un error</string>
 
-    <!-- Tarjeta Pacientes -->
+    <!-- Tarjeta diagnosticos -->
     <string name="PA_XDIA_lbl_idDiagnostico_tarjeta">Número de caso #</string>
     <string name="PA_XDIA_lbl_diagnosticoDiagnostico_tarjeta">Diagnóstico:</string>
     <string name="PA_XDIA_lbl_pronosticoDiagnostico_tarjeta">Tipo de lesión:</string>
     <string name="PA_XDIA_lbl_fechaDiagnostico_tarjeta">Diagnosticado el</string>
 
-    <!-- Tarjeta Pacientes -->
+    <!-- PrincipalDiagnosticosActivity -->
     <string name="PA_XDIA_lbl_titulo_PrincipalDiagnosticos">Diagnósticos visuales</string>
     <string name="PA_XDIA_lbl_apellidosNombre_PrincipalDiagnosticos">Apellido1 Apellido2, Nombre</string>
     <string name="PA_XDIA_btn_nuevoDiagnostico_PrincipalDiagnosticos">Nuevo Diagnóstico</string>
+
+    <!-- RealizarDiagnosticosActivity-->
+    <string name="PA_XDIA_lbl_titulo_RealizarDiagnosticos">Nuevo Diagnóstico</string>
+    <string name="PA_XDIA_lbl_subTituloCamara_RealizarDiagnosticos">Cámara</string>
+    <string name="PA_XDIA_lbl_subTituloFoto_RealizarDiagnosticos">Captura de la lesión</string>
+    <string name="PA_XDIA_btn_tomarFoto_RealizarDiagnosticos">Tomar foto</string>
+    <string name="PA_XDIA_btn_cargarFoto_RealizarDiagnosticos">Cargar foto</string>
+    <string name="PA_XDIA_btn_Diagnosticar_RealizarDiagnosticos">Diagnósticar</string>
+
+    <!--ModeloIA-->
+    <string name="ModeloIA_Melanoma">Melanoma</string>
+    <string name="ModeloIA_Nevus">Nevus</string>
+    <string name="ModeloIA_Angioma">Angioma</string>
+    <string name="ModeloIA_Dermatofibroma">Dermatofibroma</string>
+    <string name="ModeloIA_Onicomicosis">Onicomicosis</string>
+    <string name="ModeloIA_Desconocido">Deconocido</string>
+
+    <!--Realizar diagnosticoActivity-->
+    <string name="PA_XDIAG_ErrorImagenVacia_RealizarDiagnostico">Debe capturar o cargar una imagen de la lesión</string>
+    <string name="PA_XDIAG_ErrorProcesarImagen_RealizarDiagnostico">Error al procesar la imagen</string>
+    <string name="PA_XDIAG_ImagenNoValida_RealizarDiagnostico">No es posible realizar un diagnóstico en base a esta imagen</string>
+    <string name="PA_XDIAG_Exito_RealizarDiagnostico">Procesando diagnóstico...)</string>
+
 </resources>
