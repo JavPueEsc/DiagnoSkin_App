@@ -196,10 +196,10 @@
     <string name="PA_toastErrorAlta_AltaPaciente">Ha ocurrido un error</string>
 
     <!-- Tarjeta Pacientes -->
-    <string name="PA_XDIA_lbl_idDiagnostico_tarjeta">Caso número #</string>
+    <string name="PA_XDIA_lbl_idDiagnostico_tarjeta">Número de caso #</string>
     <string name="PA_XDIA_lbl_diagnosticoDiagnostico_tarjeta">Diagnóstico:</string>
     <string name="PA_XDIA_lbl_pronosticoDiagnostico_tarjeta">Tipo de lesión:</string>
-    <string name="PA_XDIA_lbl_fechaDiagnostico_tarjeta">Fecha de diagnóstico:</string>
+    <string name="PA_XDIA_lbl_fechaDiagnostico_tarjeta">Diagnosticado el</string>
 
     <!-- Tarjeta Pacientes -->
     <string name="PA_XDIA_lbl_titulo_PrincipalDiagnosticos">Diagnósticos visuales</string>

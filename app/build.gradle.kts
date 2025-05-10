@@ -46,9 +46,21 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    //recyclerView
+    implementation ("androidx.recyclerview:recyclerview:1.2.1")
     //Consultas
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     //Biometria
     implementation ("androidx.security:security-crypto:1.1.0-alpha06")
     implementation ("androidx.biometric:biometric:1.2.0-alpha04")
+    //Camara
+    val cameraxVersion = "1.1.0-beta01"
+    implementation("androidx.camera:camera-core:$cameraxVersion")
+    implementation("androidx.camera:camera-camera2:$cameraxVersion")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
+    implementation("androidx.camera:camera-video:$cameraxVersion")
+    implementation("androidx.camera:camera-view:$cameraxVersion")
+    implementation("androidx.camera:camera-extensions:$cameraxVersion")
+    //Tensorflow Lite
+    implementation("org.tensorflow:tensorflow-lite-select-tf-ops:2.12.0")
 }

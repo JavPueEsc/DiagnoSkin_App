@@ -34,10 +34,10 @@
 
     <TextView
         android:id="@+id/PA_XDIAG_lbl_nombreApellidosPaciente_PrincipalDiagnosticos"
-        style="@style/TextosAzul_tam16"
+        style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/PA_XDIA_lbl_apellidosNombre_PrincipalDiagnosticos"
         app:layout_constraintTop_toBottomOf="@id/PA_XDIAG_lbl_titulo_PrincipalDiagnosticos"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:id="@+id/PA_XDIAG_recyclerView_diagnosticos"
         android:layout_width="410dp"
         android:layout_height="575dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:text="@string/PA_XDIA_btn_nuevoDiagnostico_PrincipalDiagnosticos"
-        app:layout_constraintTop_toBottomOf="@id/PA_XDIAG_recyclerView_diagnosticos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

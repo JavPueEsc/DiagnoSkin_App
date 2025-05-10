@@ -101,6 +101,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
 
         //Enlazar variables con vistas
         lbl_nombreApellidos = findViewById(R.id.PA_XDIAG_lbl_nombreApellidosPaciente_PrincipalDiagnosticos)
+        lbl_nombreApellidos.setText("${apellidosPacienteRecibido}, ${nombrePacienteRecibido}")
         btn_NuevoDiagnostico = findViewById(R.id.PA_XDIAG_btn_NuevoDiagnostico_PrincipalDiagnosticos)
         btn_volver = findViewById(R.id.btnVolver_PrincipalPrincipalDiagnosticos)
 
@@ -114,7 +115,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
 
         cargarDiagnosticos(idPacienteRecibido)
 
-        //<------------------------------------------------------
+        //<------------------------------------------------------ FALTA GESTIÓN DE PULSACION TARJETAS
 
         //Bloque para actualizar los datos cuando se producen modificaciones
         val recargar = intent.getBooleanExtra("Recargar", false)
@@ -183,7 +184,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
                     idMedicoFKBD = jsonObject.getString("idMedicoFK")
                     idPacienteFKBD = jsonObject.getString("idPacienteFK")
 
-                    listaDiagnosticos.add(ModeloDiagnostico(idDiagnosticoBD,fechaDiagnosticoBD,diagnosticoDiagnosticoBD,gravedadDiagnosticoBD,
+                    listaDiagnosticos.add(ModeloDiagnostico(idDiagnosticoBD,fechaMysqlAEuropea(fechaDiagnosticoBD),diagnosticoDiagnosticoBD,gravedadDiagnosticoBD,
                         fotoDiagnosticoBD,idMedicoFKBD,idPacienteFKBD))
                 }
             }
@@ -199,5 +200,16 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
     //Metodo para pasar de StringBase64 a ByteArray
     fun base64AByteArray(base64String: String): ByteArray {
         return Base64.decode(base64String, Base64.DEFAULT)
+    }
+    //Metodo para pasar fechas MySQL a Europeo
+    fun fechaMysqlAEuropea(fecha: String): String {
+        lateinit var fechaTransformada: String
+        var elementosFecha = fecha.split("-")
+        if (elementosFecha.size == 3) {
+            fechaTransformada = "${elementosFecha[2]}/${elementosFecha[1]}/${elementosFecha[0]}"
+        } else {
+            fechaTransformada = getString(R.string.PA_error_ModificarFecha)
+        }
+        return fechaTransformada
     }
 }
