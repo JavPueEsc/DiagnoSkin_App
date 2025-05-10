@@ -107,7 +107,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            enviarIntentVuelta(DatosDelPacienteActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+            enviarIntent(DatosDelPacienteActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                 sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                 emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
@@ -135,19 +135,20 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
 
         //Gestión del botón Nuevo diagnóstico
         btn_NuevoDiagnostico.setOnClickListener {
-            var intent = Intent(this@PrincipalDiagnosticosActivity,RealizarDiagnosticoActivity::class.java)
-            //FALTAN LOS EXTRAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!<------------
-            startActivity(intent)
+            enviarIntent(RealizarDiagnosticoActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
         }
     }
 
     //Enviar intent de vuelta (a DatosDelPacienteActivity)
-    private fun enviarIntentVuelta(
+    private fun enviarIntent(
         activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
         esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
-        val intent = Intent(this@PrincipalDiagnosticosActivity, activityDestino::class.java)
+        val intent = Intent(this@PrincipalDiagnosticosActivity, activityDestino)
         intent.putExtra("origenPrincipalDiagnosticosActivity", claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)

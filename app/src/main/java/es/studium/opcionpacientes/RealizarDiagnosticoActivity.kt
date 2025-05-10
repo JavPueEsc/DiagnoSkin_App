@@ -42,7 +42,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
     private lateinit var btn_tomarFoto : Button
     private lateinit var btn_cargarFoto : Button
     private lateinit var btn_diagnosticar : Button
-    private lateinit var btn_volver : Button
+    private lateinit var btn_volver : ImageView
 
     //Variables para usar la cámara
     private var imageCapture: ImageCapture? = null
@@ -165,7 +165,6 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
                         else{
                             tipoLesion = getString(R.string.PA_XDIA_Benigna)
                         }
-
                         enviarIntentSiguiente(ResumenDiagnosticoActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                             sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                             emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
@@ -179,6 +178,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, R.string.PA_XDIAG_ErrorImagenVacia_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
             }
+
 
         }
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -333,7 +333,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
         esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
-        val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino::class.java)
+        val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino)
         intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
@@ -354,13 +354,13 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    //Enviar intent de vuelta (a ResumenDiagnosticosActivity)
+    //Enviar intent a siguiente activity (a ResumenDiagnosticosActivity)
     private fun enviarIntentSiguiente(
         activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
         esAdminMedico: String?, idMedico: String?, idUsuario: String?, fechaDiagnostico: String, diagnostico: String, tipoDiagnostico : String, fotoDiagnostico : String
     ) {
-        val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino::class.java)
+        val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino)
         intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
@@ -381,7 +381,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         intent.putExtra("fechaDiagnostico", fechaDiagnostico)
         intent.putExtra("diagnosticoDiagnostico", diagnostico)
         intent.putExtra("tipoDiagnostico", tipoDiagnostico)
-        intent.putExtra("idUsuario", fotoDiagnostico)
+        intent.putExtra("fotoDiagnostico", fotoDiagnostico)
         startActivity(intent)
     }
 }

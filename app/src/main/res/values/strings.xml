@@ -232,12 +232,13 @@
 
     <!--ResumenActivity-->
     <string name="PA_XDIA_lbl_titulo_ResumenDiagnosticos">Resumen Diagnóstico</string>
-    <string name="PA_XDIA_lbl_apellidosNombre_ResumenDiagnosticos">Apellido1 Apellido2, Nombre</string>
-    <string name="PA_XDIA_lbl_fecha_ResumenDiagnosticos">Fecha diag.:</string>
-    <string name="PA_XDIA_lbl_diagnostico_ResumenDiagnosticos">Diagnóstico:</string>
-    <string name="PA_XDIA_lbl_tipo_ResumenDiagnosticos">Tipo de diagnóstico:</string>
-    <string name="PA_XDIA_lbl_medico_ResumenDiagnosticos">Médico:</string>
-    <string name="PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos">Centro:</string>
+    <string name="PA_XDIA_lbl_apellidosNombre_ResumenDiagnosticos">%1$s, %2$s</string>
+    <string name="PA_XDIA_lbl_fecha_ResumenDiagnosticos">Fecha diag.: %1$s</string>
+    <string name="PA_XDIA_lbl_diagnostico_ResumenDiagnosticos">Diagnóstico: %1$s</string>
+    <string name="PA_XDIA_lbl_tipo_ResumenDiagnosticos">Tipo de diagnóstico: %1$s</string>
+    <string name="PA_XDIA_lbl_medico_ResumenDiagnosticos">Médico: %1$s</string>
+    <string name="PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos">Centro: %1$s</string>
+    <string name="PA_XDIA_lbl_ToastErrorImagenVacia_ResumenDiagnosticos">Imagen no disponible</string>
 
 
 
