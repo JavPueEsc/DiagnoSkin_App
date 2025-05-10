@@ -1,5 +1,6 @@
 package es.studium.opcionpacientes
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -82,7 +83,7 @@ class DatosDelPacienteActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            enviarIntentAPrincipal(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+            enviarIntentAPrincipalPacientes(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
         }
 
         // Establecer los datos del paciente en las vistas usando strings con placeholders
@@ -120,28 +121,16 @@ class DatosDelPacienteActivity : AppCompatActivity() {
         )
 
         btn_modificar.setOnClickListener {
-            var intentModificar = Intent(this@DatosDelPacienteActivity,ModificarPacienteActivity::class.java)
-            intentModificar.putExtra("idPaciente", idPacienteRecibido)
-            intentModificar.putExtra("nombrePaciente", nombrePacienteRecibido)
-            intentModificar.putExtra("apellidosPaciente", apellidosPacienteRecibido)
-            intentModificar.putExtra("sexoPaciente", sexoPacienteRecibido)
-            intentModificar.putExtra("fechaNacPaciente", fechaNacPacienteRecibido)
-            intentModificar.putExtra("nuhsaPaciente", nuhsaPacienteRecibido)
-            intentModificar.putExtra("telefonoPaciente", telefonoPacienteRecibido)
-            intentModificar.putExtra("emailPaciente", emailPacienteRecibido)
-            intentModificar.putExtra("dniPaciente", dniPacienteRecibido)
-            intentModificar.putExtra("direccionPaciente", direccionPacienteRecibido)
-            intentModificar.putExtra("localidadPaciente", localidadPacienteRecibido)
-            intentModificar.putExtra("provinciaPaciente", provinciaPacienteRecibido)
-            intentModificar.putExtra("codigoPostalPaciente", codigoPostalPacienteRecibido)
-            intentModificar.putExtra("esAdminMedico", esAdminMedicoRecibido)
-            intentModificar.putExtra("idMedico", idMedicoRecibido)
-            intentModificar.putExtra("idUsuario", idUsuarioRecibido)
-
-            startActivity(intentModificar)
+            enviarIntentSiguienteActivity(ModificarPacienteActivity::class.java,"DatosDelPacienteActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
         }
         btn_verDiagnosticos.setOnClickListener {
-            Toast.makeText(this, "Presion ver diagnosticos", Toast.LENGTH_SHORT).show()
+            enviarIntentSiguienteActivity(PrincipalDiagnosticosActivity::class.java,"DatosDelPacienteActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
         }
     }
 
@@ -181,11 +170,39 @@ class DatosDelPacienteActivity : AppCompatActivity() {
     }
 
     //Enviar intent de vuelta
-    fun enviarIntentAPrincipal(esAdminMedico:String?, idMedico : String?, idUsuario : String?){
+    fun enviarIntentAPrincipalPacientes(esAdminMedico:String?, idMedico : String?, idUsuario : String?){
         val intent = Intent(this@DatosDelPacienteActivity,PrincipalPacientesActivity::class.java)
         intent.putExtra("esAdminMedico", esAdminMedico)
         intent.putExtra("idMedico", idMedico)
         intent.putExtra("idUsuario", idUsuario)
         startActivity(intent)
     }
+
+    //Enviar a intent a siguientesActivities (modificarPaciente/ver diagnosticos)
+    private fun enviarIntentSiguienteActivity(
+        activityDestino: Class<out Activity>, claveOrigen: String,idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?
+    ) {
+        val intent = Intent(this@DatosDelPacienteActivity, activityDestino)
+        intent.putExtra("origenDatosDelPacienteActivity", claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
+    }
+
 }

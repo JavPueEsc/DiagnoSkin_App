@@ -284,6 +284,7 @@ class ModificarPacienteActivity : AppCompatActivity() {
         dialogoFecha.show()
     }
 
+    //Metodo para enviar intent de vuelta a DatosDelPacienteActivity
     fun enviarIntent(
         origenModificarPacienteActivity: String, idPaciente: String?, nombrePaciente: String?, apellidosPaciente: String?, sexoPaciente: String?, fechaNacPaciente: String?,
         nuhsaPaciente: String?, telefonoPaciente: String?, emailPaciente: String?, dniPaciente: String?, direccionPaciente: String?, localidadPaciente: String?,

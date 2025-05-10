@@ -200,4 +200,9 @@
     <string name="PA_XDIA_lbl_diagnosticoDiagnostico_tarjeta">Diagnóstico:</string>
     <string name="PA_XDIA_lbl_pronosticoDiagnostico_tarjeta">Tipo de lesión:</string>
     <string name="PA_XDIA_lbl_fechaDiagnostico_tarjeta">Fecha de diagnóstico:</string>
+
+    <!-- Tarjeta Pacientes -->
+    <string name="PA_XDIA_lbl_titulo_PrincipalDiagnosticos">Diagnósticos visuales</string>
+    <string name="PA_XDIA_lbl_apellidosNombre_PrincipalDiagnosticos">Apellido1 Apellido2, Nombre</string>
+    <string name="PA_XDIA_btn_nuevoDiagnostico_PrincipalDiagnosticos">Nuevo Diagnóstico</string>
 </resources>
