@@ -226,7 +226,7 @@
     <string name="PA_XDIAG_ErrorImagenVacia_RealizarDiagnostico">Debe capturar o cargar una imagen de la lesión</string>
     <string name="PA_XDIAG_ErrorProcesarImagen_RealizarDiagnostico">Error al procesar la imagen</string>
     <string name="PA_XDIAG_ImagenNoValida_RealizarDiagnostico">No es posible realizar un diagnóstico en base a esta imagen</string>
-    <string name="PA_XDIAG_Exito_RealizarDiagnostico">Procesando diagnóstico...)</string>
+    <string name="PA_XDIAG_Exito_RealizarDiagnostico">Procesando diagnóstico...</string>
     <string name="PA_XDIA_Benigna">Benigna</string>
     <string name="PA_XDIA_Maligna">Maligna</string>
 
@@ -234,10 +234,11 @@
     <string name="PA_XDIA_lbl_titulo_ResumenDiagnosticos">Resumen Diagnóstico</string>
     <string name="PA_XDIA_lbl_apellidosNombre_ResumenDiagnosticos">%1$s, %2$s</string>
     <string name="PA_XDIA_lbl_fecha_ResumenDiagnosticos">Fecha diag.: %1$s</string>
-    <string name="PA_XDIA_lbl_diagnostico_ResumenDiagnosticos">Diagnóstico: %1$s</string>
-    <string name="PA_XDIA_lbl_tipo_ResumenDiagnosticos">Tipo de diagnóstico: %1$s</string>
-    <string name="PA_XDIA_lbl_medico_ResumenDiagnosticos">Médico: %1$s</string>
-    <string name="PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos">Centro: %1$s</string>
+    <string name="PA_XDIA_lbl_diagnostico_ResumenDiagnosticos">Diagnóstico:\n%1$s</string>
+    <string name="PA_XDIA_lbl_tipo_ResumenDiagnosticos">Tipo de lesión:\n%1$s</string>
+    <string name="PA_XDIA_lbl_medico_ResumenDiagnosticos">Médico:\n%1$s, %2$s</string>
+    <string name="PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos">Centro:\n%1$s</string>
+    <string name="PA_XDIA_btn_guardarDiagnostico_ResumenDiagnosticos">Guardar diagnóstico</string>
     <string name="PA_XDIA_lbl_ToastErrorImagenVacia_ResumenDiagnosticos">Imagen no disponible</string>
 
 

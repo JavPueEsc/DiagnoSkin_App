@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.StrictMode
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -13,6 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
+import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
+import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 class ResumenDiagnosticoActivity : AppCompatActivity() {
     //Declaración de las vistas
@@ -22,7 +29,7 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
     private lateinit var lbl_diagnosticoDiagnostico: TextView
     private lateinit var lbl_tipoDiagnostico: TextView
     private lateinit var lbl_medicoDiagnostico: TextView
-    private lateinit var centroMedicoDiagnostico: TextView
+    private lateinit var lbl_centroMedicoDiagnostico: TextView
     private lateinit var btn_guardarDiagnostico: Button
     private lateinit var btn_volver: ImageView
 
@@ -48,6 +55,14 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
     private var diagnosticoRecibido: String? = ""
     private var tipoDiagnosticoRecibido: String? = ""
     private var fotoDiagnosticoRecibida: String? = ""
+
+    //Declaración de las variables para extraer medico y nombre del centroMedico de bbdd
+    private lateinit var result: JSONArray
+    private lateinit var jsonObject: JSONObject
+    private lateinit var nombreMedicoBD : String
+    private lateinit var apellidosMedicoBD : String
+    private lateinit var idCentroMedicoFKBD : String
+    private lateinit var nombreCentroMedicoBD : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,7 +97,7 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         lbl_diagnosticoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_diagnostico_ResumenDiagnostico)
         lbl_tipoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_tipo_ResumenDiagnostico)
         lbl_medicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_medico_ResumenDiagnostico)
-        centroMedicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_centro_ResumenDiagnostico)
+        lbl_centroMedicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_centro_ResumenDiagnostico)
         btn_guardarDiagnostico =
             findViewById(R.id.PA_XDIAG_btn_GuardarDiagnostico_ResumenDiagnosticos)
         btn_volver = findViewById(R.id.btnVolver_ResumenDiagnostico)
@@ -109,8 +124,20 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         }
         lbl_diagnosticoDiagnostico.text = getString(R.string.PA_XDIA_lbl_diagnostico_ResumenDiagnosticos,diagnosticoRecibido)
         lbl_tipoDiagnostico.text = getString(R.string.PA_XDIA_lbl_tipo_ResumenDiagnosticos, tipoDiagnosticoRecibido)
+        if(idMedicoRecibido!=null){
+            consultarMedico(idMedicoRecibido)
+            lbl_medicoDiagnostico.text=getString(R.string.PA_XDIA_lbl_medico_ResumenDiagnosticos,apellidosMedicoBD,nombreMedicoBD)
+        }
+        if(idCentroMedicoFKBD!=null){
+            consultaCentroMedico(idCentroMedicoFKBD)
+            lbl_centroMedicoDiagnostico.text = getString(R.string.PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos,nombreCentroMedicoBD)
+        }
 
-
+        //Gestión del botón Guardar
+        btn_guardarDiagnostico.setOnClickListener {
+            //Insertar diagnostico en bbdd
+            //Intent a principalDiagnosticos (mandar mismos extras que recibe ya principalDiagnosticos) <------------------
+        }
 
 
     }
@@ -162,5 +189,76 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
             }
         }
         return fechaTransformada
+    }
+
+    fun consultarMedico(idMedico: String?) {
+        var existeMedico: Boolean = false
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var consultaRemotaMedicos = ConsultaRemotaMedicos()
+        result = consultaRemotaMedicos.obtenerMedicoPorId(idMedico)
+        //Verificamos que result no está vacío
+        try {
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    var idMedicoBD = jsonObject.getString("idMedico")
+                    nombreMedicoBD = jsonObject.getString("nombreMedico")
+                    apellidosMedicoBD = jsonObject.getString("apellidosMedico")
+                    var telefonoMedicoBD = jsonObject.getString("telefonoMedico")
+                    var emailMedicoBD = jsonObject.getString("emailMedico")
+                    var especialidadMedicoBD = jsonObject.getString("especialidadMedico")
+                    var numColegiadoMedicoBD = jsonObject.getString("numColegiadoMedico")
+                    var esAdminMedicoBD = jsonObject.getString("esAdminMedico")
+                    idCentroMedicoFKBD = jsonObject.getString("idCentroMedicoFK")
+                    var idUsuarioFKBD = jsonObject.getString("idUsuarioFK")
+                    if (idMedicoBD == idMedico) {
+                        existeMedico = true
+                        break //<-- salimos del bucle
+                    }
+                }
+            } else {
+                Log.e("MainActivity", "El JSONObject está vacío")
+            }
+        } catch (e: JSONException) {
+            Log.e("MainActivity", "Error al procesar el JSON", e)
+        }
+    }
+    fun consultaCentroMedico(idCentroMedico: String?) {
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var consultaRemotaCentrosMedicos = ConsultaRemotaCentrosMedicos()
+        result = consultaRemotaCentrosMedicos.obtenerCentroMedicoPorId(idCentroMedico)
+        //Verificamos que result no está vacío
+        try {
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    var idCentroMedicoBD = jsonObject.getString("idCentroMedico")
+                    nombreCentroMedicoBD = jsonObject.getString("nombreCentroMedico")
+                    var telefonoCentroMedicoBD = jsonObject.getString("telefonoCentroMedico")
+                    var latitudCentroMedicoBD = jsonObject.getString("latitudCentroMedico")
+                    var longitudCentroMedicoBD = jsonObject.getString("longitudCentroMedico")
+                    var direccionCentroMedicoBD = jsonObject.getString("direccionCentroMedico")
+                    var localidadCentroMedicoBD = jsonObject.getString("localidadCentroMedico")
+                    var codigoPostalCentroMedicoBD = jsonObject.getString("codigoPostalCentroMedico")
+                    var provinciaCentroMedicoBD = jsonObject.getString("provinciaCentroMedico")
+                    var esHospitalCentroMedicoBD = jsonObject.getString("esHospitalCentroMedico")
+
+                    if (idCentroMedicoBD == idCentroMedico) {
+                        break //<-- salimos del bucle
+                    }
+
+                }
+            } else {
+                Log.e("MainActivity", "El JSONObject de centro medico está vacío")
+            }
+        } catch (e: JSONException) {
+            Log.e("MainActivity", "Error al procesar el JSON", e)
+        }
     }
 }

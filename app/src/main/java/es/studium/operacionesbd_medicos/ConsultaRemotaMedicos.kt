@@ -18,6 +18,13 @@ class ConsultaRemotaMedicos {
         return ejecutarPeticion(request)
     }
 
+    fun obtenerMedicoPorId(idMedico:String?):JSONArray{
+        val request = Request.Builder()
+            .url("http://192.168.0.217/ApiRestDiagnoSkin/medicos.php?idMedico=$idMedico")
+            .build()
+        return ejecutarPeticion(request)
+    }
+
     fun obtenerMedicoPorNumCol(numColegiadoMedico:String):JSONArray{
         val request = Request.Builder()
             .url("http://192.168.0.217/ApiRestDiagnoSkin/medicos.php?numColegiadoMedico=$numColegiadoMedico")
