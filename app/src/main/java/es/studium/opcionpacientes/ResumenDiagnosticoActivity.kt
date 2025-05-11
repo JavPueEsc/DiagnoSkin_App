@@ -17,6 +17,10 @@ import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
+import es.studium.operacionesdb_diagnosticos.AltaRemotaDiagnosticos
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -106,7 +110,7 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         btn_volver.setOnClickListener {
             enviarIntentVuelta(
                 PrincipalDiagnosticosActivity::class.java,
-                "ResumenDiagnosticosActivity", idPacienteRecibido,
+                "ResumenDiagnosticoActivity", idPacienteRecibido,
                 nombrePacienteRecibido, apellidosPacienteRecibido, sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido,
                 emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
@@ -136,7 +140,33 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         //Gestión del botón Guardar
         btn_guardarDiagnostico.setOnClickListener {
             //Insertar diagnostico en bbdd
-            //Intent a principalDiagnosticos (mandar mismos extras que recibe ya principalDiagnosticos) <------------------
+            var altaDiagnostico = AltaRemotaDiagnosticos()
+            var fotoAByteArray = uriAByteArray(Uri.parse(fotoDiagnosticoRecibida))//<-- Paso la imagen a byteArray
+            CoroutineScope(Dispatchers.Main).launch {
+                //Inserción
+                var esAltaDiagnosticoCorrecta: Boolean = altaDiagnostico.darAltaDiagnosticoEnBD(
+                    fechaDiagnosticoRecibida ?: "", diagnosticoRecibido ?: "",
+                    tipoDiagnosticoRecibido ?:"", fotoAByteArray, idMedicoRecibido?:"", idPacienteRecibido?:""
+                )
+
+                if (esAltaDiagnosticoCorrecta) {
+                    Toast.makeText(this@ResumenDiagnosticoActivity, R.string.PA_XDIA_lbl_ToastExito_ResumenDiagnosticos, Toast.LENGTH_SHORT).show()
+                    //Intent a principalDiagnosticos (mandar mismos extras que recibe ya principalDiagnosticos) <------------------
+                    enviarIntentSiguiente(PrincipalDiagnosticosActivity::class.java,"ResumenDiagnosticoActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                        sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                        emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                        esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+                } else {
+                    Toast.makeText(this@ResumenDiagnosticoActivity, R.string.PA_XDIA_lbl_ToastFalloInsercion_ResumenDiagnosticos, Toast.LENGTH_SHORT).show()
+                    // Log de error de inserción
+                    Log.e(
+                        "ErrorInsercion",
+                        "Fallo al insertar los datos del diagnóstico. Revisa los valores y la conexión."
+                    )
+                }
+
+            }
+
         }
 
 
@@ -160,7 +190,7 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         localidad: String?, provincia: String?, codigoPostal: String?, esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
         val intent = Intent(this@ResumenDiagnosticoActivity, activityDestino::class.java)
-        intent.putExtra("origenResumenDiagnosticosActivity", claveOrigen)
+        intent.putExtra("origenResumenDiagnosticoActivity", claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
         intent.putExtra("apellidosPaciente", apellidos)
@@ -260,5 +290,31 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         } catch (e: JSONException) {
             Log.e("MainActivity", "Error al procesar el JSON", e)
         }
+    }
+
+    private fun enviarIntentSiguiente(
+        activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?
+    ) {
+        val intent = Intent(this@ResumenDiagnosticoActivity, activityDestino)
+        intent.putExtra("ResumenDiagnosticoActivity", claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
     }
 }

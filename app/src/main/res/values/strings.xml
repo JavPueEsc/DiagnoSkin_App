@@ -240,6 +240,8 @@
     <string name="PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos">Centro:\n%1$s</string>
     <string name="PA_XDIA_btn_guardarDiagnostico_ResumenDiagnosticos">Guardar diagnóstico</string>
     <string name="PA_XDIA_lbl_ToastErrorImagenVacia_ResumenDiagnosticos">Imagen no disponible</string>
+    <string name="PA_XDIA_lbl_ToastExito_ResumenDiagnosticos">El diagnóstico ha sido registrado correctamente</string>
+    <string name="PA_XDIA_lbl_ToastFalloInsercion_ResumenDiagnosticos">Se ha producido un error</string>
 
 
 

@@ -142,7 +142,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         }
     }
 
-    //Enviar intent de vuelta (a DatosDelPacienteActivity)
+    //Enviar intent
     private fun enviarIntent(
         activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
@@ -178,6 +178,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         var consultaRemotaDiagnosticos = ConsultaRemotaDiagnosticos()
         result = consultaRemotaDiagnosticos.obtenerDiagnosticoPorIdPacienteFK(idPacienteFK)
         //verificamos que result no está vacio
+        listaDiagnosticos.clear()
         try{
             if(result.length() > 0){
                 for (i in 0 until result.length()) {
@@ -192,8 +193,10 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
                     idMedicoFKBD = jsonObject.getString("idMedicoFK")
                     idPacienteFKBD = jsonObject.getString("idPacienteFK")
 
-                    listaDiagnosticos.add(ModeloDiagnostico(idDiagnosticoBD,fechaMysqlAEuropea(fechaDiagnosticoBD),diagnosticoDiagnosticoBD,gravedadDiagnosticoBD,
-                        fotoDiagnosticoBD,idMedicoFKBD,idPacienteFKBD))
+                    if(idPacienteFKBD==idPacienteFK){
+                        listaDiagnosticos.add(ModeloDiagnostico(idDiagnosticoBD,fechaMysqlAEuropea(fechaDiagnosticoBD),diagnosticoDiagnosticoBD,gravedadDiagnosticoBD,
+                            fotoDiagnosticoBD,idMedicoFKBD,idPacienteFKBD))
+                    }
                 }
             }
             else{
