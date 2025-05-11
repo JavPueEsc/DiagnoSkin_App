@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Ejemplo de una ruta para acceder a los archivos en el almacenamiento externo -->
+    <external-path
+        name="external_files"
+        path="." />
+    <!-- Ruta específica para acceder a archivos dentro de tu aplicación -->
+    <files-path
+        name="internal_files"
+        path="." />
+</paths>

@@ -12,7 +12,7 @@
         android:id="@+id/MP_img_logo"
         android:layout_width="400dp"
         android:layout_height="400dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -52,24 +52,22 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/rectangulo_botones_menuprincipal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MP_btn_Pacientes"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="32dp" />
 
     <View
         android:id="@+id/MP_btn_Estadisticas"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/rectangulo_botones_menuprincipal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/MP_btn_Diagnosticos"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="32dp" />
 
     <ImageView
         android:id="@+id/MP_img_Pacientes"
@@ -172,7 +170,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/circulo_botones_menuprincipal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.11"
@@ -194,7 +192,7 @@
         android:id="@+id/MP_btn_Admin"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/circulo_botones_menuprincipal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

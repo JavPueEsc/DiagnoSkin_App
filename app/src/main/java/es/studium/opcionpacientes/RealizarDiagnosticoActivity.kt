@@ -2,6 +2,7 @@ package es.studium.opcionpacientes
 
 import android.Manifest
 import android.app.Activity
+import android.content.ContentUris
 import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -25,10 +26,14 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.ModeloIA
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.Locale
@@ -124,6 +129,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(
                 this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
+
         //Gestión del boton volver
         btn_volver.setOnClickListener{
             enviarIntentVuelta(PrincipalDiagnosticosActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
@@ -137,6 +143,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         }
         //Gestión del botón cargar una foto
         btn_cargarFoto.setOnClickListener {
+
             pickImageLauncher.launch("image/*")
         }
         //Gestión del botón predecir
@@ -186,19 +193,40 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
 
     //Predicción (3)
     private fun getImageUriFromImageView(): Uri? {
-        // Obtener la URI de la imagen mostrada en el ImageView
-        return (img_foto.drawable as? BitmapDrawable)?.let {
-            val bitmap = it.bitmap
-            val tempUri = getImageUri(bitmap)
-            tempUri
+        val photoView = findViewById<ImageView>(R.id.PA_XDIAG_fotoDiagnostico_RealizarDiagnosticos)
+        val bitmap = (photoView.drawable as BitmapDrawable).bitmap
+
+        val file = File(externalCacheDir, "image.jpg") // Cambia el nombre si es necesario
+        try {
+            FileOutputStream(file).use { out ->
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out)
+            }
+            return FileProvider.getUriForFile(this, "es.studium.modelos_y_utiles.fileprovider", file)
+        } catch (e: Exception) {
+            Log.e("RealizarDiagnosticoActivity", "Error al guardar la imagen", e)
+            return null
         }
     }
     //Predicción (3)
     private fun getImageUri(bitmap: Bitmap): Uri? {
-        // Convertir el bitmap a URI (guardar en almacenamiento temporal)
-        val path = MediaStore.Images.Media.insertImage(contentResolver, bitmap, "temp_image", null)
-        return Uri.parse(path)
+        val file = File(applicationContext.cacheDir, "temp_image_${System.currentTimeMillis()}.jpg")
+        try {
+            val outputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outputStream)
+            outputStream.flush()
+            outputStream.close()
+
+            return FileProvider.getUriForFile(
+                applicationContext,
+                "com.example.myapp.fileprovider", // Asegúrate de que tu FileProvider esté configurado en el manifiesto
+                file
+            )
+        } catch (e: IOException) {
+            Log.e("getImageUri", "Error al guardar la imagen en el archivo temporal", e)
+            return null
+        }
     }
+
 
     // Función para redimensionar la imagen (4)
     private fun resizeImage(image: Bitmap): Bitmap {
@@ -207,29 +235,16 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
 
 
     private fun takePhoto() {
-        // Get a stable reference of the modifiable image capture use case
         val imageCapture = imageCapture ?: return
 
-        // Create time stamped name and MediaStore entry.
-        val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
-            .format(System.currentTimeMillis())
-        val contentValues = ContentValues().apply {
-            put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-            put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-                put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/CameraX-Image")
-            }
-        }
+        // Ruta fija donde se guardará la imagen (si existe, se sobrescribe)
+        val photoFile = File(
+            getExternalFilesDir(null),
+            "captura.jpg" // siempre se sobrescribe este archivo
+        )
 
-        // Create output options object which contains file + metadata
-        val outputOptions = ImageCapture.OutputFileOptions
-            .Builder(contentResolver,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                contentValues)
-            .build()
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
-        // Set up image capture listener, which is triggered after photo has
-        // been taken
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(this),
@@ -239,19 +254,16 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
                 }
 
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
-                    val savedUri = output.savedUri
-                    val msg = "Photo capture succeeded: $savedUri"
-                    //Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                    Log.d(TAG, msg)
+                    val savedUri = Uri.fromFile(photoFile)
+                    Log.d(TAG, "Photo capture succeeded: $savedUri")
 
                     // Mostrar la imagen en el ImageView
-                    savedUri?.let {
-                        img_foto.setImageURI(it)
-                    }
+                    img_foto.setImageURI(savedUri)
                 }
             }
         )
     }
+
 
     private fun captureVideo() {}
 
@@ -384,4 +396,5 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         intent.putExtra("fotoDiagnostico", fotoDiagnostico)
         startActivity(intent)
     }
+
 }
