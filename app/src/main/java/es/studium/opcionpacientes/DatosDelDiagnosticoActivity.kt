@@ -2,6 +2,8 @@ package es.studium.opcionpacientes
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.StrictMode
@@ -17,16 +19,13 @@ import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
-import es.studium.operacionesdb_diagnosticos.AltaRemotaDiagnosticos
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class ResumenDiagnosticoActivity : AppCompatActivity() {
+class DatosDelDiagnosticoActivity : AppCompatActivity() {
     //Declaración de las vistas
+    private lateinit var lbl_idDiagnostico : TextView
     private lateinit var lbl_apellidosNombre: TextView
     private lateinit var lbl_fecha: TextView
     private lateinit var img_fotoDiagnostico: ImageView
@@ -39,26 +38,27 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
 
     //Declaración de variables para recibir los extras
     //Variable para extra recibido
-    private var idPacienteRecibido: String? = ""
-    private var nombrePacienteRecibido: String? = ""
-    private var apellidosPacienteRecibido: String? = ""
-    private var sexoPacienteRecibido: String? = ""
-    private var fechaNacPacienteRecibido: String? = ""
-    private var nuhsaPacienteRecibido: String? = ""
-    private var telefonoPacienteRecibido: String? = ""
-    private var emailPacienteRecibido: String? = ""
-    private var dniPacienteRecibido: String? = ""
-    private var direccionPacienteRecibido: String? = ""
-    private var localidadPacienteRecibido: String? = ""
-    private var provinciaPacienteRecibido: String? = ""
-    private var codigoPostalPacienteRecibido: String? = ""
-    private var esAdminMedicoRecibido: String? = ""
-    private var idMedicoRecibido: String? = ""
-    private var idUsuarioRecibido: String? = ""
-    private var fechaDiagnosticoRecibida: String? = ""
-    private var diagnosticoRecibido: String? = ""
-    private var tipoDiagnosticoRecibido: String? = ""
-    private var fotoDiagnosticoRecibida: String? = ""
+    private var idPacienteRecibido: String? = null
+    private var nombrePacienteRecibido: String? = null
+    private var apellidosPacienteRecibido: String? = null
+    private var sexoPacienteRecibido: String? = null
+    private var fechaNacPacienteRecibido: String? = null
+    private var nuhsaPacienteRecibido: String? = null
+    private var telefonoPacienteRecibido: String? = null
+    private var emailPacienteRecibido: String? = null
+    private var dniPacienteRecibido: String? = null
+    private var direccionPacienteRecibido: String? = null
+    private var localidadPacienteRecibido: String? = null
+    private var provinciaPacienteRecibido: String? = null
+    private var codigoPostalPacienteRecibido: String? = null
+    private var esAdminMedicoRecibido: String? = null
+    private var idMedicoRecibido: String? = null
+    private var idUsuarioRecibido: String? = null
+    private var idDiagnosticoRecibido: String? = null
+    private var fechaDiagnosticoRecibida: String? = null
+    private var diagnosticoRecibido: String? = null
+    private var tipoDiagnosticoRecibido: String? = null
+    private var fotoDiagnosticoRecibida: ByteArray? = null
 
     //Declaración de las variables para extraer medico y nombre del centroMedico de bbdd
     private lateinit var result: JSONArray
@@ -70,7 +70,7 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.pa_xdiag_activity_resumen_diagnostico)
+        setContentView(R.layout.pa_xdiag_activity_datos_del_diagnostico)
         //Recibir extras
         val extras = intent.extras
         if (extras != null) {
@@ -90,28 +90,29 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
             esAdminMedicoRecibido = extras.getString("esAdminMedico")
             idMedicoRecibido = extras.getString("idMedico")
             idUsuarioRecibido = extras.getString("idUsuario")
+            idDiagnosticoRecibido = extras.getString("idDiagnostico")
             fechaDiagnosticoRecibida = extras.getString("fechaDiagnostico")
             diagnosticoRecibido = extras.getString("diagnosticoDiagnostico")
             tipoDiagnosticoRecibido = extras.getString("tipoDiagnostico")
-            fotoDiagnosticoRecibida = extras.getString("fotoDiagnostico")
+            fotoDiagnosticoRecibida = extras.getByteArray("fotoDiagnostico")
         }
+
         //Enlazar vistas
-        lbl_apellidosNombre = findViewById(R.id.PA_XDIAG_lbl_apellidosNombre_ResumenDiagnostico)
-        lbl_fecha = findViewById(R.id.PA_XDIAG_lbl_fecha_ResumenDiagnostico)
-        img_fotoDiagnostico = findViewById(R.id.PA_XDIAG_fotoDiagnostico_ResumenDiagnosticos)
-        lbl_diagnosticoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_diagnostico_ResumenDiagnostico)
-        lbl_tipoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_tipo_ResumenDiagnostico)
-        lbl_medicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_medico_ResumenDiagnostico)
-        lbl_centroMedicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_centro_ResumenDiagnostico)
-        btn_guardarDiagnostico =
-            findViewById(R.id.PA_XDIAG_btn_GuardarDiagnostico_ResumenDiagnosticos)
-        btn_volver = findViewById(R.id.btnVolver_ResumenDiagnostico)
+        lbl_idDiagnostico = findViewById(R.id.PA_XDIA_lbl_titulo_DatosDelDiagnostico)
+        lbl_apellidosNombre = findViewById(R.id.PA_XDIAG_lbl_apellidosNombre_DatosDelDiagnostico)
+        lbl_fecha = findViewById(R.id.PA_XDIAG_lbl_fecha_DatosDelDiagnostico)
+        img_fotoDiagnostico = findViewById(R.id.PA_XDIAG_fotoDiagnostico_DatosDelDiagnosticos)
+        lbl_diagnosticoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_diagnostico_DatosDelDiagnostico)
+        lbl_tipoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_tipo_DatosDelDiagnostico)
+        lbl_medicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_medico_DatosDelDiagnostico)
+        lbl_centroMedicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_centro_DatosDelDiagnostico)
+        btn_volver = findViewById(R.id.btnVolver_DatosDelDiagnostico)
 
         //Gestión del botón volver
         btn_volver.setOnClickListener {
             enviarIntentVuelta(
                 PrincipalDiagnosticosActivity::class.java,
-                "ResumenDiagnosticoActivity", idPacienteRecibido,
+                "DatosDelDiagnosticoActivity", idPacienteRecibido,
                 nombrePacienteRecibido, apellidosPacienteRecibido, sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido,
                 emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
@@ -119,10 +120,12 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         }
 
         //Establecemos la información en las etiquetas correspondientes
+        lbl_idDiagnostico.text = getString(R.string.PA_XDIA_lbl_titulo_DatosDelDiagnosticos,idDiagnosticoRecibido)
         lbl_apellidosNombre.text = getString(R.string.PA_XDIA_lbl_apellidosNombre_ResumenDiagnosticos,apellidosPacienteRecibido,nombrePacienteRecibido)
-        lbl_fecha.text = getString(R.string.PA_XDIA_lbl_fecha_ResumenDiagnosticos,fechaMysqlAEuropea(fechaDiagnosticoRecibida))
+        lbl_fecha.text = getString(R.string.PA_XDIA_lbl_fecha_ResumenDiagnosticos,fechaDiagnosticoRecibida)
         if (fotoDiagnosticoRecibida != null) {
-            establecerImagenDesdeUri(Uri.parse(fotoDiagnosticoRecibida),img_fotoDiagnostico)
+            val fotoBitmap = byteArrayABitmap(fotoDiagnosticoRecibida)
+            img_fotoDiagnostico.setImageBitmap(fotoBitmap)
         } else {
             // Maneja el caso en que no se recibe la imagen
             Toast.makeText(this, R.string.PA_XDIA_lbl_ToastErrorImagenVacia_ResumenDiagnosticos, Toast.LENGTH_SHORT).show()
@@ -137,51 +140,22 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
             consultaCentroMedico(idCentroMedicoFKBD)
             lbl_centroMedicoDiagnostico.text = getString(R.string.PA_XDIA_lbl_nombreCentro_ResumenDiagnosticos,nombreCentroMedicoBD)
         }
+    }
 
-        //Gestión del botón Guardar
-        btn_guardarDiagnostico.setOnClickListener {
-            //Insertar diagnostico en bbdd
-            var altaDiagnostico = AltaRemotaDiagnosticos()
-            var fotoAByteArray = uriAByteArray(Uri.parse(fotoDiagnosticoRecibida))//<-- Paso la imagen a byteArray
-            CoroutineScope(Dispatchers.Main).launch {
-                //Inserción
-                var esAltaDiagnosticoCorrecta: Boolean = altaDiagnostico.darAltaDiagnosticoEnBD(
-                    fechaDiagnosticoRecibida ?: "", diagnosticoRecibido ?: "",
-                    tipoDiagnosticoRecibido ?:"", fotoAByteArray, idMedicoRecibido?:"", idPacienteRecibido?:""
-                )
 
-                if (esAltaDiagnosticoCorrecta) {
-                    Toast.makeText(this@ResumenDiagnosticoActivity, R.string.PA_XDIA_lbl_ToastExito_ResumenDiagnosticos, Toast.LENGTH_SHORT).show()
-                    //Intent a principalDiagnosticos (mandar mismos extras que recibe ya principalDiagnosticos) <------------------
-                    enviarIntentSiguiente(PrincipalDiagnosticosActivity::class.java,"ResumenDiagnosticoActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
-                        sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
-                        emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
-                        esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
-                } else {
-                    Toast.makeText(this@ResumenDiagnosticoActivity, R.string.PA_XDIA_lbl_ToastFalloInsercion_ResumenDiagnosticos, Toast.LENGTH_SHORT).show()
-                    // Log de error de inserción
-                    Log.e(
-                        "ErrorInsercion",
-                        "Fallo al insertar los datos del diagnóstico. Revisa los valores y la conexión."
-                    )
-                }
-
+    fun byteArrayABitmap(byteArray: ByteArray?): Bitmap? {
+        return if (byteArray != null) {
+            val bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.size)
+            if (bitmap != null) {
+                Log.d("CONVERSION_IMAGEN", "Conversión a Bitmap exitosa. Tamaño: ${byteArray.size} bytes")
+            } else {
+                Log.e("CONVERSION_IMAGEN", "Fallo en la conversión a Bitmap. ByteArray no válido.")
             }
-
+            bitmap
+        } else {
+            Log.w("CONVERSION_IMAGEN", "ByteArray es null. No se puede convertir.")
+            null
         }
-
-
-    }
-    // Metodo para establecer la imagen en el ImageView a partir de una URI
-    private fun establecerImagenDesdeUri(uri: Uri, imageView: ImageView) {
-        imageView.setImageURI(uri)
-    }
-
-    //Metodo para transformar de URI a ByteArray y así poder pasarselo al
-    // metodo que inserta en la base de datos
-    fun uriAByteArray(uri: Uri): ByteArray {
-        val inputStream = contentResolver.openInputStream(uri)
-        return inputStream?.readBytes() ?: ByteArray(0)
     }
 
     //Enviar intent de vuelta (a RealizarDiagnosticosActivity)
@@ -190,8 +164,8 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         sexo: String?, fechaNac: String?, nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?,
         localidad: String?, provincia: String?, codigoPostal: String?, esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
-        val intent = Intent(this@ResumenDiagnosticoActivity, activityDestino::class.java)
-        intent.putExtra("origenResumenDiagnosticoActivity", claveOrigen)
+        val intent = Intent(this@DatosDelDiagnosticoActivity, activityDestino::class.java)
+        intent.putExtra("origenDatosDelDiagnosticoActivity", claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
         intent.putExtra("apellidosPaciente", apellidos)
@@ -298,8 +272,8 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
         esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
-        val intent = Intent(this@ResumenDiagnosticoActivity, activityDestino)
-        intent.putExtra("ResumenDiagnosticoActivity", claveOrigen)
+        val intent = Intent(this@DatosDelDiagnosticoActivity, activityDestino)
+        intent.putExtra("DatosDelDiagnosticoActivity", claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
         intent.putExtra("apellidosPaciente", apellidos)

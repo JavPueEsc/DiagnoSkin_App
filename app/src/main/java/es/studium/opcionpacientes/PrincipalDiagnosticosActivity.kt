@@ -1,19 +1,24 @@
 package es.studium.opcionpacientes
 
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Base64
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -25,7 +30,10 @@ import es.studium.modelos_y_utiles.AdaptadorDiagnosticos
 import es.studium.modelos_y_utiles.AdaptadorPacientes
 import es.studium.modelos_y_utiles.ModeloDiagnostico
 import es.studium.modelos_y_utiles.ModeloPaciente
+import es.studium.modelos_y_utiles.RecyclerTouchListener
+import es.studium.operacionesbd_pacientes.EliminacionRemotaPacientes
 import es.studium.operacionesdb_diagnosticos.ConsultaRemotaDiagnosticos
+import es.studium.operacionesdb_diagnosticos.EliminacionRemotaDiagnosticos
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -115,8 +123,6 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
 
         cargarDiagnosticos(idPacienteRecibido)
 
-        //<------------------------------------------------------ FALTA GESTIÓN DE PULSACION TARJETAS
-
         //Bloque para actualizar los datos cuando se producen modificaciones
         val recargar = intent.getBooleanExtra("Recargar", false)
         if (recargar) {
@@ -132,6 +138,72 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         recyclerView.layoutManager = mLayoutManager
         recyclerView.itemAnimator = DefaultItemAnimator()
         recyclerView.adapter = adaptadorDiagnosticos
+
+        //Gestion de pulsaciones sobre las tarjetas del recyclerView - Pulsación corta
+        recyclerView.addOnItemTouchListener(
+            RecyclerTouchListener(this, recyclerView, object : RecyclerTouchListener.ClickListener {
+                override fun onClick(view: View, position: Int) {
+                    // pasar a la Activity de consultarDiagnostico
+                    var diagnosticoSeleccionado = listaDiagnosticos[position]
+                    enviarIntentAConsultar(DatosDelDiagnosticoActivity::class.java,"DatosDelDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                        sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                        emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                        esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido,diagnosticoSeleccionado.idDiagnostico,diagnosticoSeleccionado.fechaDiagnostico,diagnosticoSeleccionado
+                            .diagnosticoDiagnostico,diagnosticoSeleccionado.gravedadDiagnostico,diagnosticoSeleccionado.fotoDiagnostico)
+                }
+                // Eliminación de un paciente - Pulsación larga
+                override fun onLongClick(view: View, position: Int) {
+                    val diagnosticoAEliminar = listaDiagnosticos[position]
+                    val tituloPersonalizado = layoutInflater.inflate(R.layout.xx_titulo_dialogo_personalizado, null)
+                    val dialogo = AlertDialog
+                        .Builder(this@PrincipalDiagnosticosActivity)
+                        .setPositiveButton(view.context.getString(R.string.PA_DialogoDiagnosticos_opcionSi), object : DialogInterface.OnClickListener {
+                            override fun onClick(dialogo: DialogInterface, which: Int) {
+                                if(esAdminMedicoRecibido=="0"){
+                                    Toast.makeText(this@PrincipalDiagnosticosActivity, R.string.PA_toastDialogoDiagnosticos_NoEsAdmin, Toast.LENGTH_SHORT).show()
+                                }
+                                else{
+                                    val eliminacionRemota = EliminacionRemotaDiagnosticos()
+                                    val resultado = eliminacionRemota.eliminarDiagnostico(diagnosticoAEliminar.idDiagnostico)
+
+                                    if (resultado) {
+                                        listaDiagnosticos.clear()
+                                        cargarDiagnosticos(idPacienteRecibido)
+                                        adaptadorDiagnosticos.notifyDataSetChanged()
+
+                                    } else {
+                                        Toast.makeText(this@PrincipalDiagnosticosActivity, R.string.PA_toastDialogoDiagnosticos_errorEliminacion, Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                            }
+                        })
+                        .setNegativeButton(view.context.getString(R.string.PA_DialogoDiagnosticos_opcionNo), object : DialogInterface.OnClickListener {
+                            override fun onClick(dialogo: DialogInterface, which: Int) {
+                                dialogo.dismiss()
+                            }
+                        })
+                        .setCustomTitle(tituloPersonalizado)
+                        .setMessage(view.context.getString(R.string.PA_DialogoDiagnosticos_mensaje))
+                        .create()
+
+                    //El setOnShowListener permite que se apliquen los cambios en los colores cuando se muestre el dialogo
+                    dialogo.setOnShowListener {
+                        val fondoDialogo = ContextCompat.getDrawable(this@PrincipalDiagnosticosActivity, R.drawable.rectangulo_tarjetas)
+                        val textoAzulDialogo = ContextCompat.getColor(this@PrincipalDiagnosticosActivity, R.color.azulBrillante)
+
+                        dialogo.window?.setBackgroundDrawable(fondoDialogo)
+
+                        dialogo.findViewById<TextView>(android.R.id.message)?.setTextColor(textoAzulDialogo)
+                        dialogo.findViewById<TextView>(resources.getIdentifier("alertTitle", "id", "android"))?.setTextColor(textoAzulDialogo)
+
+                        dialogo.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(textoAzulDialogo)
+                        dialogo.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(textoAzulDialogo)
+                    }
+
+                    dialogo.show()
+                }
+            })
+        )
 
         //Gestión del botón Nuevo diagnóstico
         btn_NuevoDiagnostico.setOnClickListener {
@@ -166,6 +238,38 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         intent.putExtra("esAdminMedico", esAdminMedico)
         intent.putExtra("idMedico", idMedico)
         intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
+    }
+
+    //Enviar intent a ConsultarActivity
+    private fun enviarIntentAConsultar(
+        activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?, idDiagnostico: String?, fechaDiagnostico: String, diagnostico: String, tipoDiagnostico : String, fotoDiagnostico : ByteArray
+    ) {
+        val intent = Intent(this@PrincipalDiagnosticosActivity, activityDestino)
+        intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        intent.putExtra("idDiagnostico", idDiagnostico)
+        intent.putExtra("fechaDiagnostico", fechaDiagnostico)
+        intent.putExtra("diagnosticoDiagnostico", diagnostico)
+        intent.putExtra("tipoDiagnostico", tipoDiagnostico)
+        intent.putExtra("fotoDiagnostico", fotoDiagnostico)
         startActivity(intent)
     }
 
@@ -212,6 +316,12 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
     fun base64AByteArray(base64String: String): ByteArray {
         return Base64.decode(base64String, Base64.DEFAULT)
     }
+
+    //Metodo para pasar de byteArray a String
+    fun byteArrayString(byteArray: ByteArray): String {
+        return String(byteArray, Charsets.UTF_8)
+    }
+
     //Metodo para pasar fechas MySQL a Europeo
     fun fechaMysqlAEuropea(fecha: String): String {
         lateinit var fechaTransformada: String

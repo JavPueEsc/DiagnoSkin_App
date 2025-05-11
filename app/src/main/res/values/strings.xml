@@ -206,6 +206,13 @@
     <string name="PA_XDIA_lbl_apellidosNombre_PrincipalDiagnosticos">Apellido1 Apellido2, Nombre</string>
     <string name="PA_XDIA_btn_nuevoDiagnostico_PrincipalDiagnosticos">Nuevo Diagnóstico</string>
 
+    <string name="PA_DialogoDiagnosticos_opcionSi">Si</string>
+    <string name="PA_DialogoDiagnosticos_opcionNo">No</string>
+    <string name="PA_DialogoDiagnosticos_titulo">Confirmar eliminación</string>
+    <string name="PA_DialogoDiagnosticos_mensaje">¿Desea eliminar este diagnóstico?</string>
+    <string name="PA_toastDialogoDiagnosticos_errorEliminacion">Se ha producido un error al intentar eliminar el diagnostico</string>
+    <string name="PA_toastDialogoDiagnosticos_NoEsAdmin">No cuenta con permisos de administrador</string>
+
     <!-- RealizarDiagnosticosActivity-->
     <string name="PA_XDIA_lbl_titulo_RealizarDiagnosticos">Nuevo Diagnóstico</string>
     <string name="PA_XDIA_lbl_subTituloCamara_RealizarDiagnosticos">Cámara</string>
@@ -242,6 +249,17 @@
     <string name="PA_XDIA_lbl_ToastErrorImagenVacia_ResumenDiagnosticos">Imagen no disponible</string>
     <string name="PA_XDIA_lbl_ToastExito_ResumenDiagnosticos">El diagnóstico ha sido registrado correctamente</string>
     <string name="PA_XDIA_lbl_ToastFalloInsercion_ResumenDiagnosticos">Se ha producido un error</string>
+
+    <!--RDatosDelDiagnosticoActivity-->
+    <string name="PA_XDIA_lbl_titulo_DatosDelDiagnosticos">Diagnostico visual: #%1$s</string>
+    <string name="PA_XDIA_lbl_apellidosNombre_DatosDelDiagnosticos">%1$s, %2$s</string>
+    <string name="PA_XDIA_lbl_fecha_DatosDelDiagnosticos">Fecha diag.: %1$s</string>
+    <string name="PA_XDIA_lbl_diagnostico_DatosDelDiagnosticos">Diagnóstico:\n%1$s</string>
+    <string name="PA_XDIA_lbl_tipo_DatosDelDiagnosticos">Tipo de lesión:\n%1$s</string>
+    <string name="PA_XDIA_lbl_medico_DatosDelDiagnosticos">Médico:\n%1$s, %2$s</string>
+    <string name="PA_XDIA_lbl_nombreCentro_DatosDelDiagnosticos">Centro:\n%1$s</string>
+    <string name="PA_XDIA_lbl_ToastErrorImagenVacia_DatosDelDiagnosticos">Imagen no disponible</string>
+
 
 
 
