@@ -1,4 +1,4 @@
-package es.studium.opcionpacientes
+package es.studium.opcion_pacientes
 
 import android.app.Activity
 import android.content.DialogInterface
@@ -10,28 +10,20 @@ import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.AdaptadorDiagnosticos
-import es.studium.modelos_y_utiles.AdaptadorPacientes
 import es.studium.modelos_y_utiles.ModeloDiagnostico
-import es.studium.modelos_y_utiles.ModeloPaciente
 import es.studium.modelos_y_utiles.RecyclerTouchListener
-import es.studium.operacionesbd_pacientes.EliminacionRemotaPacientes
 import es.studium.operacionesdb_diagnosticos.ConsultaRemotaDiagnosticos
 import es.studium.operacionesdb_diagnosticos.EliminacionRemotaDiagnosticos
 import org.json.JSONArray

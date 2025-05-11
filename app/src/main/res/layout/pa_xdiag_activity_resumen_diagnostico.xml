@@ -6,7 +6,7 @@
     style="@style/ColorFondoAplicacion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.studium.opcionpacientes.ResumenDiagnosticoActivity">
+    tools:context="es.studium.opcion_pacientes.ResumenDiagnosticoActivity">
 
     <ImageView
         android:id="@+id/btnVolver_ResumenDiagnostico"

@@ -1,8 +1,8 @@
-package es.studium.opcionpacientes
+package es.studium.opcion_pacientes
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
-import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
@@ -25,10 +25,8 @@ import androidx.recyclerview.widget.RecyclerView
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.AdaptadorPacientes
-import es.studium.modelos_y_utiles.ModeloMedico
 import es.studium.modelos_y_utiles.ModeloPaciente
 import es.studium.modelos_y_utiles.RecyclerTouchListener
-import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
 import es.studium.operacionesbd_pacientes.EliminacionRemotaPacientes
 import org.json.JSONArray
@@ -138,26 +136,11 @@ class PrincipalPacientesActivity : AppCompatActivity() {
                 override fun onClick(view: View, position: Int) {
                     var pacienteSeleccionado = listaPacientes[position]
 
-                    var intentConsultar = Intent(this@PrincipalPacientesActivity,DatosDelPacienteActivity::class.java)
-                    intentConsultar.putExtra("origenPrincipalPacienteActivity", "PrincipalPacienteActivity")
-                    intentConsultar.putExtra("idPaciente", pacienteSeleccionado.idPaciente)
-                    intentConsultar.putExtra("nombrePaciente", pacienteSeleccionado.nombrePaciente)
-                    intentConsultar.putExtra("apellidosPaciente", pacienteSeleccionado.apellidosPaciente)
-                    intentConsultar.putExtra("sexoPaciente", pacienteSeleccionado.sexoPaciente)
-                    intentConsultar.putExtra("fechaNacPaciente", pacienteSeleccionado.fechaNacPaciente)
-                    intentConsultar.putExtra("nuhsaPaciente", pacienteSeleccionado.nuhsaPaciente)
-                    intentConsultar.putExtra("telefonoPaciente", pacienteSeleccionado.telefonoPaciente)
-                    intentConsultar.putExtra("emailPaciente", pacienteSeleccionado.emailPaciente)
-                    intentConsultar.putExtra("dniPaciente", pacienteSeleccionado.dniPaciente)
-                    intentConsultar.putExtra("direccionPaciente", pacienteSeleccionado.direccionPaciente)
-                    intentConsultar.putExtra("localidadPaciente", pacienteSeleccionado.localidadPaciente)
-                    intentConsultar.putExtra("provinciaPaciente", pacienteSeleccionado.provinciaPaciente)
-                    intentConsultar.putExtra("codigoPostalPaciente", pacienteSeleccionado.codigoPostalPaciente)
-                    intentConsultar.putExtra("esAdminMedico", esMedicoAdminRecibido)
-                    intentConsultar.putExtra("idMedico", idMedicoRecibido)
-                    intentConsultar.putExtra("idUsuario", idUsuarioRecibido)
+                    enviarIntentConsultarDatosPaciente(DatosDelPacienteActivity::class.java,"PincipalPacientesActivity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
+                            pacienteSeleccionado.apellidosPaciente, pacienteSeleccionado.sexoPaciente, pacienteSeleccionado.fechaNacPaciente, pacienteSeleccionado.nuhsaPaciente, pacienteSeleccionado.telefonoPaciente,
+                        pacienteSeleccionado.emailPaciente, pacienteSeleccionado.dniPaciente, pacienteSeleccionado.direccionPaciente, pacienteSeleccionado.localidadPaciente, pacienteSeleccionado.provinciaPaciente,
+                        pacienteSeleccionado.codigoPostalPaciente, esMedicoAdminRecibido, idMedicoRecibido, idUsuarioRecibido)
 
-                    startActivity(intentConsultar)
                 }
 
                 override fun onLongClick(view: View, position: Int) {
@@ -304,9 +287,36 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    //Enviar intent a Activity Alta
+    //Enviar intent a Activity Alta Pacientes
     fun enviarIntentNuevoPaciente(esAdminMedico:String?, idMedico:String?, idUsuario:String?){
         val intent = Intent(this@PrincipalPacientesActivity,AltaPacienteActivity::class.java)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
+    }
+
+    //Enviar a intent a consultar datos paciente
+    private fun enviarIntentConsultarDatosPaciente(
+        activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?
+    ) {
+        val intent = Intent(this@PrincipalPacientesActivity, activityDestino)
+        intent.putExtra("PrincipalPacientesActivity", claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
         intent.putExtra("esAdminMedico", esAdminMedico)
         intent.putExtra("idMedico", idMedico)
         intent.putExtra("idUsuario", idUsuario)

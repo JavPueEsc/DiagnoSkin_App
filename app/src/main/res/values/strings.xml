@@ -260,7 +260,7 @@
     <string name="PA_XDIA_lbl_nombreCentro_DatosDelDiagnosticos">Centro:\n%1$s</string>
     <string name="PA_XDIA_lbl_ToastErrorImagenVacia_DatosDelDiagnosticos">Imagen no disponible</string>
 
-
-
+    <!--PrincipalPacientes2Activity-->
+    <string name="DIAG_lbl_Titulo_PrincipalPacientes2">Seleccione un paciente</string>
 
 </resources>

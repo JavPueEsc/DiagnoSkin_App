@@ -6,7 +6,7 @@
     style="@style/ColorFondoAplicacion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.studium.opcionpacientes.AltaPacienteActivity">
+    tools:context="es.studium.opcion_pacientes.AltaPacienteActivity">
 
     <ImageView
         android:id="@+id/btnVolver_AltaPacienteActivity"

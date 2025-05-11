@@ -1,5 +1,6 @@
 package es.studium.diagnoskin_app
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
@@ -8,7 +9,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.modelos_y_utiles.ModeloMedico
-import es.studium.opcionpacientes.PrincipalPacientesActivity
+import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
+import es.studium.opcion_pacientes.PrincipalPacientesActivity
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import org.json.JSONArray
 import org.json.JSONException
@@ -66,19 +68,11 @@ class MainActivity : AppCompatActivity() {
 
         //1. Gestión del botón Pacientes
         btn_pacientes.setOnClickListener {
-
-            val bundle = Bundle()
-            bundle.putString("esAdminMedico", usuarioMedico.esAdminMedico)
-            bundle.putString("idMedico", usuarioMedico.idMedico)
-            bundle.putString("idUsuario", idUsuarioRecibido)
-
-            val intent = Intent(this, PrincipalPacientesActivity::class.java)
-            intent.putExtras(bundle)
-            startActivity(intent)
+            enviarIntent(PrincipalPacientesActivity::class.java,"MainActivity",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
         }
         //2. Gestión del botón Diagnósticos
         btn_diagnosticos.setOnClickListener {
-            Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
+            enviarIntent(PrincipalPacientes2Activity::class.java,"MainActivity",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
         }
         //3. Gestión del botón informes
         btn_informes.setOnClickListener {
@@ -140,5 +134,16 @@ class MainActivity : AppCompatActivity() {
             Log.e("MainActivity", "Error al procesar el JSON", e)
         }
         return datosExtraidos
+    }
+
+    private fun enviarIntent(
+        activityDestino: Class<out Activity>, claveOrigen: String ,esAdminMedico: String?, idMedico: String?, idUsuario: String?
+    ) {
+        val intent = Intent(this@MainActivity, activityDestino)
+        intent.putExtra("MainActivity", claveOrigen)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
     }
 }

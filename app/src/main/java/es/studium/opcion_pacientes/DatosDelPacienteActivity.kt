@@ -1,4 +1,4 @@
-package es.studium.opcionpacientes
+package es.studium.opcion_pacientes
 
 import android.app.Activity
 import android.content.Intent
@@ -6,11 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
 
 class DatosDelPacienteActivity : AppCompatActivity() {

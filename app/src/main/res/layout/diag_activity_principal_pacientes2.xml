@@ -6,10 +6,10 @@
     style="@style/ColorFondoAplicacion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.studium.opcion_pacientes.PrincipalDiagnosticosActivity">
+    tools:context="es.studium.opcion_diagnosticos.PrincipalPacientes2Activity">
 
     <ImageView
-        android:id="@+id/btnVolver_PrincipalPrincipalDiagnosticos"
+        android:id="@+id/btnVolver_PrincipalPacientesActivity2"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -23,49 +23,51 @@
         app:srcCompat="@drawable/icono_flecha" />
 
     <TextView
-        android:id="@+id/PA_XDIAG_lbl_titulo_PrincipalDiagnosticos"
+        android:id="@+id/PA_lbl_tituloPacientes2"
         style="@style/TextosAzul_tam30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
-        android:text="@string/PA_XDIA_lbl_titulo_PrincipalDiagnosticos"
+        android:text="@string/DIAG_lbl_Titulo_PrincipalPacientes2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/PA_XDIAG_lbl_nombreApellidosPaciente_PrincipalDiagnosticos"
-        style="@style/TextosAzul_tam20"
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa2"
+        style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/PA_XDIA_lbl_apellidosNombre_PrincipalDiagnosticos"
-        app:layout_constraintTop_toBottomOf="@id/PA_XDIAG_lbl_titulo_PrincipalDiagnosticos"
+        android:layout_marginTop="8dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_tituloPacientes2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/PA_txt_filtroNuhsa2"
+        style="@style/EditTextRedondeado"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/PA_hint_txt_filtroNuhsa"
+        android:inputType="text"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/PA_XDIAG_recyclerView_diagnosticos"
-        android:layout_width="410dp"
-        android:layout_height="575dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/PA_recyclerView_Pacientes2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="0dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/PA_XDIAG_lbl_nombreApellidosPaciente_PrincipalDiagnosticos"
+        app:layout_constraintTop_toBottomOf="@id/PA_txt_filtroNuhsa2"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/PA_XDIAG_btn_NuevoDiagnostico_PrincipalDiagnosticos"
-        style="@style/EstiloBotonesLogin"
-        android:layout_width="275dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/PA_XDIA_btn_nuevoDiagnostico_PrincipalDiagnosticos"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

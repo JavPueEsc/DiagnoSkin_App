@@ -1,4 +1,4 @@
-package es.studium.opcionpacientes
+package es.studium.opcion_pacientes
 
 import android.app.Activity
 import android.content.Intent
@@ -10,10 +10,8 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
@@ -71,29 +69,14 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.pa_xdiag_activity_resumen_diagnostico)
-        //Recibir extras
+        //Recibir EXTRA con los datos del usuario médico y paciente
         val extras = intent.extras
         if (extras != null) {
-            idPacienteRecibido = extras.getString("idPaciente")
-            nombrePacienteRecibido = extras.getString("nombrePaciente")
-            apellidosPacienteRecibido = extras.getString("apellidosPaciente")
-            sexoPacienteRecibido = extras.getString("sexoPaciente")
-            fechaNacPacienteRecibido = extras.getString("fechaNacPaciente")
-            nuhsaPacienteRecibido = extras.getString("nuhsaPaciente")
-            telefonoPacienteRecibido = extras.getString("telefonoPaciente")
-            emailPacienteRecibido = extras.getString("emailPaciente")
-            dniPacienteRecibido = extras.getString("dniPaciente")
-            direccionPacienteRecibido = extras.getString("direccionPaciente")
-            localidadPacienteRecibido = extras.getString("localidadPaciente")
-            provinciaPacienteRecibido = extras.getString("provinciaPaciente")
-            codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
-            esAdminMedicoRecibido = extras.getString("esAdminMedico")
-            idMedicoRecibido = extras.getString("idMedico")
-            idUsuarioRecibido = extras.getString("idUsuario")
-            fechaDiagnosticoRecibida = extras.getString("fechaDiagnostico")
-            diagnosticoRecibido = extras.getString("diagnosticoDiagnostico")
-            tipoDiagnosticoRecibido = extras.getString("tipoDiagnostico")
-            fotoDiagnosticoRecibida = extras.getString("fotoDiagnostico")
+            if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
+                procesarExtras(extras)
+            } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")){
+                procesarExtras(extras)
+            }
         }
         //Enlazar vistas
         lbl_apellidosNombre = findViewById(R.id.PA_XDIAG_lbl_apellidosNombre_ResumenDiagnostico)
@@ -109,13 +92,26 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
 
         //Gestión del botón volver
         btn_volver.setOnClickListener {
-            enviarIntentVuelta(
-                PrincipalDiagnosticosActivity::class.java,
-                "ResumenDiagnosticoActivity", idPacienteRecibido,
-                nombrePacienteRecibido, apellidosPacienteRecibido, sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido,
-                emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
-                esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
-            )
+            if (extras != null) {
+                if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
+                    enviarIntentVuelta(
+                        RealizarDiagnosticoActivity::class.java,
+                        "origenPrincipalDiagnosticosActivity", idPacienteRecibido,
+                        nombrePacienteRecibido, apellidosPacienteRecibido, sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido,
+                        emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
+                        esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
+                    )
+                } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")){
+                    enviarIntentVuelta(
+                        RealizarDiagnosticoActivity::class.java,
+                        "OrigenPrincipalPacientes2Activity", idPacienteRecibido,
+                        nombrePacienteRecibido, apellidosPacienteRecibido, sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido,
+                        emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
+                        esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
+                    )
+                }
+            }
+
         }
 
         //Establecemos la información en las etiquetas correspondientes
@@ -153,10 +149,20 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
                 if (esAltaDiagnosticoCorrecta) {
                     Toast.makeText(this@ResumenDiagnosticoActivity, R.string.PA_XDIA_lbl_ToastExito_ResumenDiagnosticos, Toast.LENGTH_SHORT).show()
                     //Intent a principalDiagnosticos (mandar mismos extras que recibe ya principalDiagnosticos) <------------------
-                    enviarIntentSiguiente(PrincipalDiagnosticosActivity::class.java,"ResumenDiagnosticoActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
-                        sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
-                        emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
-                        esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+
+                    if (extras != null) {
+                        if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
+                            enviarIntentSiguiente(PrincipalDiagnosticosActivity::class.java,"origenPrincipalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+                        } else {
+                            val intent = Intent(this@ResumenDiagnosticoActivity,MainActivity::class.java)
+                            intent.putExtra("idUsuario",idUsuarioRecibido)
+                            startActivity(intent)
+                        }
+                    }
+
                 } else {
                     Toast.makeText(this@ResumenDiagnosticoActivity, R.string.PA_XDIA_lbl_ToastFalloInsercion_ResumenDiagnosticos, Toast.LENGTH_SHORT).show()
                     // Log de error de inserción
@@ -190,8 +196,8 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         sexo: String?, fechaNac: String?, nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?,
         localidad: String?, provincia: String?, codigoPostal: String?, esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
-        val intent = Intent(this@ResumenDiagnosticoActivity, activityDestino::class.java)
-        intent.putExtra("origenResumenDiagnosticoActivity", claveOrigen)
+        val intent = Intent(this@ResumenDiagnosticoActivity, activityDestino)
+        intent.putExtra(claveOrigen, claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
         intent.putExtra("apellidosPaciente", apellidos)
@@ -317,5 +323,32 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         intent.putExtra("idMedico", idMedico)
         intent.putExtra("idUsuario", idUsuario)
         startActivity(intent)
+    }
+
+    //Médodo para recibir los extras independientemente del Activity del que provengan
+    private fun procesarExtras(extras: Bundle) {
+        idPacienteRecibido = extras.getString("idPaciente")
+        nombrePacienteRecibido = extras.getString("nombrePaciente")
+        apellidosPacienteRecibido = extras.getString("apellidosPaciente")
+        sexoPacienteRecibido = extras.getString("sexoPaciente")
+        fechaNacPacienteRecibido = extras.getString("fechaNacPaciente")
+        nuhsaPacienteRecibido = extras.getString("nuhsaPaciente")
+        telefonoPacienteRecibido = extras.getString("telefonoPaciente")
+        emailPacienteRecibido = extras.getString("emailPaciente")
+        dniPacienteRecibido = extras.getString("dniPaciente")
+        direccionPacienteRecibido = extras.getString("direccionPaciente")
+        localidadPacienteRecibido = extras.getString("localidadPaciente")
+        provinciaPacienteRecibido = extras.getString("provinciaPaciente")
+        codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
+        esAdminMedicoRecibido = extras.getString("esAdminMedico")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idMedicoRecibido = extras.getString("idMedico")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idUsuarioRecibido = extras.getString("idUsuario")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        fechaDiagnosticoRecibida = extras.getString("fechaDiagnostico")
+        diagnosticoRecibido = extras.getString("diagnosticoDiagnostico")
+        tipoDiagnosticoRecibido = extras.getString("tipoDiagnostico")
+        fotoDiagnosticoRecibida = extras.getString("fotoDiagnostico")
     }
 }

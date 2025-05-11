@@ -27,7 +27,7 @@
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
         <activity
-            android:name="es.studium.opcionpacientes.DatosDelDiagnosticoActivity"
+            android:name="es.studium.opcion_pacientes.DatosDelDiagnosticoActivity"
             android:exported="false" />
         <!-- FileProvider configuration -->
         <provider
@@ -41,25 +41,28 @@
         </provider>
 
         <activity
-            android:name="es.studium.opcionpacientes.ResumenDiagnosticoActivity"
+            android:name="es.studium.opcion_diagnosticos.PrincipalPacientes2Activity"
             android:exported="false" />
         <activity
-            android:name="es.studium.opcionpacientes.RealizarDiagnosticoActivity"
+            android:name="es.studium.opcion_pacientes.ResumenDiagnosticoActivity"
             android:exported="false" />
         <activity
-            android:name="es.studium.opcionpacientes.PrincipalDiagnosticosActivity"
+            android:name="es.studium.opcion_pacientes.RealizarDiagnosticoActivity"
             android:exported="false" />
         <activity
-            android:name="es.studium.opcionpacientes.AltaPacienteActivity"
+            android:name="es.studium.opcion_pacientes.PrincipalDiagnosticosActivity"
             android:exported="false" />
         <activity
-            android:name="es.studium.opcionpacientes.ModificarPacienteActivity"
+            android:name="es.studium.opcion_pacientes.AltaPacienteActivity"
             android:exported="false" />
         <activity
-            android:name="es.studium.opcionpacientes.DatosDelPacienteActivity"
+            android:name="es.studium.opcion_pacientes.ModificarPacienteActivity"
             android:exported="false" />
         <activity
-            android:name="es.studium.opcionpacientes.PrincipalPacientesActivity"
+            android:name="es.studium.opcion_pacientes.DatosDelPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name="es.studium.opcion_pacientes.PrincipalPacientesActivity"
             android:exported="false" />
         <activity
             android:name="es.studium.login.AltaDatosPersonalesActivity"

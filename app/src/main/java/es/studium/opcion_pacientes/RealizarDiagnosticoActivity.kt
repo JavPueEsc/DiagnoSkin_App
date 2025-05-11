@@ -1,9 +1,7 @@
-package es.studium.opcionpacientes
+package es.studium.opcion_pacientes
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentUris
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -11,12 +9,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.CameraSelector
@@ -27,16 +23,14 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.ModeloIA
+import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.util.Locale
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -91,25 +85,11 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         //Recibir EXTRA con los datos del usuario médico y paciente
         val extras = intent.extras
         if (extras != null) {
-            idPacienteRecibido = extras.getString("idPaciente")
-            nombrePacienteRecibido = extras.getString("nombrePaciente")
-            apellidosPacienteRecibido = extras.getString("apellidosPaciente")
-            sexoPacienteRecibido = extras.getString("sexoPaciente")
-            fechaNacPacienteRecibido = extras.getString("fechaNacPaciente")
-            nuhsaPacienteRecibido = extras.getString("nuhsaPaciente")
-            telefonoPacienteRecibido = extras.getString("telefonoPaciente")
-            emailPacienteRecibido = extras.getString("emailPaciente")
-            dniPacienteRecibido = extras.getString("dniPaciente")
-            direccionPacienteRecibido = extras.getString("direccionPaciente")
-            localidadPacienteRecibido = extras.getString("localidadPaciente")
-            provinciaPacienteRecibido = extras.getString("provinciaPaciente")
-            codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
-            esAdminMedicoRecibido = extras.getString("esAdminMedico")
-                ?: getString(R.string.LO_ErrorExtraNoRecibido)
-            idMedicoRecibido = extras.getString("idMedico")
-                ?: getString(R.string.LO_ErrorExtraNoRecibido)
-            idUsuarioRecibido = extras.getString("idUsuario")
-                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
+                procesarExtras(extras)
+            } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")){
+                procesarExtras(extras)
+            }
         }
         //Enlazar las vistas
         camara = findViewById(R.id.PA_XDIAG_camara_RealizarDiagnosticos)
@@ -132,10 +112,20 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
 
         //Gestión del boton volver
         btn_volver.setOnClickListener{
-            enviarIntentVuelta(PrincipalDiagnosticosActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
-                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
-                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
-                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+            if (extras != null) {
+                if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
+                    enviarIntentVuelta(PrincipalDiagnosticosActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                        sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                        emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                        esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+                } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")) {
+                    enviarIntentVuelta(PrincipalPacientes2Activity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                        sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                        emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                        esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+                }
+            }
+
         }
         //Gestión del botón tomar foto
         btn_tomarFoto.setOnClickListener {
@@ -148,44 +138,62 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         }
         //Gestión del botón predecir
         btn_diagnosticar.setOnClickListener {
-            // Obtener la URI de la imagen cargada en el ImageView
-            val imageUri = getImageUriFromImageView()
+            try {
+                // Obtener la URI de la imagen cargada en el ImageView
+                val imageUri = getImageUriFromImageView()
+                if (imageUri != null) {
+                    try {
+                        // Realizar la predicción utilizando ModelPredictor
+                        val (predictedClass, confidence) = modeloIA.predict(imageUri)
+                        val message =
+                            "Predicción: $predictedClass (Confianza: %.2f%%)".format(confidence)
+                        prediccion = predictedClass
+                        // Mostrar el resultado en un Toast
+                        if (confidence < 60) {
+                            Toast.makeText(this, R.string.PA_XDIAG_ImagenNoValida_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(this, R.string.PA_XDIAG_Exito_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
 
-            if (imageUri != null) {
-                try {
-                    // Realizar la predicción utilizando ModelPredictor
-                    val (predictedClass, confidence) = modeloIA.predict(imageUri)
-                    val message = "Predicción: $predictedClass (Confianza: %.2f%%)".format(confidence)
-                    prediccion = predictedClass
-                    // Mostrar el resultado en un Toast
-                    if(confidence < 60){
-                        Toast.makeText(this, R.string.PA_XDIAG_ImagenNoValida_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
-                    }
-                    else{
-                        Toast.makeText(this, R.string.PA_XDIAG_Exito_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
+                            var fechaActual = LocalDate.now().toString()
+                            var uriImagen = imageUri.toString()
+                            if (prediccion == getString(R.string.ModeloIA_Melanoma)) {
+                                tipoLesion = getString(R.string.PA_XDIA_Maligna)
+                            } else {
+                                tipoLesion = getString(R.string.PA_XDIA_Benigna)
+                            }
+                            if (extras != null) {
+                                if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
+                                    enviarIntentSiguiente(
+                                        ResumenDiagnosticoActivity::class.java, "origenPrincipalDiagnosticosActivity", idPacienteRecibido, nombrePacienteRecibido, apellidosPacienteRecibido,
+                                        sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido, emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido,
+                                        localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido, esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido, fechaActual,
+                                        prediccion, tipoLesion, uriImagen
+                                    )
+                                } else {
+                                    enviarIntentSiguiente(
+                                        ResumenDiagnosticoActivity::class.java, "OrigenPrincipalPacientes2Activity", idPacienteRecibido, nombrePacienteRecibido, apellidosPacienteRecibido,
+                                        sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido, emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido,
+                                        localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido, esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido, fechaActual,
+                                        prediccion, tipoLesion, uriImagen
+                                    )
+                                }
+                            }
 
-                        var fechaActual = LocalDate.now().toString()
-                        var uriImagen = imageUri.toString()
-                        if(prediccion == getString(R.string.ModeloIA_Melanoma)){
-                            tipoLesion = getString(R.string.PA_XDIA_Maligna)
                         }
-                        else{
-                            tipoLesion = getString(R.string.PA_XDIA_Benigna)
-                        }
-                        enviarIntentSiguiente(ResumenDiagnosticoActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
-                            sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
-                            emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
-                            esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido,fechaActual,prediccion,tipoLesion,uriImagen)
+                    } catch (e: Exception) {
+                        // En caso de error al procesar la imagen
+                        Toast.makeText(this, R.string.PA_XDIAG_ErrorProcesarImagen_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
+                        Log.e(TAG, "Error al procesar la imagen", e)
                     }
-                } catch (e: Exception) {
-                    // En caso de error al procesar la imagen
-                    Toast.makeText(this, R.string.PA_XDIAG_ErrorProcesarImagen_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
-                    Log.e(TAG, "Error al procesar la imagen", e)
+                } else {
+                    Toast.makeText(
+                        this, R.string.PA_XDIAG_ErrorImagenVacia_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this, R.string.PA_XDIAG_ErrorImagenVacia_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
             }
-
+            catch (e: ClassCastException) {
+                Toast.makeText(this,  R.string.PA_XDIAG_ErrorImagenVacia_RealizarDiagnostico, Toast.LENGTH_SHORT).show()
+                Log.e(TAG, "Error al obtener la URI de la imagen", e)
+            }
 
         }
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -346,7 +354,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
         val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino)
-        intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
+        intent.putExtra(claveOrigen, claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
         intent.putExtra("apellidosPaciente", apellidos)
@@ -373,7 +381,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         esAdminMedico: String?, idMedico: String?, idUsuario: String?, fechaDiagnostico: String, diagnostico: String, tipoDiagnostico : String, fotoDiagnostico : String
     ) {
         val intent = Intent(this@RealizarDiagnosticoActivity, activityDestino)
-        intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
+        intent.putExtra(claveOrigen, claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
         intent.putExtra("apellidosPaciente", apellidos)
@@ -395,6 +403,29 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         intent.putExtra("tipoDiagnostico", tipoDiagnostico)
         intent.putExtra("fotoDiagnostico", fotoDiagnostico)
         startActivity(intent)
+    }
+
+    //Médodo para recibir los extras independientemente del Activity del que provengan
+    private fun procesarExtras(extras: Bundle) {
+        idPacienteRecibido = extras.getString("idPaciente")
+        nombrePacienteRecibido = extras.getString("nombrePaciente")
+        apellidosPacienteRecibido = extras.getString("apellidosPaciente")
+        sexoPacienteRecibido = extras.getString("sexoPaciente")
+        fechaNacPacienteRecibido = extras.getString("fechaNacPaciente")
+        nuhsaPacienteRecibido = extras.getString("nuhsaPaciente")
+        telefonoPacienteRecibido = extras.getString("telefonoPaciente")
+        emailPacienteRecibido = extras.getString("emailPaciente")
+        dniPacienteRecibido = extras.getString("dniPaciente")
+        direccionPacienteRecibido = extras.getString("direccionPaciente")
+        localidadPacienteRecibido = extras.getString("localidadPaciente")
+        provinciaPacienteRecibido = extras.getString("provinciaPaciente")
+        codigoPostalPacienteRecibido = extras.getString("codigoPostalPaciente")
+        esAdminMedicoRecibido = extras.getString("esAdminMedico")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idMedicoRecibido = extras.getString("idMedico")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idUsuarioRecibido = extras.getString("idUsuario")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
     }
 
 }
