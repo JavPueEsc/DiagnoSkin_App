@@ -27,9 +27,11 @@
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
         <activity
-            android:name="es.studium.opcion_pacientes.DatosDelDiagnosticoActivity"
+            android:name="es.studium.opcion_informes.BuscadorInformesActivity"
             android:exported="false" />
-        <!-- FileProvider configuration -->
+        <activity
+            android:name="es.studium.opcion_pacientes.DatosDelDiagnosticoActivity"
+            android:exported="false" /> <!-- FileProvider configuration -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="es.studium.modelos_y_utiles.fileprovider"

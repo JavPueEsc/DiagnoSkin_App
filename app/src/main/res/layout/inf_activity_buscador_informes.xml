@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    style="@style/ColorFondoAplicacion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="es.studium.opcion_informes.BuscadorInformesActivity">
+
+    <ImageView
+        android:id="@+id/btnVolver_PrincipalPacientesActivity2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icono_flecha" />
+
+    <TextView
+        android:id="@+id/PA_lbl_tituloPacientes2"
+        style="@style/TextosAzul_tam30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/DIAG_lbl_Titulo_PrincipalPacientes2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa2"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_tituloPacientes2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa3"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa4"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_fechaNacPaciente_AltaDatosPaciente"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_fechaNacPaciente_modificarPaciente" />
+
+    <EditText
+        android:id="@+id/PA_txt_fechaNacPaciente_AltaDatosPaciente"
+        style="@style/EditTextRedondeado"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_fechaNacPaciente_AltaDatosPaciente"
+        android:hint="@string/PA_hint_fechaNacPaciente_modificarPaciente"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_fechaNacPaciente_AltaDatosPaciente2"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/PA_txt_fechaNacPaciente_AltaDatosPaciente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_fechaNacPaciente_modificarPaciente" />
+
+    <EditText
+        android:id="@+id/PA_txt_fechaNacPaciente_AltaDatosPaciente2"
+        style="@style/EditTextRedondeado"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_fechaNacPaciente_AltaDatosPaciente2"
+        android:hint="@string/PA_hint_fechaNacPaciente_modificarPaciente"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/PA_btn_NuevoPaciente"
+        style="@style/EstiloBotonesLogin"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_btn_NuevoPaciente"
+        app:layout_constraintTop_toBottomOf="@+id/PA_txt_fechaNacPaciente_AltaDatosPaciente2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa10"
+        style="@style/TextosAzul_tam30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintTop_toBottomOf="@id/PA_btn_NuevoPaciente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/PA_spinner_sexoPaciente_AltaDatosPaciente"
+        style="@style/EditTextRedondeado"
+        android:popupBackground="@drawable/rectangulo_blanco"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/PA_lbl_subtituloFiltrarNuhsa10"
+        android:inputType="text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa5"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintTop_toBottomOf="@id/PA_spinner_sexoPaciente_AltaDatosPaciente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa6"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa5" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa7"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa6" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa8"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa7" />
+
+    <TextView
+        android:id="@+id/PA_lbl_subtituloFiltrarNuhsa9"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/PA_lbl_subTituloFiltrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PA_lbl_subtituloFiltrarNuhsa8" />
+
+    <Button
+        android:id="@+id/PA_XDIAG_btn_GuardarDiagnostico_ResumenDiagnosticos"
+        style="@style/EstiloBotonesLogin"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/PA_XDIA_btn_guardarDiagnostico_ResumenDiagnosticos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

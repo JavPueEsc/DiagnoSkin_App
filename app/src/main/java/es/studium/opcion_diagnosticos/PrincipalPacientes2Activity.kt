@@ -20,8 +20,7 @@ import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.AdaptadorPacientes
 import es.studium.modelos_y_utiles.ModeloPaciente
 import es.studium.modelos_y_utiles.RecyclerTouchListener
-import es.studium.opcion_pacientes.AltaPacienteActivity
-import es.studium.opcion_pacientes.DatosDelPacienteActivity
+import es.studium.opcion_informes.BuscadorInformesActivity
 import es.studium.opcion_pacientes.RealizarDiagnosticoActivity
 import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
 import org.json.JSONArray
@@ -67,12 +66,11 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
         //Recibir EXTRA con los datos del usuario médico
         val extras = intent.extras
         if (extras != null) {
-            esMedicoAdminRecibido = extras.getString("esAdminMedico")
-                ?: getString(R.string.LO_ErrorExtraNoRecibido)
-            idMedicoRecibido = extras.getString("idMedico")
-                ?: getString(R.string.LO_ErrorExtraNoRecibido)
-            idUsuarioRecibido = extras.getString("idUsuario")
-                ?: getString(R.string.LO_ErrorExtraNoRecibido)
+            if (extras.containsKey("OrigenBtnDiagnosticos")) {
+                procesarExtras(extras)
+            } else if (extras.containsKey("OrigenBtnInformes")){
+                procesarExtras(extras)
+            }
         }
 
         //Enlazar variables con vistas
@@ -123,12 +121,24 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
                 override fun onClick(view: View, position: Int) {
                     var pacienteSeleccionado = listaPacientes[position]
 
-                    //Toast.makeText(this@PrincipalPacientes2Activity,"Paciente Seleccionado: ${pacienteSeleccionado.idPaciente}, ${pacienteSeleccionado.nombrePaciente}",Toast.LENGTH_SHORT).show()
-                    enviarIntentRealizarDiagnostico(
-                        RealizarDiagnosticoActivity::class.java,"PincipalPacientes2Activity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
-                        pacienteSeleccionado.apellidosPaciente, pacienteSeleccionado.sexoPaciente, pacienteSeleccionado.fechaNacPaciente, pacienteSeleccionado.nuhsaPaciente, pacienteSeleccionado.telefonoPaciente,
-                        pacienteSeleccionado.emailPaciente, pacienteSeleccionado.dniPaciente, pacienteSeleccionado.direccionPaciente, pacienteSeleccionado.localidadPaciente, pacienteSeleccionado.provinciaPaciente,
-                        pacienteSeleccionado.codigoPostalPaciente, esMedicoAdminRecibido, idMedicoRecibido, idUsuarioRecibido)
+
+                    if (extras != null) {
+                        if (extras.containsKey("OrigenBtnDiagnosticos")) {
+                            enviarIntentSiguiente(
+                                RealizarDiagnosticoActivity::class.java,"PincipalPacientes2Activity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
+                                pacienteSeleccionado.apellidosPaciente, pacienteSeleccionado.sexoPaciente, pacienteSeleccionado.fechaNacPaciente, pacienteSeleccionado.nuhsaPaciente, pacienteSeleccionado.telefonoPaciente,
+                                pacienteSeleccionado.emailPaciente, pacienteSeleccionado.dniPaciente, pacienteSeleccionado.direccionPaciente, pacienteSeleccionado.localidadPaciente, pacienteSeleccionado.provinciaPaciente,
+                                pacienteSeleccionado.codigoPostalPaciente, esMedicoAdminRecibido, idMedicoRecibido, idUsuarioRecibido)
+                        } else if (extras.containsKey("OrigenBtnInformes")){
+                            //Toast.makeText(this@PrincipalPacientes2Activity,"Paciente Seleccionado: ${pacienteSeleccionado.idPaciente}, ${pacienteSeleccionado.nombrePaciente}",Toast.LENGTH_SHORT).show()
+                            enviarIntentSiguiente(
+                                BuscadorInformesActivity::class.java,"PincipalPacientes2Activity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
+                                pacienteSeleccionado.apellidosPaciente, pacienteSeleccionado.sexoPaciente, pacienteSeleccionado.fechaNacPaciente, pacienteSeleccionado.nuhsaPaciente, pacienteSeleccionado.telefonoPaciente,
+                                pacienteSeleccionado.emailPaciente, pacienteSeleccionado.dniPaciente, pacienteSeleccionado.direccionPaciente, pacienteSeleccionado.localidadPaciente, pacienteSeleccionado.provinciaPaciente,
+                                pacienteSeleccionado.codigoPostalPaciente, esMedicoAdminRecibido, idMedicoRecibido, idUsuarioRecibido)
+                        }
+                    }
+
 
                 }
 
@@ -229,7 +239,7 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
     }
 
     //Enviar intent a Activity Realizar Diagnostico
-    private fun enviarIntentRealizarDiagnostico(
+    private fun enviarIntentSiguiente(
         activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
         esAdminMedico: String?, idMedico: String?, idUsuario: String?
@@ -253,5 +263,15 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
         intent.putExtra("idMedico", idMedico)
         intent.putExtra("idUsuario", idUsuario)
         startActivity(intent)
+    }
+
+    //Médodo para recibir los extras independientemente del Activity del que provengan
+    private fun procesarExtras(extras: Bundle) {
+        esMedicoAdminRecibido = extras.getString("esAdminMedico")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idMedicoRecibido = extras.getString("idMedico")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
+        idUsuarioRecibido = extras.getString("idUsuario")
+            ?: getString(R.string.LO_ErrorExtraNoRecibido)
     }
 }

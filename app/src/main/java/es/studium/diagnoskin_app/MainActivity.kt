@@ -72,18 +72,18 @@ class MainActivity : AppCompatActivity() {
         }
         //2. Gestión del botón Diagnósticos
         btn_diagnosticos.setOnClickListener {
-            enviarIntent(PrincipalPacientes2Activity::class.java,"MainActivity",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
+            enviarIntent(PrincipalPacientes2Activity::class.java,"OrigenBtnDiagnosticos",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
         }
         //3. Gestión del botón informes
         btn_informes.setOnClickListener {
-            Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
+            enviarIntent(PrincipalPacientes2Activity::class.java,"OrigenBtnInformes",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
         }
         //4. Gestión del botón estadísticas
         btn_estadisticas.setOnClickListener {
             Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
         }
         //5. Gestión del botón perfil
-        btn_informes.setOnClickListener {
+        btn_perfil.setOnClickListener {
             Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
         }
         //6. Gestión del botón Administrador
@@ -140,7 +140,7 @@ class MainActivity : AppCompatActivity() {
         activityDestino: Class<out Activity>, claveOrigen: String ,esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
         val intent = Intent(this@MainActivity, activityDestino)
-        intent.putExtra("MainActivity", claveOrigen)
+        intent.putExtra(claveOrigen, claveOrigen)
         intent.putExtra("esAdminMedico", esAdminMedico)
         intent.putExtra("idMedico", idMedico)
         intent.putExtra("idUsuario", idUsuario)
