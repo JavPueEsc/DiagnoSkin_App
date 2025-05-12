@@ -309,6 +309,12 @@
     <string name="INF_lbl_NombreCentro_visualizarInformes">Centro de diagnóstico: %1$s</string>
     <string name="INF_btn_generarInforme_visualizarInformes">Generar informe</string>
 
+    <string name="INF_toastError1_visualizarInformes">Error al guardar PDF: </string>
+    <string name="INF_toastError2_visualizarInformes">No se pudo crear el archivo PDF</string>
+    <string name="INF_toastError3_visualizarInformes">No se encontró una aplicación para abrir PDF</string>
+    <string name="INF_toastExito_visualizarInformes">PDF guardado con éxito</string>
+
+    <string name="INF_NombreDocumento_visualizarInformes">Informe_diagnostico_%1$s.pdf</string>
 
 
 </resources>
