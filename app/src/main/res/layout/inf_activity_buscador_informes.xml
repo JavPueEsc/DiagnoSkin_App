@@ -57,7 +57,7 @@
 
     <TextView
         android:id="@+id/INF_lbl_seleccionFecha_BuscadorInformes"
-        style="@style/TextosAzul_tam16"
+        style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -128,7 +128,7 @@
         style="@style/TextosAzul_tam30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/INF_btn_Buscar_BuscadorInformes"
         app:layout_constraintTop_toBottomOf="@id/INF_btn_BuscarDiagnosticos_BuscadorInformes"
         app:layout_constraintStart_toStartOf="parent"
