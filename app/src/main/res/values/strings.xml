@@ -263,7 +263,7 @@
     <!--PrincipalPacientes2Activity-->
     <string name="DIAG_lbl_Titulo_PrincipalPacientes2">Seleccione un paciente</string>
 
-    <!--BuscadorDiagnosticosActivity-->
+    <!--BuscadorInformesActivity-->
     <string name="INF_lbl_Titulo_BuscadorInformes">Generador de informes</string>
     <string name="INF_lbl_apellidosNombre_BuscadorInformes">%1$s, %2$s</string>
     <string name="INF_lbl_nuhsa_BuscadorInformes">%1$s</string>
@@ -288,6 +288,27 @@
     <string name="INF_spinner_Seleccion">Seleccione un diagnóstico</string>
 
     <string name="INF_linea_spinner">#%1$s-%2$s-Lesión %3$s-(%4$s)</string>
+
+    <!--VisualizarInformesActivity-->
+    <string name="INF_lbl_titulo_visualizarInformes">Informe del diagnóstico</string>
+    <string name="INF_lbl_tituloPaciente_visualizarInformes">Identificación del paciente</string>
+    <string name="INF_lbl_apellidosNombrePaciente_visualizarInformes">Paciente: %1$s, %2$s</string>
+    <string name="INF_lbl_nuhsaPaciente_visualizarInformes">Nuhsa: %1$s</string>
+    <string name="INF_lbl_fechaNacPaciente_visualizarInformes">Fecha Nac.: %1$s</string>
+    <string name="INF_lbl_edadPaciente_visualizarInformes">Edad: %1$s</string>
+    <string name="INF_lbl_sexoPaciente_visualizarInformes">Sexo: %1$s</string>
+    <string name="INF_lbl_localidadPaciente_visualizarInformes">Localidad: %1$s (%2$s)</string>
+    <string name="INF_lbl_codigoPostalPaciente_visualizarInformes">C.P: %1$s</string>
+    <string name="INF_lbl_tituloDiagnostico_visualizarInformes">Datos del diagnóstico</string>
+    <string name="INF_lbl_tituloImagen_visualizarInformes">Imagen de la lesión</string>
+    <string name="INF_lbl_fechaDiagnostico_visualizarInformes">Fecha diag.: %1$s</string>
+    <string name="INF_lbl_diagnosticoDiagnostico_visualizarInformes">Diagnostico visual: %1$s</string>
+    <string name="INF_lbl_tipoDeLesionDiagnostico_visualizarInformes">Tipo de lesión: %1$s</string>
+    <string name="INF_lbl_apellidosNombreMedico_visualizarInformes">Doctor/a: %1$s, %2$s</string>
+    <string name="INF_lbl_especialidadMedico_visualizarInformes">Especialidad: %1$s</string>
+    <string name="INF_lbl_NombreCentro_visualizarInformes">Centro de diagnóstico: %1$s</string>
+    <string name="INF_btn_generarInforme_visualizarInformes">Generar informe</string>
+
 
 
 </resources>

@@ -17,13 +17,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.R
 import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
+import es.studium.opcion_pacientes.ModificarPacienteActivity
 import es.studium.operacionesdb_diagnosticos.ConsultaRemotaDiagnosticos
 import org.json.JSONArray
 import org.json.JSONException
@@ -82,7 +80,7 @@ class BuscadorInformesActivity : AppCompatActivity() {
     private lateinit var adaptadorSpinner: ArrayAdapter<String>
 
     //variables para acceder a la posición del spinner seleccionada
-    private lateinit var  idSeleccionado : String
+    private lateinit var  idDiagnosticoSeleccionado : String
     private lateinit var  diagnosticoSeleccionado : String
     private lateinit var  gravedadSeleccionada : String
     private lateinit var  fechaSeleccionada : String
@@ -198,12 +196,12 @@ class BuscadorInformesActivity : AppCompatActivity() {
                                     btn_visualizar.visibility = View.VISIBLE
 
                                     val elementos = itemSeleccionado.split("-")
-                                    idSeleccionado = elementos[0].replace("#", "")
+                                    idDiagnosticoSeleccionado = elementos[0].replace("#", "")
                                     diagnosticoSeleccionado = elementos[1]
                                     gravedadSeleccionada = elementos[2].replace("Lesión ", "")
                                     fechaSeleccionada = elementos[3].replace("(", "").replace(")","")
 
-                                    lbl_idDiagnostico.text = getString(R.string.INF_lbl_idDiag_BuscadorInformes, idSeleccionado)
+                                    lbl_idDiagnostico.text = getString(R.string.INF_lbl_idDiag_BuscadorInformes, idDiagnosticoSeleccionado)
                                     lbl_fechaDiagnostico.text = getString(R.string.INF_lbl_fechaDiagnostico_BuscadorInformes,fechaSeleccionada)
                                     lbl_diagDiagnostico.text = getString(R.string.INF_lbl_diagDiag_BuscadorInformes,diagnosticoSeleccionado)
                                     lbl_tipoLesionDiagnostico.text = getString(R.string.INF_lbl_tipoLesion_BuscadorInformes,gravedadSeleccionada)
@@ -228,7 +226,11 @@ class BuscadorInformesActivity : AppCompatActivity() {
 
         //Gestión del botón visualizar
         btn_visualizar.setOnClickListener {
-            //mandar los extras recibudis + idDiagnosticoSeleccionado.
+            enviarIntentSiguiente(
+                VisualizarInformeActivity::class.java,"BuscadorDeInformesActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido, idDiagnosticoSeleccionado)
         }
 
 
@@ -359,6 +361,34 @@ class BuscadorInformesActivity : AppCompatActivity() {
         intent.putExtra("esAdminMedico", esAdminMedico)
         intent.putExtra("idMedico", idMedico)
         intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
+    }
+
+    //Enviar intent a Activity visualizarInforme
+    private fun enviarIntentSiguiente(
+        activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?, idDiagnostico : String?
+    ) {
+        val intent = Intent(this@BuscadorInformesActivity, activityDestino)
+        intent.putExtra(claveOrigen, claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        intent.putExtra("idDiagnostico", idDiagnostico)
         startActivity(intent)
     }
 

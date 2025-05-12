@@ -87,7 +87,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         if (extras != null) {
             if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
                 procesarExtras(extras)
-            } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")){
+            } else if (extras.containsKey("PrincipalPacientes2Activity")){
                 procesarExtras(extras)
             }
         }
@@ -114,12 +114,12 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         btn_volver.setOnClickListener{
             if (extras != null) {
                 if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
-                    enviarIntentVuelta(PrincipalDiagnosticosActivity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                    enviarIntentVuelta(PrincipalDiagnosticosActivity::class.java,"origenPrincipalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                         sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                         emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                         esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
-                } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")) {
-                    enviarIntentVuelta(PrincipalPacientes2Activity::class.java,"RealizarDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                } else if (extras.containsKey("PrincipalPacientes2Activity")) {
+                    enviarIntentVuelta(PrincipalPacientes2Activity::class.java,"OrigenBtnDiagnosticos",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                         sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                         emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                         esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
@@ -171,7 +171,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
                                     )
                                 } else {
                                     enviarIntentSiguiente(
-                                        ResumenDiagnosticoActivity::class.java, "OrigenPrincipalPacientes2Activity", idPacienteRecibido, nombrePacienteRecibido, apellidosPacienteRecibido,
+                                        ResumenDiagnosticoActivity::class.java, "PrincipalPacientes2Activity", idPacienteRecibido, nombrePacienteRecibido, apellidosPacienteRecibido,
                                         sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido, emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido,
                                         localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido, esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido, fechaActual,
                                         prediccion, tipoLesion, uriImagen

@@ -208,15 +208,9 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
                     var idMedicoBD = jsonObject.getString("idMedico")
                     nombreMedicoBD = jsonObject.getString("nombreMedico")
                     apellidosMedicoBD = jsonObject.getString("apellidosMedico")
-                    var telefonoMedicoBD = jsonObject.getString("telefonoMedico")
-                    var emailMedicoBD = jsonObject.getString("emailMedico")
-                    var especialidadMedicoBD = jsonObject.getString("especialidadMedico")
-                    var numColegiadoMedicoBD = jsonObject.getString("numColegiadoMedico")
-                    var esAdminMedicoBD = jsonObject.getString("esAdminMedico")
                     idCentroMedicoFKBD = jsonObject.getString("idCentroMedicoFK")
-                    var idUsuarioFKBD = jsonObject.getString("idUsuarioFK")
                     if (idMedicoBD == idMedico) {
-                        existeMedico = true
+
                         break //<-- salimos del bucle
                     }
                 }
@@ -241,15 +235,6 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
                     jsonObject = result.getJSONObject(i)
                     var idCentroMedicoBD = jsonObject.getString("idCentroMedico")
                     nombreCentroMedicoBD = jsonObject.getString("nombreCentroMedico")
-                    var telefonoCentroMedicoBD = jsonObject.getString("telefonoCentroMedico")
-                    var latitudCentroMedicoBD = jsonObject.getString("latitudCentroMedico")
-                    var longitudCentroMedicoBD = jsonObject.getString("longitudCentroMedico")
-                    var direccionCentroMedicoBD = jsonObject.getString("direccionCentroMedico")
-                    var localidadCentroMedicoBD = jsonObject.getString("localidadCentroMedico")
-                    var codigoPostalCentroMedicoBD = jsonObject.getString("codigoPostalCentroMedico")
-                    var provinciaCentroMedicoBD = jsonObject.getString("provinciaCentroMedico")
-                    var esHospitalCentroMedicoBD = jsonObject.getString("esHospitalCentroMedico")
-
                     if (idCentroMedicoBD == idCentroMedico) {
                         break //<-- salimos del bucle
                     }

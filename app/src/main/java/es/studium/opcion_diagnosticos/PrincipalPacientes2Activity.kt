@@ -125,14 +125,14 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
                     if (extras != null) {
                         if (extras.containsKey("OrigenBtnDiagnosticos")) {
                             enviarIntentSiguiente(
-                                RealizarDiagnosticoActivity::class.java,"PincipalPacientes2Activity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
+                                RealizarDiagnosticoActivity::class.java,"PrincipalPacientes2Activity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
                                 pacienteSeleccionado.apellidosPaciente, pacienteSeleccionado.sexoPaciente, pacienteSeleccionado.fechaNacPaciente, pacienteSeleccionado.nuhsaPaciente, pacienteSeleccionado.telefonoPaciente,
                                 pacienteSeleccionado.emailPaciente, pacienteSeleccionado.dniPaciente, pacienteSeleccionado.direccionPaciente, pacienteSeleccionado.localidadPaciente, pacienteSeleccionado.provinciaPaciente,
                                 pacienteSeleccionado.codigoPostalPaciente, esMedicoAdminRecibido, idMedicoRecibido, idUsuarioRecibido)
                         } else if (extras.containsKey("OrigenBtnInformes")){
                             //Toast.makeText(this@PrincipalPacientes2Activity,"Paciente Seleccionado: ${pacienteSeleccionado.idPaciente}, ${pacienteSeleccionado.nombrePaciente}",Toast.LENGTH_SHORT).show()
                             enviarIntentSiguiente(
-                                BuscadorInformesActivity::class.java,"PincipalPacientes2Activity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
+                                BuscadorInformesActivity::class.java,"PrincipalPacientes2Activity", pacienteSeleccionado.idPaciente, pacienteSeleccionado.nombrePaciente,
                                 pacienteSeleccionado.apellidosPaciente, pacienteSeleccionado.sexoPaciente, pacienteSeleccionado.fechaNacPaciente, pacienteSeleccionado.nuhsaPaciente, pacienteSeleccionado.telefonoPaciente,
                                 pacienteSeleccionado.emailPaciente, pacienteSeleccionado.dniPaciente, pacienteSeleccionado.direccionPaciente, pacienteSeleccionado.localidadPaciente, pacienteSeleccionado.provinciaPaciente,
                                 pacienteSeleccionado.codigoPostalPaciente, esMedicoAdminRecibido, idMedicoRecibido, idUsuarioRecibido)
@@ -245,7 +245,7 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
         esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
         val intent = Intent(this@PrincipalPacientes2Activity, activityDestino)
-        intent.putExtra("OrigenPrincipalPacientes2Activity", claveOrigen)
+        intent.putExtra(claveOrigen, claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)
         intent.putExtra("apellidosPaciente", apellidos)

@@ -74,7 +74,7 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         if (extras != null) {
             if (extras.containsKey("origenPrincipalDiagnosticosActivity")) {
                 procesarExtras(extras)
-            } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")){
+            } else if (extras.containsKey("PrincipalPacientes2Activity")){
                 procesarExtras(extras)
             }
         }
@@ -101,10 +101,10 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
                         emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
                         esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
                     )
-                } else if (extras.containsKey("OrigenPrincipalPacientes2Activity")){
+                } else if (extras.containsKey("PrincipalPacientes2Activity")){
                     enviarIntentVuelta(
                         RealizarDiagnosticoActivity::class.java,
-                        "OrigenPrincipalPacientes2Activity", idPacienteRecibido,
+                        "PrincipalPacientes2Activity", idPacienteRecibido,
                         nombrePacienteRecibido, apellidosPacienteRecibido, sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido,
                         emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
                         esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
