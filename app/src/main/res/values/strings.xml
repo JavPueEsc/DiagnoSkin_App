@@ -263,4 +263,22 @@
     <!--PrincipalPacientes2Activity-->
     <string name="DIAG_lbl_Titulo_PrincipalPacientes2">Seleccione un paciente</string>
 
+    <!--BuscadorDiagnosticosActivity-->
+    <string name="INF_lbl_Titulo_BuscadorInformes">Generador de informes</string>
+    <string name="INF_lbl_apellidosNombre_BuscadorInformes">%1$s, %2$s</string>
+    <string name="INF_lbl_nuhsa_BuscadorInformes">%1$s</string>
+    <string name="INF_lbl_seleccionFecha_BuscadorInformes">Escoja un rango de fechas</string>
+    <string name="INF_lbl_FechaDesde_BuscadorInformes">Fecha desde*</string>
+    <string name="INF_hint_FechaDesde_BuscadorInformes">Fecha desde</string>
+    <string name="INF_lbl_FechaHasta_BuscadorInformes">Fecha hasta*</string>
+    <string name="INF_hint_FechaHasta_BuscadorInformes">Fecha hasta</string>
+    <string name="INF_btn_Buscar_BuscadorInformes">Seleccione un diagnóstico</string>
+    <string name="INF_lbl_diagSeleccionado_BuscadorInformes">Diagnóstico seleccionado</string>
+    <string name="INF_lbl_idDiag_BuscadorInformes">Numero de caso #%1$s</string>
+    <string name="INF_lbl_diagDiag_BuscadorInformes">Diagnostico: %1$s</string>
+    <string name="INF_lbl_tipoLesion_BuscadorInformes">Tipo de lesión: %1$s</string>
+    <string name="INF_lbl_fechaDiagnostico_BuscadorInformes">Diagnosticado el %1$s</string>
+    <string name="INF_btn_visualizar_BuscadorInformes">Visualizar informe</string>
+
+
 </resources>

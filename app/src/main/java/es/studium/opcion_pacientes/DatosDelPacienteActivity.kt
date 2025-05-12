@@ -29,22 +29,22 @@ class DatosDelPacienteActivity : AppCompatActivity() {
     private lateinit var btn_volver : ImageView
 
     //Declaración de extras recibidos
-    private var idPacienteRecibido: String? = ""
-    private var nombrePacienteRecibido: String? = ""
-    private var apellidosPacienteRecibido: String? = ""
-    private var sexoPacienteRecibido: String? = ""
-    private var fechaNacPacienteRecibido: String? = ""
-    private var nuhsaPacienteRecibido: String? = ""
-    private var telefonoPacienteRecibido: String? = ""
-    private var emailPacienteRecibido: String? = ""
-    private var dniPacienteRecibido: String? = ""
-    private var direccionPacienteRecibido: String? = ""
-    private var localidadPacienteRecibido: String? = ""
-    private var provinciaPacienteRecibido: String? = ""
-    private var codigoPostalPacienteRecibido: String? = ""
-    private var esAdminMedicoRecibido: String? = ""
-    private var idMedicoRecibido: String? = ""
-    private var idUsuarioRecibido: String? = ""
+    private var idPacienteRecibido: String? = null
+    private var nombrePacienteRecibido: String? = null
+    private var apellidosPacienteRecibido: String? = null
+    private var sexoPacienteRecibido: String? = null
+    private var fechaNacPacienteRecibido: String? = null
+    private var nuhsaPacienteRecibido: String? = null
+    private var telefonoPacienteRecibido: String? = null
+    private var emailPacienteRecibido: String? = null
+    private var dniPacienteRecibido: String? = null
+    private var direccionPacienteRecibido: String? = null
+    private var localidadPacienteRecibido: String? = null
+    private var provinciaPacienteRecibido: String? = null
+    private var codigoPostalPacienteRecibido: String? = null
+    private var esAdminMedicoRecibido: String? = null
+    private var idMedicoRecibido: String? = null
+    private var idUsuarioRecibido: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
