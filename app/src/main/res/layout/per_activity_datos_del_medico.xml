@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    style="@style/ColorFondoAplicacion"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="es.studium.opcion_perfil.DatosDelMedicoActivity">
+
+    <ImageView
+        android:id="@+id/btnVolver_DatosDelMedico"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/icono_flecha" />
+
+    <TextView
+        android:id="@+id/PER_lbl_titulo_datosDelMedico"
+        style="@style/TextosAzul_tam30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/PER_lbl_titulo_datosDelMedico"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/PER_lbl_id_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_id_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_titulo_datosDelMedico" />
+    <TextView
+        android:id="@+id/PER_lbl_nombre_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_nombre_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_id_datosDelMedico" />
+    <TextView
+        android:id="@+id/PER_lbl_apellidos_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_apellidos_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_nombre_datosDelMedico" />
+    <TextView
+        android:id="@+id/PER_lbl_numColegiado_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_numColegiado_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_apellidos_datosDelMedico" />
+    <TextView
+        android:id="@+id/PER_lbl_especialidad_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_especialidad_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_numColegiado_datosDelMedico" />
+    <TextView
+        android:id="@+id/PER_lbl_centro_de_trabajo_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_centro_de_trabajo_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_especialidad_datosDelMedico" />
+    <TextView
+        android:id="@+id/PER_lbl_telefono_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_telefono_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_centro_de_trabajo_datosDelMedico" />
+    <TextView
+        android:id="@+id/PER_lbl_email_datosDelMedico"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/PER_lbl_email_datosDelMedico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/PER_lbl_telefono_datosDelMedico" />
+
+    <Button
+        android:id="@+id/PER_btn_Modificar_datosPaciente"
+        style="@style/EstiloBotonesLogin"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/PA_btn_modificar_datosDelPaciente"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

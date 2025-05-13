@@ -12,6 +12,7 @@ import es.studium.modelos_y_utiles.ModeloMedico
 import es.studium.opcion_Estadisticas.EstadisticasActivity
 import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
 import es.studium.opcion_pacientes.PrincipalPacientesActivity
+import es.studium.opcion_perfil.DatosDelMedicoActivity
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import org.json.JSONArray
 import org.json.JSONException
@@ -85,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
         //5. Gestión del botón perfil
         btn_perfil.setOnClickListener {
-            Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
+            enviarIntent(DatosDelMedicoActivity::class.java,"OrigenBtnPerfil",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
         }
         //6. Gestión del botón Administrador
         btn_administrador.setOnClickListener {

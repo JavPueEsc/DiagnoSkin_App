@@ -341,10 +341,21 @@
     <string name="ES_csalud_Estadisticas">Centro de salud</string>
 
 
-    <string name="google_maps_key"
-        templateMergeStrategy="preserve"
-        translatable="false">
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">
 AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
 </string>
+
+    <!-- Datos del médicoActivity -->
+    <string name="PER_lbl_titulo_datosDelMedico">Datos personales</string>
+    <string name="PER_lbl_id_datosDelMedico">Numero identificativo #%1$s</string>
+    <string name="PER_lbl_nombre_datosDelMedico">Nombre: %1$s</string>
+    <string name="PER_lbl_apellidos_datosDelMedico">Apellidos: %1$s</string>
+    <string name="PER_lbl_numColegiado_datosDelMedico">Num. colegiado/a: %1$s</string>
+    <string name="PER_lbl_especialidad_datosDelMedico">Especialidad: %1$s</string>
+    <string name="PER_lbl_centro_de_trabajo_datosDelMedico">Centro de trabajo: %1$s</string>
+    <string name="PER_lbl_telefono_datosDelMedico">Teléfono: %1$s</string>
+    <string name="PER_lbl_email_datosDelMedico">Email: %1$s</string>
+    <string name="PER_btn_modificar_datosDelMedico">Modificar</string>
+
 
 </resources>
