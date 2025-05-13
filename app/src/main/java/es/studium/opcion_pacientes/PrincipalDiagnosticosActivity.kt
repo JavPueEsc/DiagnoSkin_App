@@ -325,4 +325,11 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         }
         return fechaTransformada
     }
+
+    //Gestión de la pulsación del triangulo (barra navegación Android)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Pulsa el botón volver
+        btn_volver.performClick()
+    }
 }

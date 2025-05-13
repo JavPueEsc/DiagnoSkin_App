@@ -299,4 +299,11 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         }
         return getString(R.string.LO_ErrorObtencionIdCentroMedico)
     }
+
+    //Gestión de la pulsación del triangulo (barra navegación Android)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Pulsa el botón volver
+        btn_volver.performClick()
+    }
 }

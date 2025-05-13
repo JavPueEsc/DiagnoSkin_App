@@ -428,4 +428,10 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
             ?: getString(R.string.LO_ErrorExtraNoRecibido)
     }
 
+    //Gestión de la pulsación del triangulo (barra navegación Android)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Pulsa el botón volver
+        btn_volver.performClick()
+    }
 }

@@ -146,4 +146,11 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("idUsuario", idUsuario)
         startActivity(intent)
     }
+
+    //Gestión de la pulsación del triangulo (barra navegación Android)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        // Cierra completamente la app
+        finishAffinity() // Cierra todas las actividades
+    }
 }
