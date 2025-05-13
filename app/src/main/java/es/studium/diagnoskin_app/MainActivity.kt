@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.modelos_y_utiles.ModeloMedico
+import es.studium.opcion_Estadisticas.EstadisticasActivity
 import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
 import es.studium.opcion_pacientes.PrincipalPacientesActivity
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
         //4. Gestión del botón estadísticas
         btn_estadisticas.setOnClickListener {
-            Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
+            enviarIntent(EstadisticasActivity::class.java,"OrigenBtnEstadisticas",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
         }
         //5. Gestión del botón perfil
         btn_perfil.setOnClickListener {

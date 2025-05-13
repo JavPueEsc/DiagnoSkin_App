@@ -317,5 +317,13 @@
 
     <string name="INF_NombreDocumento_visualizarInformes">Informe_diagnostico_%1$s.pdf</string>
 
+    <!--EstadisticasActivity-->
+    <string name="ES_lbl_titulo_Estadisticas">Estadísticas</string>
+    <string name="ES_lbl_tituloSeleccionCentro_Estadisticas">Seleccione un centro</string>
+    <string name="ES_lbl_NombreCentro_Estadisticas">%1$s</string>
+    <string name="ES_lbl_direccionCentro_Estadisticas">%1$s (%2$s). C.P: 3%$s</string>
+    <string name="ES_lbl_telefonoCentro_Estadisticas">%1$s</string>
+    <string name="ES_lbl_tituloDiagnosticos_Estadisticas">Diagnósticos</string>
+    <string name="ES_lbl_tituloRangoFechas_Estadisticas">Selecciones un rango de fechas</string>
 
 </resources>

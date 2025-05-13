@@ -27,6 +27,9 @@
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
         <activity
+            android:name="es.studium.opcion_Estadisticas.EstadisticasActivity"
+            android:exported="false" />
+        <activity
             android:name="es.studium.opcion_informes.VisualizarInformeActivity"
             android:exported="false" />
         <activity
