@@ -275,16 +275,28 @@
     <Button
         android:id="@+id/INF_btn_generarInforme_visualizarInformes"
         style="@style/EstiloBotonesLogin"
-        android:layout_width="275dp"
+        android:layout_width="175dp"
         android:layout_height="50dp"
+        android:layout_marginStart="24dp"
         android:layout_marginBottom="64dp"
         android:text="@string/INF_btn_generarInforme_visualizarInformes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-
+    <Button
+        android:id="@+id/INF_btn_MenuPrincipal_visualizarInformes"
+        style="@style/EstiloBotonesLogin"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/INF_btn_MenuPrincipal_visualizarInformes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package es.studium.opcion_informes
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.ContentValues
 import android.content.Intent
@@ -29,8 +30,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.ModeloDiagnostico
+import es.studium.opcion_pacientes.DatosDelPacienteActivity
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesdb_diagnosticos.ConsultaRemotaDiagnosticos
@@ -63,6 +66,7 @@ class VisualizarInformeActivity : AppCompatActivity() {
     private lateinit var lbl_nombreCentroMedico : TextView
     private lateinit var btn_volver : ImageView
     private lateinit var btn_generarInforme : Button
+    private lateinit var btn_menuprincipal : Button
     private lateinit var img_fotoDiagnostico : ImageView
 
     //Declaración de variables para recibir los extras
@@ -135,6 +139,7 @@ class VisualizarInformeActivity : AppCompatActivity() {
         lbl_nombreCentroMedico = findViewById(R.id.INF_lbl_nombreCentro_visualizarInformes)
         btn_volver = findViewById(R.id.INF_btnVolver_visualizarInforme)
         btn_generarInforme = findViewById(R.id.INF_btn_generarInforme_visualizarInformes)
+        btn_menuprincipal = findViewById(R.id.INF_btn_MenuPrincipal_visualizarInformes)
         img_fotoDiagnostico = findViewById(R.id.INF_XDIAG_fotoDiagnostico_DatosDelDiagnosticos)
 
         //Setear datos del paciente
@@ -158,6 +163,22 @@ class VisualizarInformeActivity : AppCompatActivity() {
         //Consulta centro médico
         cargarDatosCentroMedico(idCentroMedicoFKBD)
         lbl_nombreCentroMedico.text = getString(R.string.INF_lbl_NombreCentro_visualizarInformes,nombreCentroMedicoBD)
+
+        //Gestión del botón volver
+        btn_volver.setOnClickListener{
+            enviarIntentVuelta(
+                BuscadorInformesActivity::class.java,"visualizarInformeActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
+        }
+
+        //Gestión del botón Menu principal
+        btn_menuprincipal.setOnClickListener {
+            val intent = Intent(this@VisualizarInformeActivity,MainActivity::class.java)
+            intent.putExtra("idUsuario",idUsuarioRecibido)
+            startActivity(intent)
+        }
 
         //Gestión del botón generar informe
         btn_generarInforme.setOnClickListener {
@@ -455,6 +476,32 @@ class VisualizarInformeActivity : AppCompatActivity() {
             pdfDocument.close()
         }
         return uri
+    }
+
+    private fun enviarIntentVuelta(
+        activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
+        nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?
+    ) {
+        val intent = Intent(this@VisualizarInformeActivity, activityDestino)
+        intent.putExtra("origenPrincipalDiagnosticosActivity", claveOrigen)
+        intent.putExtra("idPaciente", idPaciente)
+        intent.putExtra("nombrePaciente", nombre)
+        intent.putExtra("apellidosPaciente", apellidos)
+        intent.putExtra("sexoPaciente", sexo)
+        intent.putExtra("fechaNacPaciente", fechaNac)
+        intent.putExtra("nuhsaPaciente", nuhsa)
+        intent.putExtra("telefonoPaciente", telefono)
+        intent.putExtra("emailPaciente", email)
+        intent.putExtra("dniPaciente", dni)
+        intent.putExtra("direccionPaciente", direccion)
+        intent.putExtra("localidadPaciente", localidad)
+        intent.putExtra("provinciaPaciente", provincia)
+        intent.putExtra("codigoPostalPaciente", codigoPostal)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
     }
 
 }

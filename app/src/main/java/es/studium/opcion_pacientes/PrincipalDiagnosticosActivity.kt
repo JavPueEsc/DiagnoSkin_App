@@ -107,7 +107,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {
-            enviarIntent(DatosDelPacienteActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+            enviarIntentVuelta(DatosDelPacienteActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                 sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                 emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
@@ -199,15 +199,15 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
 
         //Gestión del botón Nuevo diagnóstico
         btn_NuevoDiagnostico.setOnClickListener {
-            enviarIntent(RealizarDiagnosticoActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+            enviarIntentVuelta(RealizarDiagnosticoActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                 sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                 emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
         }
     }
 
-    //Enviar intent
-    private fun enviarIntent(
+    //Enviar intent de vuelta
+    private fun enviarIntentVuelta(
         activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
         esAdminMedico: String?, idMedico: String?, idUsuario: String?

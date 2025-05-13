@@ -308,6 +308,7 @@
     <string name="INF_lbl_especialidadMedico_visualizarInformes">Especialidad: %1$s</string>
     <string name="INF_lbl_NombreCentro_visualizarInformes">Centro de diagnóstico: %1$s</string>
     <string name="INF_btn_generarInforme_visualizarInformes">Generar informe</string>
+    <string name="INF_btn_MenuPrincipal_visualizarInformes">Menú principal</string>
 
     <string name="INF_toastError1_visualizarInformes">Error al guardar PDF: </string>
     <string name="INF_toastError2_visualizarInformes">No se pudo crear el archivo PDF</string>
