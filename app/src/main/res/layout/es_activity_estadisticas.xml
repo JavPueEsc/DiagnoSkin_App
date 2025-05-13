@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    style="@style/ColorFondoAplicacion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="es.studium.opcion_Estadisticas.EstadisticasActivity">
@@ -38,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/ES_lbl_tituloSeleccionCentro_Estadisticas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.435"
@@ -93,7 +94,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/ES_lbl_direccionCentro_Estadisticas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
@@ -101,17 +102,30 @@
         app:layout_constraintTop_toBottomOf="@id/ES_lbl_NombreCentro_Estadisticas"/>
 
     <TextView
+        android:id="@+id/ES_lbl_localidadCentro_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ES_lbl_localidadCentro_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.013"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_direccionCentro_Estadisticas"/>
+
+    <TextView
         android:id="@+id/ES_lbl_telefonoCentro_Estadisticas"
         style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/ES_lbl_telefonoCentro_Estadisticas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ES_lbl_direccionCentro_Estadisticas" />
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_localidadCentro_Estadisticas" />
 
     <TextView
         android:id="@+id/ES_lbl_tituloDiagnosticos_Estadisticas"
@@ -119,7 +133,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/ES_lbl_tituloDiagnosticos_Estadisticas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
@@ -132,11 +146,154 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/ES_lbl_tituloRangoFechas_Estadisticas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.013"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ES_lbl_tituloDiagnosticos_Estadisticas" />
+
+    <TextView
+        android:id="@+id/ES_lbl_fechaDesde_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ES_lbl_fechaDesde_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_tituloRangoFechas_Estadisticas" />
+
+    <EditText
+        android:id="@+id/ES_txt_fechaDesde_Estadisticas"
+        style="@style/EditTextRedondeado"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/ES_hint_fechaDesde_Estadisticas"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_fechaDesde_Estadisticas" />
+
+    <TextView
+        android:id="@+id/ES_lbl_fechaHasta_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/ES_lbl_fechaHasta_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_tituloRangoFechas_Estadisticas" />
+
+    <EditText
+        android:id="@+id/ES_txt_fechaHasta_Estadisticas"
+        style="@style/EditTextRedondeado"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/ES_hint_fechaHasta_Estadisticas"
+        android:inputType="date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_fechaDesde_Estadisticas" />
+
+    <Button
+        android:id="@+id/ES_btn_BuscarDiagnosticos_BuscadorInformes"
+        style="@style/EstiloBotonesLogin"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ES_btn_Buscar_Estadisticas"
+        app:layout_constraintTop_toBottomOf="@+id/ES_txt_fechaHasta_Estadisticas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/ES_lbl_Melanomas_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ES_lbl_Melanomas_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_btn_BuscarDiagnosticos_BuscadorInformes" />
+
+    <TextView
+        android:id="@+id/ES_lbl_Angiomas_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/ES_lbl_Angiomas_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_btn_BuscarDiagnosticos_BuscadorInformes"/>
+
+    <TextView
+        android:id="@+id/ES_lbl_Onicomicosis_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/ES_lbl_Onicomicosis_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_Melanomas_Estadisticas"/>
+
+    <TextView
+        android:id="@+id/ES_lbl_Dermatofibromas_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="185dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/ES_lbl_Dermatofibromas_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_Melanomas_Estadisticas"/>
+
+    <TextView
+        android:id="@+id/ES_lbl_Nevus_Estadisticas"
+        style="@style/TextosAzul_tam16"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:text="@string/ES_lbl_Nevus_Estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ES_lbl_Onicomicosis_Estadisticas" />
+
+    <TextView
+        android:id="@+id/ES_camposObligatorios_Estadisticas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextosGris_tam16"
+        android:text="@string/LO_lbl_camposObligatorios"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -51,7 +51,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     private var listaCentrosMedicosSpinner: MutableList<String> = mutableListOf()
     private lateinit var adaptadorSpinner: ArrayAdapter<String>
 
-    //Declaración objetos consulta tabla médicos
+    //Declaración objetos consulta tabla centros médicos
     private lateinit var result: JSONArray
     private lateinit var jsonObject: JSONObject
     private lateinit var idCentroMedicoBD: String

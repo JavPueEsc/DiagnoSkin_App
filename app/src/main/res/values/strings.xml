@@ -321,9 +321,20 @@
     <string name="ES_lbl_titulo_Estadisticas">Estadísticas</string>
     <string name="ES_lbl_tituloSeleccionCentro_Estadisticas">Seleccione un centro</string>
     <string name="ES_lbl_NombreCentro_Estadisticas">%1$s</string>
-    <string name="ES_lbl_direccionCentro_Estadisticas">%1$s (%2$s). C.P: 3%$s</string>
+    <string name="ES_lbl_direccionCentro_Estadisticas">%1$s</string>
+    <string name="ES_lbl_localidadCentro_Estadisticas">%1$s (%2$s). C.P: 3%$s</string>
     <string name="ES_lbl_telefonoCentro_Estadisticas">%1$s</string>
     <string name="ES_lbl_tituloDiagnosticos_Estadisticas">Diagnósticos</string>
-    <string name="ES_lbl_tituloRangoFechas_Estadisticas">Selecciones un rango de fechas</string>
+    <string name="ES_lbl_tituloRangoFechas_Estadisticas">Seleccione un rango de fechas</string>
+    <string name="ES_lbl_fechaDesde_Estadisticas">Fecha desde*</string>
+    <string name="ES_lbl_fechaHasta_Estadisticas">Fecha hasta*</string>
+    <string name="ES_hint_fechaDesde_Estadisticas">Fecha desde*</string>
+    <string name="ES_hint_fechaHasta_Estadisticas">Fecha hasta*</string>
+    <string name="ES_btn_Buscar_Estadisticas">Buscar estadísticas</string>
+    <string name="ES_lbl_Melanomas_Estadisticas">Melanomas: %1$%</string>
+    <string name="ES_lbl_Angiomas_Estadisticas">Angiomas: %1$%</string>
+    <string name="ES_lbl_Nevus_Estadisticas">Nevus: %1$%</string>
+    <string name="ES_lbl_Onicomicosis_Estadisticas">Onicomicosis: %1$%</string>
+    <string name="ES_lbl_Dermatofibromas_Estadisticas">Dermatofibromas: %1$%</string>
 
 </resources>

@@ -72,4 +72,6 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+    //Dependencias googleMaps
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
 }
