@@ -283,6 +283,7 @@
     <string name="INF_toastErrorFechaDesdeVacia_BuscadorInformes">Debe seleccionar una fecha DESDE</string>
     <string name="INF_toastErrorFechaHastaVacia_BuscadorInformes">Debe seleccionar una fecha HASTA</string>
     <string name="INF_toastErrorFechaDesdeMayor_BuscadorInformes">La fecha DESDE no puede ser superior a la fecha HASTA</string>
+    <string name="INF_toastErrorFormatoFechas_BuscadorInformes">Error en el formato de fechas</string>
 
     <string name="INF_spinner_NoExistenDiagnosticos">No existen diagnósticos disponibles</string>
     <string name="INF_spinner_Seleccion">Seleccione un diagnóstico</string>
@@ -322,7 +323,7 @@
     <string name="ES_lbl_tituloSeleccionCentro_Estadisticas">Seleccione un centro</string>
     <string name="ES_lbl_NombreCentro_Estadisticas">%1$s</string>
     <string name="ES_lbl_direccionCentro_Estadisticas">%1$s</string>
-    <string name="ES_lbl_localidadCentro_Estadisticas">%1$s (%2$s). C.P: 3%$s</string>
+    <string name="ES_lbl_localidadCentro_Estadisticas">%1$s (%2$s). C.P: %3$s</string>
     <string name="ES_lbl_telefonoCentro_Estadisticas">%1$s</string>
     <string name="ES_lbl_tituloDiagnosticos_Estadisticas">Diagnósticos</string>
     <string name="ES_lbl_tituloRangoFechas_Estadisticas">Seleccione un rango de fechas</string>
@@ -331,10 +332,19 @@
     <string name="ES_hint_fechaDesde_Estadisticas">Fecha desde*</string>
     <string name="ES_hint_fechaHasta_Estadisticas">Fecha hasta*</string>
     <string name="ES_btn_Buscar_Estadisticas">Buscar estadísticas</string>
-    <string name="ES_lbl_Melanomas_Estadisticas">Melanomas: %1$%</string>
-    <string name="ES_lbl_Angiomas_Estadisticas">Angiomas: %1$%</string>
-    <string name="ES_lbl_Nevus_Estadisticas">Nevus: %1$%</string>
-    <string name="ES_lbl_Onicomicosis_Estadisticas">Onicomicosis: %1$%</string>
-    <string name="ES_lbl_Dermatofibromas_Estadisticas">Dermatofibromas: %1$%</string>
+    <string name="ES_lbl_Melanomas_Estadisticas">Melanomas: %1$s</string>
+    <string name="ES_lbl_Angiomas_Estadisticas">Angiomas: %1$s</string>
+    <string name="ES_lbl_Nevus_Estadisticas">Nevus: %1$s</string>
+    <string name="ES_lbl_Onicomicosis_Estadisticas">Onicomicosis: %1$s</string>
+    <string name="ES_lbl_Dermatofibromas_Estadisticas">Dermatofibromas: %1$s</string>
+    <string name="ES_hospital_Estadisticas">Hospital</string>
+    <string name="ES_csalud_Estadisticas">Centro de salud</string>
+
+
+    <string name="google_maps_key"
+        templateMergeStrategy="preserve"
+        translatable="false">
+AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
+</string>
 
 </resources>

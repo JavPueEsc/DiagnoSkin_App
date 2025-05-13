@@ -219,7 +219,7 @@ class BuscadorInformesActivity : AppCompatActivity() {
 
                     }
                 } catch (e: ParseException) {
-                    Toast.makeText(this, "Error en el formato de fechas", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.INF_toastErrorFormatoFechas_BuscadorInformes, Toast.LENGTH_SHORT).show()
                 }
             }
         }

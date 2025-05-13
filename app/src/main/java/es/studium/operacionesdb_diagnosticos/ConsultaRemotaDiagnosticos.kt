@@ -38,6 +38,15 @@ class ConsultaRemotaDiagnosticos {
         return ejecutarPeticion(request)
     }
 
+    //Obtener numero de diagnostico de una patologia determinada
+    fun obtenerNumDiagPorPatologia(idCentroMedico: String?,patologia : String): JSONArray {
+        val url = "http://192.168.0.217/ApiRestDiagnoSkin/diagnosticos.php?centroMedicoId=${idCentroMedico}&diagnosticoDiagnostico=${patologia}"
+        val request = Request.Builder()
+            .url(url)
+            .build()
+        return ejecutarPeticion(request)
+    }
+
     // Metodo ejecutar la solicitud
     private fun ejecutarPeticion(request: Request): JSONArray {
         try {

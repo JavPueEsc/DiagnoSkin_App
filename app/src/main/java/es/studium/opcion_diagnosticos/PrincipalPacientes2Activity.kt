@@ -54,7 +54,7 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
     private lateinit var provinciaPacienteBD : String
     private lateinit var codigoPostalPacienteBD : String
 
-    //Variable para extra recibido
+    //Variable para extras recibidos
     private lateinit var esMedicoAdminRecibido : String
     private lateinit var idMedicoRecibido : String
     private lateinit var idUsuarioRecibido : String

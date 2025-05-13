@@ -416,7 +416,7 @@ class VisualizarInformeActivity : AppCompatActivity() {
         // Dibujar texto
         canvas.drawText(lbl_lblFijo_tituloInforme.text.toString(), 65f, 65f, paintTitulo)
         canvas.drawText(lbl_lblFijo_tituloPaciente.text.toString(), 65f, 105f, paintSubTitulo)
-        canvas.drawText(lbl_apellidosNombreMedico.text.toString(), 65f, 145f, paintTextoNormal)
+        canvas.drawText(lbl_apellidosNombrePaciente.text.toString(), 65f, 145f, paintTextoNormal)
         canvas.drawText(lbl_nuhsaPaciente.text.toString(), 65f, 185f, paintTextoNormal)
         canvas.drawText(lbl_fechaNacPaciente.text.toString(), 65f, 225f, paintTextoNormal)//<--A
         canvas.drawText(lbl_edadPaciente.text.toString(), 275f, 225f, paintTextoNormal)
