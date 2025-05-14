@@ -412,5 +412,15 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
 
     <string name="PER_ToastExito_modificarMedico">Datos del perfil modificados</string>
 
+    <!-- Tarjeta Medicos -->
+    <string name="ADMIN_lbl_id_tarjetaMedico">Identificador: #%1$s</string>
+    <string name="ADMIN_lbl_apellidosNombre_tarjetaMedico">Nombre: %1$s, %2$s</string>
+    <string name="ADMIN_lbl_numColegiado_tarjetaMedico">Num. Colegiado/a: %1$s</string>
+    <string name="ADMIN_lbl_especialidad_tarjetaMedico">Especialidad: %1$s</string>
+
+    <!-- PrincipalMedicosActivity-->
+    <string name="ADMIN_lbl_titulo_PrincipalMedicos">Seleccione un médico</string>
+    <string name="ADMIN_lbl_filtro_PrincipalMedicos">Filtrar por número de colegiado/a</string>
+    <string name="ADMIN_txt_filtro_PrincipalMedicos">Introduzca un Núm. Colegiado/a</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.modelos_y_utiles.ModeloMedico
 import es.studium.opcion_Estadisticas.EstadisticasActivity
+import es.studium.opcion_administrador.PrincipalMedicosActivity
 import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
 import es.studium.opcion_pacientes.PrincipalPacientesActivity
 import es.studium.opcion_perfil.DatosDelMedicoActivity
@@ -90,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         }
         //6. Gestión del botón Administrador
         btn_administrador.setOnClickListener {
-            Toast.makeText(this,"Funciona",Toast.LENGTH_SHORT).show()
+            enviarIntent(PrincipalMedicosActivity::class.java,"OrigenBtnAdministrador",usuarioMedico.esAdminMedico, usuarioMedico.idMedico, idUsuarioRecibido)
         }
     }
 
