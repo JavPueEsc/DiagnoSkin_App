@@ -29,6 +29,9 @@
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
         <activity
+            android:name="es.studium.opcion_administrador.ModificarMedicoActivity"
+            android:exported="false" />
+        <activity
             android:name="es.studium.opcion_administrador.PrincipalMedicosActivity"
             android:exported="false" />
         <activity
