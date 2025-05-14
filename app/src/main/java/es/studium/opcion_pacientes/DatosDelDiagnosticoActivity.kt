@@ -55,6 +55,7 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
     private var diagnosticoRecibido: String? = null
     private var tipoDiagnosticoRecibido: String? = null
     private var fotoDiagnosticoRecibida: ByteArray? = null
+    private var idMedicoFKRecibido: String? = null
 
     //Declaración de las variables para extraer medico y nombre del centroMedico de bbdd
     private lateinit var result: JSONArray
@@ -91,6 +92,7 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
             diagnosticoRecibido = extras.getString("diagnosticoDiagnostico")
             tipoDiagnosticoRecibido = extras.getString("tipoDiagnostico")
             fotoDiagnosticoRecibida = extras.getByteArray("fotoDiagnostico")
+            idMedicoFKRecibido = extras.getString("idMedicoFK")
         }
 
         //Enlazar vistas
@@ -128,8 +130,8 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
         }
         lbl_diagnosticoDiagnostico.text = getString(R.string.PA_XDIA_lbl_diagnostico_ResumenDiagnosticos,diagnosticoRecibido)
         lbl_tipoDiagnostico.text = getString(R.string.PA_XDIA_lbl_tipo_ResumenDiagnosticos, tipoDiagnosticoRecibido)
-        if(idMedicoRecibido!=null){
-            consultarMedico(idMedicoRecibido)
+        if(idMedicoFKRecibido!=null){
+            consultarMedico(idMedicoFKRecibido)
             lbl_medicoDiagnostico.text=getString(R.string.PA_XDIA_lbl_medico_ResumenDiagnosticos,apellidosMedicoBD,nombreMedicoBD)
         }
         if(idCentroMedicoFKBD!=null){
@@ -160,7 +162,7 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
         sexo: String?, fechaNac: String?, nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?,
         localidad: String?, provincia: String?, codigoPostal: String?, esAdminMedico: String?, idMedico: String?, idUsuario: String?
     ) {
-        val intent = Intent(this@DatosDelDiagnosticoActivity, activityDestino::class.java)
+        val intent = Intent(this@DatosDelDiagnosticoActivity, activityDestino)
         intent.putExtra("origenDatosDelDiagnosticoActivity", claveOrigen)
         intent.putExtra("idPaciente", idPaciente)
         intent.putExtra("nombrePaciente", nombre)

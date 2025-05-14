@@ -101,13 +101,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <EditText
-        android:id="@+id/LO_txt_Especialidad"
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/LO_spinner_Especialidad"
         style="@style/EditTextRedondeado"
+        android:popupBackground="@drawable/rectangulo_blanco"
         android:layout_width="275dp"
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
-        android:hint="@string/LO_hintEspecialidad"
         android:inputType="text"
         android:maxLength="45"
         app:layout_constraintTop_toBottomOf="@id/LO_lbl_preguntaEspecialidad"
@@ -121,7 +121,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/LO_lbl_preguntaCentroDeTrabajo"
-        app:layout_constraintTop_toBottomOf="@id/LO_txt_Especialidad"
+        app:layout_constraintTop_toBottomOf="@id/LO_spinner_Especialidad"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

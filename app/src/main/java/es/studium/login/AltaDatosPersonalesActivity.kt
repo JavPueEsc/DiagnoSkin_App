@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
@@ -31,8 +30,8 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     //Declaracion de las vistas
     private lateinit var txt_Nombre: EditText
     private lateinit var txt_Apellidos: EditText
-    private lateinit var txt_Especialidad: EditText
-    private lateinit var spiner_CentroMedico: AppCompatSpinner
+    private lateinit var spinner_Especialidad: AppCompatSpinner
+    private lateinit var spinner_CentroMedico: AppCompatSpinner
     private lateinit var txt_telefono: EditText
     private lateinit var txt_email: EditText
     private lateinit var btn_Aceptar: Button
@@ -77,8 +76,8 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         //Asociación de variables con Vistas
         txt_Nombre = findViewById(R.id.LO_txt_NombrePersonal)
         txt_Apellidos = findViewById(R.id.LO_txt_Apellidos)
-        txt_Especialidad = findViewById(R.id.LO_txt_Especialidad)
-        spiner_CentroMedico = findViewById(R.id.LO_spinner_centrosMedicos)
+        spinner_Especialidad = findViewById(R.id.LO_spinner_Especialidad)
+        spinner_CentroMedico = findViewById(R.id.LO_spinner_centrosMedicos)
         txt_telefono = findViewById(R.id.LO_txt_Telefono)
         txt_email = findViewById(R.id.LO_txt_Email)
         btn_Aceptar = findViewById(R.id.LO_btn_AceptarDatosPersonales)
@@ -88,12 +87,16 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         /*btn_volver.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
         }*/
-        //Montar el spinner
+        //Montar spinner Especialidades médicas
+        //Montar spinner
+        AdaptadorSpinnerEspecialidades(R.array.PA_spinner_especialidades_medicas)
+
+        //Montar el spinner Centros médicos
         cargarCentrosMedicosParaSpinner()
-        montarSpinnerAdapter(listaCentrosMedicosSpinner)
+        AdaptadorSpinnerCentros(listaCentrosMedicosSpinner)
 
         //Gestión de la pulsación de una opción del spinner
-        spiner_CentroMedico.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinner_CentroMedico.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View?,
@@ -123,9 +126,9 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.LO_Toast_ErrorNombre, Toast.LENGTH_SHORT).show()
             } else if (txt_Apellidos.text.toString().isEmpty()) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorApellidos, Toast.LENGTH_SHORT).show()
-            } else if (txt_Especialidad.text.toString().isEmpty()) {
+            } else if (spinner_Especialidad.selectedItemPosition == 0) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorEspecialidad, Toast.LENGTH_SHORT).show()
-            } else if (spiner_CentroMedico.selectedItemPosition == 0) {
+            } else if (spinner_CentroMedico.selectedItemPosition == 0) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCentro, Toast.LENGTH_SHORT).show()
             } else if (txt_telefono.text.toString().isEmpty()) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorTelefono, Toast.LENGTH_SHORT).show()
@@ -160,8 +163,8 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
                             var altaMedico = AltaRemotaMedicos()
                             nombreIntroducido = txt_Nombre.text.toString()
                             apellidosIntroducidos = txt_Apellidos.text.toString()
-                            especialidadIntroducida = txt_Especialidad.text.toString()
-                            telefonoIntroducido = txt_Especialidad.text.toString()
+                            especialidadIntroducida = spinner_Especialidad.selectedItem.toString()
+                            telefonoIntroducido = txt_telefono.text.toString()
                             emailIntroducido = txt_email.text.toString()
                             var centroMedicoIntroducido = obtenerIdCentroMedico(centroMedicoSeleccionado)
                             //txt_email.setText(centroMedicoIntroducido)
@@ -217,7 +220,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         }
     }
 
-    fun montarSpinnerAdapter(listaCentrosMedicos: MutableList<String>) {
+    fun AdaptadorSpinnerCentros(listaCentrosMedicos: MutableList<String>) {
         if (listaCentrosMedicos.isNotEmpty() &&
             listaCentrosMedicos[0] != getString(R.string.LO_NoExistenCentrosMedicos)
         ) {
@@ -228,7 +231,15 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         adaptadorSpinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         //Asignar el adaptador al spinner
-        spiner_CentroMedico.adapter = adaptadorSpinner
+        spinner_CentroMedico.adapter = adaptadorSpinner
+    }
+
+    //Adaptador spinner especialidades médicas
+    private fun AdaptadorSpinnerEspecialidades(StringFrase: Int) {
+        val adaptador =
+            ArrayAdapter.createFromResource(this, StringFrase, android.R.layout.simple_spinner_item)
+        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        spinner_Especialidad.setAdapter(adaptador)
     }
 
     fun obtenerIdUsuario(nombreUsuario: String): String {

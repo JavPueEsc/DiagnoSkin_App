@@ -141,7 +141,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
                         sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                         emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                         esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido,diagnosticoSeleccionado.idDiagnostico,diagnosticoSeleccionado.fechaDiagnostico,diagnosticoSeleccionado
-                            .diagnosticoDiagnostico,diagnosticoSeleccionado.gravedadDiagnostico,diagnosticoSeleccionado.fotoDiagnostico)
+                            .diagnosticoDiagnostico,diagnosticoSeleccionado.gravedadDiagnostico,diagnosticoSeleccionado.fotoDiagnostico,diagnosticoSeleccionado.idMedicoFK)
                 }
                 // Eliminación de un paciente - Pulsación larga
                 override fun onLongClick(view: View, position: Int) {
@@ -233,11 +233,12 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    //Enviar intent a ConsultarActivity
+    //Enviar intent a DatosDelDiagnosticoActivity
     private fun enviarIntentAConsultar(
         activityDestino: Class<out Activity>, claveOrigen: String, idPaciente: String?, nombre: String?, apellidos: String?, sexo: String?, fechaNac: String?,
         nuhsa: String?, telefono: String?, email: String?, dni: String?, direccion: String?, localidad: String?, provincia: String?, codigoPostal: String?,
-        esAdminMedico: String?, idMedico: String?, idUsuario: String?, idDiagnostico: String?, fechaDiagnostico: String, diagnostico: String, tipoDiagnostico : String, fotoDiagnostico : ByteArray
+        esAdminMedico: String?, idMedico: String?, idUsuario: String?, idDiagnostico: String?, fechaDiagnostico: String, diagnostico: String, tipoDiagnostico : String, fotoDiagnostico : ByteArray,
+        idMedicoFK : String
     ) {
         val intent = Intent(this@PrincipalDiagnosticosActivity, activityDestino)
         intent.putExtra("origenRealizarDiagnosticosActivity", claveOrigen)
@@ -262,6 +263,7 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         intent.putExtra("diagnosticoDiagnostico", diagnostico)
         intent.putExtra("tipoDiagnostico", tipoDiagnostico)
         intent.putExtra("fotoDiagnostico", fotoDiagnostico)
+        intent.putExtra("idMedicoFK", idMedicoFK)
         startActivity(intent)
     }
 
