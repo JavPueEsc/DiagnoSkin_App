@@ -75,12 +75,12 @@ class DatosDelPacienteActivity : AppCompatActivity() {
         lbl_codigoPostalPaciente = findViewById(R.id.PA_lbl_codigoPostalPaciente_datosPaciente)
         btn_modificar = findViewById(R.id.PA_btn_Modificar_datosPaciente)
         btn_verDiagnosticos = findViewById(R.id.PA_btn_verDiagnosticos_datosPaciente)
-        btn_volver = findViewById(R.id.btnVolver_DatosDelPacienteActivity)
+        //btn_volver = findViewById(R.id.btnVolver_DatosDelPacienteActivity)
 
         //Gestion del Botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             enviarIntentAPrincipalPacientes(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
-        }
+        }*/
 
         // Establecer los datos del paciente en las vistas usando strings con placeholders
         lbl_idPaciente.text =
@@ -205,7 +205,7 @@ class DatosDelPacienteActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentAPrincipalPacientes(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
     }
 
 }

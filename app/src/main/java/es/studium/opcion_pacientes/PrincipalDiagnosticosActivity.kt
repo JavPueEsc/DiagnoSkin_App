@@ -103,15 +103,15 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
         lbl_nombreApellidos = findViewById(R.id.PA_XDIAG_lbl_nombreApellidosPaciente_PrincipalDiagnosticos)
         lbl_nombreApellidos.setText("${apellidosPacienteRecibido}, ${nombrePacienteRecibido}")
         btn_NuevoDiagnostico = findViewById(R.id.PA_XDIAG_btn_NuevoDiagnostico_PrincipalDiagnosticos)
-        btn_volver = findViewById(R.id.btnVolver_PrincipalPrincipalDiagnosticos)
+        //btn_volver = findViewById(R.id.btnVolver_PrincipalPrincipalDiagnosticos)
 
         //Gestion del Botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             enviarIntentVuelta(DatosDelPacienteActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                 sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                 emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
-        }
+        }*/
 
         cargarDiagnosticos(idPacienteRecibido)
 
@@ -330,6 +330,9 @@ class PrincipalDiagnosticosActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentVuelta(DatosDelPacienteActivity::class.java,"principalDiagnosticosActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+            sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+            emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+            esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
     }
 }

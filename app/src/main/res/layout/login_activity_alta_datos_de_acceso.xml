@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context="es.studium.login.AltaDatosDeAccesoActivity">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/btnVolver_AltaDatosDeAccesoActivity"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -20,14 +20,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/icono_flecha" />
+        app:srcCompat="@drawable/icono_flecha" /> -->
 
     <TextView
         android:id="@+id/LO_lbl_TituloNuevaCuentaUsuario"
         style="@style/TextosAzul_tam30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="46dp"
         android:text="@string/LO_lbl_tituloNuevaCuentaUsuario"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +207,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="64dp"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

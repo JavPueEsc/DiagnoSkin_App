@@ -77,7 +77,7 @@ class DatosDelMedicoActivity : AppCompatActivity() {
         lbl_centroTrabajoMedico =findViewById(R.id.PER_lbl_centro_de_trabajo_datosDelMedico)
         lbl_telefonoMedico =findViewById(R.id.PER_lbl_telefono_datosDelMedico)
         lbl_emailMedico =findViewById(R.id.PER_lbl_email_datosDelMedico)
-        btn_volver = findViewById(R.id.btnVolver_DatosDelMedico)
+        //btn_volver = findViewById(R.id.btnVolver_DatosDelMedico)
         btn_modificar = findViewById(R.id.PER_btn_Modificar_datosPaciente)
 
         consultarDatosMedico(idMedicoRecibido)
@@ -93,9 +93,9 @@ class DatosDelMedicoActivity : AppCompatActivity() {
         lbl_centroTrabajoMedico.text = getString(R.string.PER_lbl_centro_de_trabajo_datosDelMedico, nombreCentroMedicoBD)
 
         //gestión del botón volver
-        btn_volver.setOnClickListener{
+        /*btn_volver.setOnClickListener{
             enviarIntentAMenu(idUsuarioRecibido)
-        }
+        }*/
 
         //Gestión del botón modificar
         btn_modificar.setOnClickListener {
@@ -177,7 +177,6 @@ class DatosDelMedicoActivity : AppCompatActivity() {
     //Gestión de la pulsación del triangulo (barra navegación Android)
     override fun onBackPressed() {
         super.onBackPressed()
-        // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentAMenu(idUsuarioRecibido)
     }
 }

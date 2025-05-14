@@ -138,9 +138,10 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
         txt_fechaHasta.visibility = View.GONE
         lblFijo_asteriscos = findViewById(R.id.ES_camposObligatorios_Estadisticas)
         lblFijo_asteriscos.visibility = View.GONE
-        btn_volver = findViewById(R.id.btnVolver_Estadisticas)
-        btn_volver.visibility = View.VISIBLE
+        //btn_volver = findViewById(R.id.btnVolver_Estadisticas)
+        //btn_volver.visibility = View.VISIBLE
         btn_agrandarPantalla = findViewById(R.id.btnAgrandar_Estadisticas)
+        btn_agrandarPantalla.visibility = View.GONE
 
         //gestion de txt_fechas: volverlos no seleccionables y no editables
         //Gestión de apertura del calendario cuando se presione sobre el edittext de fechaNac
@@ -157,17 +158,20 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
             abrirCalendarioFechaActual(txt_fechaHasta)
         }
         //Gestión del botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             val intent = Intent(this@EstadisticasActivity,MainActivity::class.java)
             intent.putExtra("idUsuario",idUsuarioRecibido)
             startActivity(intent)
-        }
+        }*/
         //Gestión del botón agrandar pantalla 8reinicia el Activity sin perder los extras recibidos)
 
         btn_agrandarPantalla.setOnClickListener {
+            //Desaparece el botón agrandar pantalla
+            btn_agrandarPantalla.visibility = View.GONE
+
             //Modificacion del tamaño del mapa
             val marco = findViewById<View>(R.id.ES_marcoMapa_Estadisticas)
-            val paddingDp = 24
+            val paddingDp = 50
             val escala = resources.displayMetrics.density
             val paddingPx = (paddingDp * escala).toInt()
 
@@ -273,6 +277,7 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
                 marco.layoutParams = params
 
                 CapturarDatosDelMarcador(mapa,idCentro)
+                btn_agrandarPantalla.visibility = View.VISIBLE
                 lbl_centro.text=getString(R.string.ES_lbl_NombreCentro_Estadisticas, nombreCentroMedicoBD)
                 lbl_dirección.text=getString(R.string.ES_lbl_direccionCentro_Estadisticas, direccionCentroMedicoBD)
                 lbl_localidad.text=getString(R.string.ES_lbl_localidadCentro_Estadisticas,localidadCentroMedicoBD,provinciaCentroMedicoBD,codigoPostalCentroMedicoBD)
@@ -425,8 +430,9 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
     //Gestión de la pulsación del triangulo (barra navegación Android)
     override fun onBackPressed() {
         super.onBackPressed()
-        // Pulsa el botón volver
-        btn_volver.performClick()
+        val intent = Intent(this@EstadisticasActivity,MainActivity::class.java)
+        intent.putExtra("idUsuario",idUsuarioRecibido)
+        startActivity(intent)
     }
 
     //Médodo para recibir los extras

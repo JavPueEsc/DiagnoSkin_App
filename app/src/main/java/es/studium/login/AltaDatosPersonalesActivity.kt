@@ -82,12 +82,12 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         txt_telefono = findViewById(R.id.LO_txt_Telefono)
         txt_email = findViewById(R.id.LO_txt_Email)
         btn_Aceptar = findViewById(R.id.LO_btn_AceptarDatosPersonales)
-        btn_volver = findViewById(R.id.btnVolver_AltaDatosPersonalesActivity)
+        //btn_volver = findViewById(R.id.btnVolver_AltaDatosPersonalesActivity)
 
         //Gestion del Botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
-        }
+        }*/
         //Montar el spinner
         cargarCentrosMedicosParaSpinner()
         montarSpinnerAdapter(listaCentrosMedicosSpinner)
@@ -304,6 +304,6 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // Pulsa el botón volver
-        btn_volver.performClick()
+        onBackPressedDispatcher.onBackPressed()
     }
 }

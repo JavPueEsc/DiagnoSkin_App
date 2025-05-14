@@ -76,6 +76,7 @@ class PrincipalPacientes2Activity : AppCompatActivity() {
         //Enlazar variables con vistas
         txt_buscarPorNuhsa = findViewById(R.id.PA_txt_filtroNuhsa2)
         btn_volver = findViewById(R.id.btnVolver_PrincipalPacientesActivity2)
+        btn_volver.visibility = View.GONE
 
         //Gestion del Botón volver
         btn_volver.setOnClickListener {

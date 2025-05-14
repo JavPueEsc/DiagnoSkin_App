@@ -85,12 +85,12 @@ class PrincipalPacientesActivity : AppCompatActivity() {
         //Enlazar variables con vistas
         txt_buscarPorNuhsa = findViewById(R.id.PA_txt_filtroNuhsa)
         btn_NuevoPaciente = findViewById(R.id.PA_btn_NuevoPaciente)
-        btn_volver = findViewById(R.id.btnVolver_PrincipalPacientesActivity)
+        //btn_volver = findViewById(R.id.btnVolver_PrincipalPacientesActivity)
 
         //Gestion del Botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             enviarIntentAMenu(idUsuarioRecibido)
-        }
+        }*/
 
         cargarPacientes()
 
@@ -326,6 +326,6 @@ class PrincipalPacientesActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentAMenu(idUsuarioRecibido)
     }
 }

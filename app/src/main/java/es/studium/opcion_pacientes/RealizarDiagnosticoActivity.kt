@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -98,6 +99,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         btn_cargarFoto = findViewById(R.id.PA_XDIAG_btn_cargarFoto_RealizarDiagnostico)
         btn_diagnosticar = findViewById(R.id.PA_XDIAG_btn_predecir_RealizarDiagnostico)
         btn_volver = findViewById(R.id.btnVolver_RealizarDiagnosticos)
+        btn_volver.visibility = View.GONE
 
         //Inicializar el Modelo predictor
         modeloIA = ModeloIA(this)

@@ -102,10 +102,10 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
         lbl_tipoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_tipo_DatosDelDiagnostico)
         lbl_medicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_medico_DatosDelDiagnostico)
         lbl_centroMedicoDiagnostico = findViewById(R.id.PA_XDIAG_lbl_centro_DatosDelDiagnostico)
-        btn_volver = findViewById(R.id.btnVolver_DatosDelDiagnostico)
+        //btn_volver = findViewById(R.id.btnVolver_DatosDelDiagnostico)
 
         //Gestión del botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             enviarIntentVuelta(
                 PrincipalDiagnosticosActivity::class.java,
                 "DatosDelDiagnosticoActivity", idPacienteRecibido,
@@ -113,7 +113,7 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
                 emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
             )
-        }
+        }*/
 
         //Establecemos la información en las etiquetas correspondientes
         lbl_idDiagnostico.text = getString(R.string.PA_XDIA_lbl_titulo_DatosDelDiagnosticos,idDiagnosticoRecibido)
@@ -277,7 +277,12 @@ class DatosDelDiagnosticoActivity : AppCompatActivity() {
     //Gestión de la pulsación del triangulo (barra navegación Android)
     override fun onBackPressed() {
         super.onBackPressed()
-        // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentVuelta(
+            PrincipalDiagnosticosActivity::class.java,
+            "DatosDelDiagnosticoActivity", idPacienteRecibido,
+            nombrePacienteRecibido, apellidosPacienteRecibido, sexoPacienteRecibido, fechaNacPacienteRecibido, nuhsaPacienteRecibido, telefonoPacienteRecibido,
+            emailPacienteRecibido, dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
+            esAdminMedicoRecibido, idMedicoRecibido, idUsuarioRecibido
+        )
     }
 }

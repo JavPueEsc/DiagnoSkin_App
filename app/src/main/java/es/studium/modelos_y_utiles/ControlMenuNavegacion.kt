@@ -2,8 +2,11 @@ package es.studium.modelos_y_utiles
 
 import android.app.Activity
 import android.app.Application
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsetsController
 
 class ControlMenuNavegacion : Application(){
     override fun onCreate() {
@@ -11,10 +14,10 @@ class ControlMenuNavegacion : Application(){
 
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityResumed(activity: Activity) {
-                hideSystemUI(activity)
+                makeNavigationBarFullyTransparent(activity)
             }
 
-            private fun hideSystemUI(activity: Activity) {
+            /*private fun hideSystemUI(activity: Activity) {
                 val decorView = activity.window.decorView
                 decorView.systemUiVisibility = (
                         View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
@@ -24,7 +27,39 @@ class ControlMenuNavegacion : Application(){
                                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                                 or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         )
+            }*/
+
+            private fun makeNavigationBarFullyTransparent(activity: Activity) {
+                val window = activity.window
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    window.setDecorFitsSystemWindows(false)
+                }
+
+                val decorView = window.decorView
+                decorView.systemUiVisibility = (
+                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        )
+
+                window.navigationBarColor = Color.TRANSPARENT
+
+                // Cambiar iconos a oscuros (negro/gris) → ideal si fondo es claro o transparente
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    val controller = window.insetsController
+                    controller?.setSystemBarsAppearance(
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS,
+                        WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS
+                    )
+                } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    // Para versiones entre Android 8.0 y 10
+                    decorView.systemUiVisibility = decorView.systemUiVisibility or
+                            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+                }
             }
+
+
+
 
             // Métodos vacíos requeridos por la interfaz
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}

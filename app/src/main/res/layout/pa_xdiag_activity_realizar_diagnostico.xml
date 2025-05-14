@@ -27,7 +27,7 @@
         style="@style/TextosAzul_tam30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="46dp"
         android:text="@string/PA_XDIA_lbl_titulo_RealizarDiagnosticos"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
     <View
         android:id="@+id/PA_XDIAG_marcoCamara_RealizarDiagnosticos"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:layout_marginStart="34dp"
         android:layout_marginEnd="34dp"
         android:background="@drawable/rectangulo_azul"
@@ -101,7 +101,7 @@
     <View
         android:id="@+id/PA_XDIAG_marcoFotoDiagnostico_RealizarDiagnosticos"
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="200dp"
         android:layout_marginStart="34dp"
         android:layout_marginEnd="34dp"
         android:background="@drawable/rectangulo_azul"

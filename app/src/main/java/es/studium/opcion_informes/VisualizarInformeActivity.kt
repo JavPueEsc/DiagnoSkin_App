@@ -137,7 +137,7 @@ class VisualizarInformeActivity : AppCompatActivity() {
         lbl_apellidosNombreMedico = findViewById(R.id.INF_lbl_apellidosNombreMedico_visualizarInformes)
         lbl_especialidadMedico = findViewById(R.id.INF_lbl_especialidadMedico_visualizarInformes)
         lbl_nombreCentroMedico = findViewById(R.id.INF_lbl_nombreCentro_visualizarInformes)
-        btn_volver = findViewById(R.id.INF_btnVolver_visualizarInforme)
+        //btn_volver = findViewById(R.id.INF_btnVolver_visualizarInforme)
         btn_generarInforme = findViewById(R.id.INF_btn_generarInforme_visualizarInformes)
         btn_menuprincipal = findViewById(R.id.INF_btn_MenuPrincipal_visualizarInformes)
         img_fotoDiagnostico = findViewById(R.id.INF_XDIAG_fotoDiagnostico_DatosDelDiagnosticos)
@@ -165,13 +165,13 @@ class VisualizarInformeActivity : AppCompatActivity() {
         lbl_nombreCentroMedico.text = getString(R.string.INF_lbl_NombreCentro_visualizarInformes,nombreCentroMedicoBD)
 
         //Gestión del botón volver
-        btn_volver.setOnClickListener{
+        /*btn_volver.setOnClickListener{
             enviarIntentVuelta(
                 BuscadorInformesActivity::class.java,"visualizarInformeActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
                 sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
                 emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
                 esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
-        }
+        }*/
 
         //Gestión del botón Menu principal
         btn_menuprincipal.setOnClickListener {
@@ -507,8 +507,11 @@ class VisualizarInformeActivity : AppCompatActivity() {
     //Gestión de la pulsación del triangulo (barra navegación Android)
     override fun onBackPressed() {
         super.onBackPressed()
-        // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentVuelta(
+            BuscadorInformesActivity::class.java,"visualizarInformeActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+            sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+            emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+            esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
     }
 
 }

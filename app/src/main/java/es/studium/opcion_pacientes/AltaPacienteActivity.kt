@@ -75,7 +75,7 @@ class AltaPacienteActivity : AppCompatActivity() {
         txt_codigoPostalPaciente =
             findViewById(R.id.PA_txt_codigoPostalPaciente_AltaDatosPaciente)
         btn_aceptar = findViewById(R.id.PA_btn_aceptar_AltaDatosPaciente)
-        btn_volver = findViewById(R.id.btnVolver_AltaPacienteActivity)
+        //btn_volver = findViewById(R.id.btnVolver_AltaPacienteActivity)
 
         //Gestión de apertura del calendario cuando se presione sobre el edittext de fechaNac
         txt_fechaNacPaciente.inputType = InputType.TYPE_NULL
@@ -86,9 +86,9 @@ class AltaPacienteActivity : AppCompatActivity() {
         }
 
         //Gestion del Botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             enviarIntentVolver(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
-        }
+        }*/
 
         //Montar spinner
         AdaptadorSpinnerSexo(R.array.PA_spinner_sexoPaciente_modificarPaciente)
@@ -233,6 +233,6 @@ class AltaPacienteActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentVolver(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
     }
 }

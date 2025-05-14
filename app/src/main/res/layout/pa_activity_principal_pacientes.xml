@@ -8,7 +8,7 @@
     style="@style/ColorFondoAplicacion"
     tools:context="es.studium.opcion_pacientes.PrincipalPacientesActivity">
 
-    <ImageView
+    <!--<ImageView
         android:id="@+id/btnVolver_PrincipalPacientesActivity"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -20,14 +20,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/icono_flecha" />
+        app:srcCompat="@drawable/icono_flecha" />-->
 
     <TextView
         android:id="@+id/PA_lbl_tituloPacientes"
         style="@style/TextosAzul_tam30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="46dp"
         android:text="@string/PA_lbl_tituloPacientes"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +38,7 @@
         style="@style/TextosAzul_tam16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="@string/PA_lbl_subTituloFiltrar"
         app:layout_constraintTop_toBottomOf="@id/PA_lbl_tituloPacientes"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:id="@+id/PA_recyclerView_Pacientes"
         android:layout_width="410dp"
         android:layout_height="575dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -89,6 +90,7 @@ class ResumenDiagnosticoActivity : AppCompatActivity() {
         btn_guardarDiagnostico =
             findViewById(R.id.PA_XDIAG_btn_GuardarDiagnostico_ResumenDiagnosticos)
         btn_volver = findViewById(R.id.btnVolver_ResumenDiagnostico)
+        btn_volver.visibility = View.GONE
 
         //Gestión del botón volver
         btn_volver.setOnClickListener {

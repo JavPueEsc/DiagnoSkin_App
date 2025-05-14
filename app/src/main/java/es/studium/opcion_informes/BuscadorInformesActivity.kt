@@ -118,7 +118,7 @@ class BuscadorInformesActivity : AppCompatActivity() {
         lbl_fechaDiagnostico.visibility = View.GONE //<-- Oculto de inicio
         btn_visualizar = findViewById(R.id.INF_btn_visualizarInforme_BuscadorInformes)
         btn_visualizar.visibility = View.GONE //<-- Oculto de inicio
-        btn_volver = findViewById(R.id.INF_btnVolver_BuscadorInformes)
+        //btn_volver = findViewById(R.id.INF_btnVolver_BuscadorInformes)
 
         //gestion de txt_fechas: volverlos no seleccionables y no editables
         //Gestión de apertura del calendario cuando se presione sobre el edittext de fechaNac
@@ -136,9 +136,9 @@ class BuscadorInformesActivity : AppCompatActivity() {
         }
 
         //gestión btn volver
-        btn_volver.setOnClickListener{
+        /*btn_volver.setOnClickListener{
             enviarIntentVuelta(PrincipalPacientes2Activity::class.java,"OrigenBtnInformes", esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
-        }
+        }*/
 
         //Gestión btn buscar diagnosticos
         btn_buscarDiagnosticos.setOnClickListener {
@@ -395,8 +395,7 @@ class BuscadorInformesActivity : AppCompatActivity() {
     //Gestión de la pulsación del triangulo (barra navegación Android)
     override fun onBackPressed() {
         super.onBackPressed()
-        // Pulsa el botón volver
-        btn_volver.performClick()
+        enviarIntentVuelta(PrincipalPacientes2Activity::class.java,"OrigenBtnInformes", esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
     }
 
 }

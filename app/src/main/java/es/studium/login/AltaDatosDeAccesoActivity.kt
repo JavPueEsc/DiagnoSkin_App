@@ -47,12 +47,12 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
         txt_clave1 = findViewById(R.id.LO_txt_IntroducirClave1)
         txt_clave2 = findViewById(R.id.LO_txt_IntroducirClave2)
         btn_Aceptar = findViewById(R.id.LO_btn_AceptarDatosAcceso)
-        btn_volver = findViewById(R.id.btnVolver_AltaDatosDeAccesoActivity)
+        //btn_volver = findViewById(R.id.btnVolver_AltaDatosDeAccesoActivity)
 
         //Gestion del Botón volver
-        btn_volver.setOnClickListener {
+        /*btn_volver.setOnClickListener {
             onBackPressedDispatcher.onBackPressed()
-        }
+        }*/
 
         //Gestión del botón Aceptar
         btn_Aceptar.setOnClickListener {
@@ -170,6 +170,6 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
         // Pulsa el botón volver
-        btn_volver.performClick()
+        onBackPressedDispatcher.onBackPressed()
     }
 }
