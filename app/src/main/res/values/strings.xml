@@ -212,7 +212,7 @@
         <item>Hombre</item>
         <item>Mujer</item>
     </string-array>
-
+    <string name="PA_Hombre">Hombre</string>
 
     <!-- AltaPacienteActivity-->
     <string name="PA_lbl_idPaciente_AltaPaciente">Nuevo/a paciente</string>
@@ -398,5 +398,19 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
     <string name="PER_hint_email_modificarMedico">Email*</string>
 
     <string name="PER_btnAceptar_modificarMedico">Aceptar</string>
+
+    <string name="PER_toastError_nombre_modificarMedico">Debe introducir su nombre</string>
+    <string name="PER_toastError_apellidos_modificarMedico">Debe introducir sus apellidos</string>
+    <string name="PER_toastError_especialidad_modificarMedico">Debe seleccionar su especialidad médica</string>
+    <string name="PER_toastError_numColegiado_modificarMedico">Debe introducir su número de colegiado</string>
+    <string name="PER_toastError_centroTrabajo_modificarMedico">Debe seleccionar su centro de trabajo</string>
+    <string name="PER_toastError_telefono_modificarMedico">Debe introducir su teléfono de contacto</string>
+    <string name="PER_toastError_email_modificarMedico">Debe introducir su email</string>
+
+    <string name="PER_pos0SpinerEspecialidad_modificarMedico">Seleccione una especialidad*</string>
+    <string name="PER_pos0SpinerCetro_modificarMedico">Seleccione su centro de trabajo*</string>
+
+    <string name="PER_ToastExito_modificarMedico">Datos del perfil modificados</string>
+
 
 </resources>

@@ -126,7 +126,7 @@ class ModificarPacienteActivity : AppCompatActivity() {
             getString(R.string.PA_lbl_idPaciente_modificarPaciente, idPacienteRecibido)
         txt_nombrePaciente.setText(nombrePacienteRecibido)
         txt_apellidosPaciente.setText(apellidosPacienteRecibido)
-        if (sexoPacienteRecibido == "Hombre") {
+        if (sexoPacienteRecibido == getString(R.string.PA_Hombre)) {
             spinner_sexoPaciente.setSelection(1)
         } else {
             spinner_sexoPaciente.setSelection(2)

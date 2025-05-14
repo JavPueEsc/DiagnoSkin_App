@@ -46,7 +46,7 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
     private lateinit var telefonoIntroducido: String
     private lateinit var emailIntroducido: String
 
-    //Variable para acumular los resultados de diagnosticos para montar el spinner
+    //Variable para acumular los resultados de centros médicos para montar el spinner
     private var listaCentrosMedicosSpinner: MutableList<String> = mutableListOf()
     private lateinit var adaptadorSpinner: ArrayAdapter<String>
 
