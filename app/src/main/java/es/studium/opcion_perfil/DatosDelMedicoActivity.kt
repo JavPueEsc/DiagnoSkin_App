@@ -1,20 +1,16 @@
 package es.studium.opcion_perfil
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
-import es.studium.modelos_y_utiles.ModeloMedico
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import org.json.JSONArray
@@ -99,7 +95,8 @@ class DatosDelMedicoActivity : AppCompatActivity() {
 
         //Gestión del botón modificar
         btn_modificar.setOnClickListener {
-            //logica aquí <----------------------------------
+            enviarIntentModificarActivity(ModificarMedicoActivity::class.java,"OrigenModificar",idMedicoRecibido,nombreMedicoBD,apellidosMedicoBD,
+                telefonoMedicoBD,emailMedicoBD,especialidadMedicoBD,numColegiadoMedicoBD,esMedicoAdminRecibido,nombreCentroMedicoBD,idUsuarioRecibido)
         }
     }
 
@@ -171,6 +168,26 @@ class DatosDelMedicoActivity : AppCompatActivity() {
     fun enviarIntentAMenu(idUsuario:String?){
         val intent = Intent(this@DatosDelMedicoActivity, MainActivity::class.java)
         intent.putExtra("idUsuario", idUsuario)
+        startActivity(intent)
+    }
+
+    //Enviar a intent a siguientesActivities (modificarPaciente/ver diagnosticos)
+    private fun enviarIntentModificarActivity(
+        activityDestino: Class<out Activity>, claveOrigen: String, idMedico: String?, nombre: String?, apellidos: String?, telefono: String?, email: String?,
+        especialidad: String?, numColeagiado: String?, esAdminMedico: String?, nombreCentroMedico : String?, idUsuarioFK: String?
+    ) {
+        val intent = Intent(this@DatosDelMedicoActivity, activityDestino)
+        intent.putExtra(claveOrigen, claveOrigen)
+        intent.putExtra("idMedico", idMedico)
+        intent.putExtra("nombreMedico", nombre)
+        intent.putExtra("apellidosMedico", apellidos)
+        intent.putExtra("telefonoMedico", telefono)
+        intent.putExtra("emailMedico", email)
+        intent.putExtra("especialidadMedico", especialidad)
+        intent.putExtra("numColegiadoMedico", numColeagiado)
+        intent.putExtra("esAdminMedico", esAdminMedico)
+        intent.putExtra("nombreCentroMedico", nombreCentroMedico)
+        intent.putExtra("idUsuarioFK", idUsuarioFK)
         startActivity(intent)
     }
 

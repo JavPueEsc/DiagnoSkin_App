@@ -38,14 +38,14 @@
     <!--AltaDatosDeAccesoActivity -->
     <string name="LO_lbl_tituloNuevaCuentaUsuario">Crear nueva cuenta</string>
     <string name="LO_lbl_subTituloNuevaCuentaUsuario">Datos de Acceso</string>
-    <string name="LO_lbl_preguntaNombreUsuario">¿Que nombre de usuario/a desea utilizar?</string>
+    <string name="LO_lbl_preguntaNombreUsuario">¿Que nombre de usuario/a desea utilizar?*</string>
     <string name="LO_hintNombreUsuario">Nombre de usuario/a*</string>
-    <string name="LO_lbl_preguntaNumColegiado">Escriba su número de colegiado/a.</string>
+    <string name="LO_lbl_preguntaNumColegiado">Introduzca su número de colegiado/a*</string>
     <string name="LO_hintNumColegiado">Num. colegiado/a*</string>
-    <string name="LO_lbl_claveSegura">Escriba una contraseña segura.</string>
+    <string name="LO_lbl_claveSegura">Escriba una contraseña segura*</string>
     <string name="LO_lbl_digitosClave">La contraseña ha de tener al menos 6 caracteres.</string>
     <string name="LO_hintClave">Contraseña*</string>
-    <string name="LO_lbl_repitaClave">Repita la contraseña.</string>
+    <string name="LO_lbl_repitaClave">Repita la contraseña*</string>
     <string name="LO_lbl_camposObligatorios">Los campos con * son obligatorios.</string>
     <string name="LO_btn_AceptarDatosAcceso">Aceptar</string>
 
@@ -61,21 +61,21 @@
 
     <!--AltaDatosPersonalesActivity -->
     <string name="LO_lbl_subTituloDatosPersonales">Datos Personales</string>
-    <string name="LO_lbl_preguntaNombrePersonal">Escriba su nombre.</string>
+    <string name="LO_lbl_preguntaNombrePersonal">Escriba su nombre*</string>
     <string name="LO_hintNombrePersonal">Nombre*</string>
-    <string name="LO_lbl_preguntaApellidos">Escriba sus apellidos.</string>
+    <string name="LO_lbl_preguntaApellidos">Escriba sus apellidos*</string>
     <string name="LO_hintApellidos">Apellidos*</string>
-    <string name="LO_lbl_preguntaEspecialidad">Indique su especialidad médica.</string>
+    <string name="LO_lbl_preguntaEspecialidad">Indique su especialidad médica*</string>
     <string name="LO_hintEspecialidad">Especialidad*</string>
-    <string name="LO_lbl_preguntaCentroDeTrabajo">Seleccione su centro de trabajo.</string>
-    <string name="LO_lbl_preguntaTelefono">Introduzca su teléfono de contacto.</string>
+    <string name="LO_lbl_preguntaCentroDeTrabajo">Seleccione su centro de trabajo*</string>
+    <string name="LO_lbl_preguntaTelefono">Introduzca su teléfono de contacto*</string>
     <string name="LO_hintTelefono">Teléfono de contacto*</string>
-    <string name="LO_lbl_preguntaEmail">Introduzca su email.</string>
+    <string name="LO_lbl_preguntaEmail">Introduzca su email*</string>
     <string name="LO_hintEmail">Email*</string>
     <string name="LO_btn_AceptarDatosPersonales">Aceptar</string>
 
     <string-array name="PA_spinner_especialidades_medicas">
-        <item>Seleccione una especialidad</item>
+        <item>Seleccione una especialidad*</item>
         <item>Médico de Familia</item>
         <item>Cardiólogo</item>
         <item>Dermatólogo</item>
@@ -97,7 +97,7 @@
         <item>Alergólogo</item>
     </string-array>
 
-    <string name="LO_tituloSpiner">Seleccione su centro de trabajo</string>
+    <string name="LO_tituloSpiner">Seleccione su centro de trabajo*</string>
     <string name="LO_NoExistenCentrosMedicos">No existen Centros médicos disponibles</string>
 
     <string name="LO_Toast_debeSeleccionarCentroTranajo">Debe seleccionar un centro de trabajo</string>
@@ -381,5 +381,22 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
     <string name="PER_lbl_email_datosDelMedico">Email: %1$s</string>
     <string name="PER_btn_modificar_datosDelMedico">Modificar</string>
 
+    <!-- ModificarMedicoActivity-->
+    <string name="PER_titulo_modificarMedico">Usuario #%1$s</string>
+    <string name="PER_nombre_modificarMedico">Escriba su nombre*</string>
+    <string name="PER_apellidos_modificarMedico">Escriba sus apellidos*</string>
+    <string name="PER_numColegiado_modificarMedico">Introduzca su Num. colegiado/a*</string>
+    <string name="PER_especialidad_modificarMedico">Indique su especialidad médica*</string>
+    <string name="PER_centroTrabajo_modificarMedico">Seleccione su centro de trabajo*</string>
+    <string name="PER_telefono_modificarMedico">Introduzca su teléfono de contacto*</string>
+    <string name="PER_email_modificarMedico">Introduzca su email*</string>
+
+    <string name="PER_hint_nombre_modificarMedico">Nombre*</string>
+    <string name="PER_hint_apellidos_modificarMedico">Apellidos*</string>
+    <string name="PER_hint_numColegiado_modificarMedico">Num. colegiado/a*</string>
+    <string name="PER_hint_telefono_modificarMedico">Teléfono de contacto*</string>
+    <string name="PER_hint_email_modificarMedico">Email*</string>
+
+    <string name="PER_btnAceptar_modificarMedico">Aceptar</string>
 
 </resources>
