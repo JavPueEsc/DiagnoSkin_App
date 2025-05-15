@@ -276,12 +276,13 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
                 params.height = alturaPx
                 marco.layoutParams = params
 
-                CapturarDatosDelMarcador(mapa,idCentro)
+
+                var datosMarcador = CapturarDatosDelMarcador(mapa,idCentro)
                 btn_agrandarPantalla.visibility = View.VISIBLE
-                lbl_centro.text=getString(R.string.ES_lbl_NombreCentro_Estadisticas, nombreCentroMedicoBD)
-                lbl_dirección.text=getString(R.string.ES_lbl_direccionCentro_Estadisticas, direccionCentroMedicoBD)
-                lbl_localidad.text=getString(R.string.ES_lbl_localidadCentro_Estadisticas,localidadCentroMedicoBD,provinciaCentroMedicoBD,codigoPostalCentroMedicoBD)
-                lblTelefono.text=getString(R.string.ES_lbl_telefonoCentro_Estadisticas,telefonoCentroMedicoBD)
+                lbl_centro.text=getString(R.string.ES_lbl_NombreCentro_Estadisticas, datosMarcador[1])
+                lbl_dirección.text=getString(R.string.ES_lbl_direccionCentro_Estadisticas, datosMarcador[5])
+                lbl_localidad.text=getString(R.string.ES_lbl_localidadCentro_Estadisticas,datosMarcador[6],datosMarcador[8],datosMarcador[7])
+                lblTelefono.text=getString(R.string.ES_lbl_telefonoCentro_Estadisticas,datosMarcador[2])
                 lbl_centro.visibility = View.VISIBLE
                 lbl_dirección.visibility = View.VISIBLE
                 lbl_localidad.visibility = View.VISIBLE
@@ -370,7 +371,7 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
         }
     }
 
-    fun CapturarDatosDelMarcador(mapa: GoogleMap, idCentro : String) {
+    fun CapturarDatosDelMarcador(mapa: GoogleMap, idCentro : String) : MutableList<String>{
         //-----Cominucacion con la API-Rest-----------
         if (android.os.Build.VERSION.SDK_INT > 9) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -379,23 +380,25 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
         var accesoRemotoCentrosMedicos = ConsultaRemotaCentrosMedicos()
         result = accesoRemotoCentrosMedicos.obtenerCentroMedicoPorId(idCentro)
         //verificamos que result no está vacio
+        var datosMarcador = mutableListOf<String>()
         try {
             if (result.length() > 0) {
                 for (i in 0 until result.length()) {
                     jsonObject = result.getJSONObject(i)
-                    idCentroMedicoBD = jsonObject.getString("idCentroMedico")
-                    nombreCentroMedicoBD = jsonObject.getString("nombreCentroMedico")
-                    telefonoCentroMedicoBD = jsonObject.getString("telefonoCentroMedico")
-                    latitudCentroMedicoBD = jsonObject.getString("latitudCentromedico")
-                    longitudCentroMedicoBD = jsonObject.getString("longitudCentroMedico")
-                    direccionCentroMedicoBD = jsonObject.getString("direccionCentroMedico")
-                    localidadCentroMedicoBD = jsonObject.getString("localidadCentroMedico")
-                    codigoPostalCentroMedicoBD = jsonObject.getString("codigoPostalCentroMedico")
-                    provinciaCentroMedicoBD = jsonObject.getString("provinciaCentroMedico")
-                    esHospitalCentroMedicoBD = jsonObject.getString("esHospitalCentroMedico")
+                    var idCentroMedicoBD = jsonObject.getString("idCentroMedico")
+                    var nombreCentroMedicoBD = jsonObject.getString("nombreCentroMedico")
+                    var telefonoCentroMedicoBD = jsonObject.getString("telefonoCentroMedico")
+                    var latitudCentroMedicoBD = jsonObject.getString("latitudCentroMedico")
+                    var longitudCentroMedicoBD = jsonObject.getString("longitudCentroMedico")
+                    var direccionCentroMedicoBD = jsonObject.getString("direccionCentroMedico")
+                    var localidadCentroMedicoBD = jsonObject.getString("localidadCentroMedico")
+                    var codigoPostalCentroMedicoBD = jsonObject.getString("codigoPostalCentroMedico")
+                    var provinciaCentroMedicoBD = jsonObject.getString("provinciaCentroMedico")
+                    var esHospitalCentroMedicoBD = jsonObject.getString("esHospitalCentroMedico")
 
-                    //Log.d("MainActivity", "Número de centros: ${result.length()}")
-                    //Log.d("MainActivity", "LatLng: $latitudCentroMedicoBD, $longitudCentroMedicoBD")
+                     datosMarcador.addAll(listOf(idCentroMedicoBD,nombreCentroMedicoBD,telefonoCentroMedicoBD,
+                        latitudCentroMedicoBD, longitudCentroMedicoBD, direccionCentroMedicoBD, localidadCentroMedicoBD, codigoPostalCentroMedicoBD,
+                        provinciaCentroMedicoBD, esHospitalCentroMedicoBD))
 
                 }
             } else {
@@ -404,6 +407,7 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
         } catch (e: JSONException) {
             Log.e("EstadisticasActivity", "Error al procesar el JSON", e)
         }
+        return datosMarcador
     }
 
     //Metodo para abrir el calendario en la fechaActual
