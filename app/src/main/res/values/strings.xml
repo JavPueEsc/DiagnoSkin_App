@@ -27,13 +27,16 @@
     <string name="LO_Dialogo_SobrescribirCredencialesOpcionNo">No</string>
     <string name="LO_Toast_Dialogo_SobrescribirCredencialesExito">Credenciales guardadas con éxito</string>
 
-    <string name="LO_Toast_HuellaExito">Verificación exitosa</string>
+    <string name="LO_Toast_HuellaExito">Verificación biométrica exitosa</string>
     <string name="LO_Toast_HuellaError">Error</string>
-    <string name="LO_Toast_HuellaFallo">Autenticación fallida</string>
+    <string name="LO_Toast_HuellaFallo">Autenticación biométrica fallida</string>
 
     <string name="LO_DialogoBiometria_titulo">DiagnoSkin</string>
     <string name="LO_DialogoBiometria_subtitulo">Acceso Biométrico</string>
     <string name="LO_DialogoBiometria_mensaje">Pulse el sensor de huellas digitales</string>
+
+    <string name="LO_ToastUsuarioBloqueado">Su cuenta de usuario ha sido bloqueada</string>
+    <string name="LO_ToastConsultaAdministrador">Póngase en contacto con un administrador</string>
 
     <!--AltaDatosDeAccesoActivity -->
     <string name="LO_lbl_tituloNuevaCuentaUsuario">Crear nueva cuenta</string>
@@ -423,7 +426,7 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
     <string name="ADMIN_lbl_filtro_PrincipalMedicos">Filtrar por número de colegiado/a</string>
     <string name="ADMIN_txt_filtro_PrincipalMedicos">Introduzca un Núm. Colegiado/a</string>
 
-    <string name="ADMIN_toastErrorEliminarseAsiMismo_PrincipalMedicos">No puede eliminar su perfil de usuario</string>
+    <string name="ADMIN_toastErrorEliminarseAsiMismo_PrincipalMedicos">No puede bloquear su propio perfil de usuario</string>
     <string name="ADMIN_mensajeDialogo_ModificarPerfilAdmin">¿Desea bloquear la cuenta de este usuario? La cuenta no se borrará pero el usuario no podrá acceder a ella.</string>
 
     <string name="ADMIN_dlg_titulo">Confirmar bloqueo</string>
@@ -445,7 +448,7 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
     <string name="ADMIN_btn_bloquearUsuario_ModificarPerfilAdmin">Bloquear usuario   </string>
 
 
-    <string name="ADMIN_toastErrorMismoUsuario_ModificarPerfilAdmin">No puede modificar sus privilegios de administrador</string>
+    <string name="ADMIN_toastErrorMismoUsuario_ModificarPerfilAdmin">No puede modificar los permisos de su propia cuenta de usuario </string>
     <string name="ADMIN_toastConsultaOtroAdmin_ModificarPerfilAdmin">Consulte con otro administrador</string>
     <string name="ADMIN_toastExito_ModificarPerfilAdmin">Permisos de acceso modificados con éxito</string>
 

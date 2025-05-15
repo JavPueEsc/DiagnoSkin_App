@@ -113,6 +113,7 @@ class ModificarPerfilAdminActivity : AppCompatActivity() {
             if(idMedicoRecibido == idMedicoAdmin_Recibido){
                 Toast.makeText(this@ModificarPerfilAdminActivity,R.string.ADMIN_toastErrorMismoUsuario_ModificarPerfilAdmin, Toast.LENGTH_SHORT).show()
                 Toast.makeText(this@ModificarPerfilAdminActivity,R.string.ADMIN_toastConsultaOtroAdmin_ModificarPerfilAdmin, Toast.LENGTH_SHORT).show()
+                enviarIntentVuelta(PrincipalMedicosActivity::class.java,"ModificarPerfilAdmin",idUsuario_AdminRecibido,idMedicoAdmin_Recibido, esAdminMedico_AdminRecibido)
             }
             else{
                 var idMedicoModificado = idMedicoRecibido

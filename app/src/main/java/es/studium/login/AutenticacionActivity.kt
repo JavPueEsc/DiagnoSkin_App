@@ -22,6 +22,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
+import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
 import org.json.JSONException
@@ -83,32 +84,38 @@ class AutenticacionActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCampoClaveVacio, Toast.LENGTH_SHORT)
                     .show()
             } else if (credencialesCorrectas) {
-                Toast.makeText(this, R.string.LO_Toast_CredencialesCorrectas, Toast.LENGTH_SHORT)
-                    .show()
-                credencialesCorrectas = false //Reseteo de booleano
-                txt_usuario.setText("")
-                txt_clave.setText("")
-                //Comprobación de si hay Shared preferences guardadas
-                shared = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE)
-                val isShared = shared.getString(USUARIO_KEY, "")
+                if(comprobarBloqueo(usuarioIntroducido)){
+                    Toast.makeText(this@AutenticacionActivity,R.string.LO_ToastUsuarioBloqueado, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@AutenticacionActivity,R.string.LO_ToastConsultaAdministrador, Toast.LENGTH_SHORT).show()
+                }
+                else{
+                    Toast.makeText(this, R.string.LO_Toast_CredencialesCorrectas, Toast.LENGTH_SHORT)
+                        .show()
+                    credencialesCorrectas = false //Reseteo de booleano
+                    txt_usuario.setText("")
+                    txt_clave.setText("")
+                    //Comprobación de si hay Shared preferences guardadas
+                    shared = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE)
+                    val isShared = shared.getString(USUARIO_KEY, "")
 
-                //Hay S-P guardadas. el usuario quiere entrar con usu y pass. No se le pregunta siquiere guardar
-                //Dos Opciones;
-                //1. Quiere entrar el mismo usuario que las dejó guardadas
-                //2. Quiere entrar un usuario nuevo
-                if (!isShared.isNullOrEmpty()) {
+                    //Hay S-P guardadas. el usuario quiere entrar con usu y pass. No se le pregunta siquiere guardar
+                    //Dos Opciones;
+                    //1. Quiere entrar el mismo usuario que las dejó guardadas
+                    //2. Quiere entrar un usuario nuevo
+                    if (!isShared.isNullOrEmpty()) {
 
-                    //1. Mismo usuario
-                    if (usuarioIntroducido == shared.getString(USUARIO_KEY, "")) {
-                        enviarIntent()
+                        //1. Mismo usuario
+                        if (usuarioIntroducido == shared.getString(USUARIO_KEY, "")) {
+                            enviarIntent()
+                        }
+                        //2. Distinto usuario
+                        else {
+                            mostrarDialogoSobrescribirCredenciales(usuarioIntroducido, claveIntroducida)
+                        }
+
+                    } else {
+                        mostrarDialogoGuardarCredenciales(usuarioIntroducido, claveIntroducida)
                     }
-                    //2. Distinto usuario
-                    else {
-                        mostrarDialogoSobrescribirCredenciales(usuarioIntroducido, claveIntroducida)
-                    }
-
-                } else {
-                    mostrarDialogoGuardarCredenciales(usuarioIntroducido, claveIntroducida)
                 }
             } else {
                 Toast.makeText(this, R.string.LO_Toast_CredencialesIncorrectas, Toast.LENGTH_SHORT)
@@ -209,6 +216,42 @@ class AutenticacionActivity : AppCompatActivity() {
             Log.e("MainActivity", "Error al procesar el JSON", e)
         }
     }
+
+    //Comprobar usuario bloqueado
+    fun comprobarBloqueo(usuario: String) : Boolean{
+        //Comunicación con la API para realizar la consulta
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+
+        var consultaRemotaMedicos = ConsultaRemotaMedicos()
+        result = consultaRemotaMedicos.saberSiUsuarioEstaBloqueado(usuario)
+        try {
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    var codigoBloqueo = jsonObject.getString("codigoBloqueo")
+                    if(codigoBloqueo=="2"){
+                        return true
+                    }
+                    else{
+                        return false
+                    }
+
+                }
+                Log.d("DEBUG", "HASH ENVIADO: ${convertirASHA256(claveIntroducida)}")
+                Log.d("DEBUG", "HASH BD: $claveUsuarioBD")
+            } else {
+                Log.e("AutenticationActivity", "El JSONObject está vacío")
+                credencialesCorrectas = false
+            }
+        } catch (e: JSONException) {
+            Log.e("AutenticationActivity", "Error al procesar el JSON", e)
+        }
+        return false
+    }
+
 
     //Convertir lo que escribe el usuario a SHA2
     fun convertirASHA256(input: String): String {

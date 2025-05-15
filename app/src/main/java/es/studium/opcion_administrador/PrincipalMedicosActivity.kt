@@ -136,7 +136,7 @@ class PrincipalMedicosActivity : AppCompatActivity() {
                         .Builder(this@PrincipalMedicosActivity)
                         .setPositiveButton(view.context.getString(R.string.PA_dlg_opcionSi), object : DialogInterface.OnClickListener {
                             override fun onClick(dialogo: DialogInterface, which: Int) {
-                                if(esMedicoAdminRecibido==medicoAEliminar.idMedico){
+                                if(idMedicoRecibido==medicoAEliminar.idMedico){
                                     Toast.makeText(this@PrincipalMedicosActivity, R.string.ADMIN_toastErrorEliminarseAsiMismo_PrincipalMedicos, Toast.LENGTH_SHORT).show()
                                     Toast.makeText(this@PrincipalMedicosActivity, R.string.ADMIN_toastConsultaOtroAdmin_ModificarPerfilAdmin, Toast.LENGTH_SHORT).show()
                                 }
