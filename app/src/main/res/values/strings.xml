@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DiagnoSkin_app</string>
+    <string name="app_name">DiagnoSkin</string>
 
     <!-- LOGIN -->
     <!-- AutenticacionActivity -->
@@ -325,7 +325,7 @@
     <string name="INF_lbl_fechaNacPaciente_visualizarInformes">Fecha Nac.: %1$s</string>
     <string name="INF_lbl_edadPaciente_visualizarInformes">Edad: %1$s</string>
     <string name="INF_lbl_sexoPaciente_visualizarInformes">Sexo: %1$s</string>
-    <string name="INF_lbl_localidadPaciente_visualizarInformes">Localidad: %1$s (%2$s)</string>
+    <string name="INF_lbl_localidadPaciente_visualizarInformes">Localidad: %1$s(%2$s)</string>
     <string name="INF_lbl_codigoPostalPaciente_visualizarInformes">C.P: %1$s</string>
     <string name="INF_lbl_tituloDiagnostico_visualizarInformes">Datos del diagnóstico</string>
     <string name="INF_lbl_tituloImagen_visualizarInformes">Imagen de la lesión</string>
