@@ -6,112 +6,119 @@
     style="@style/ColorFondoAplicacion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="es.studium.opcion_administrador.ModificarMedicoActivity">
+    tools:context="es.studium.opcion_administrador.ModificarPerfilAdminActivity">
 
     <TextView
-        android:id="@+id/ADMIN_lbl_titulo_ModificarMedicos"
+        android:id="@+id/ADMIN_lbl_titulo_ModificarPerfilAdmin"
         style="@style/TextosAzul_tam30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
-        android:text="@string/ADMIN_lbl_titulo_ModificarMedicos"
+        android:text="@string/ADMIN_lbl_titulo_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ADMIN_lbl_nombre_ModificarMedicos"
+        android:id="@+id/ADMIN_lbl_nombre_ModificarPerfilAdmin"
         style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:text="@string/ADMIN_lbl_nombre_ModificarMedicos"
+        android:paddingEnd="24dp"
+        android:text="@string/ADMIN_lbl_nombre_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_titulo_ModificarMedicos" />
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_titulo_ModificarPerfilAdmin" />
 
     <TextView
-        android:id="@+id/ADMIN_lbl_apellidos_ModificarMedicos"
+        android:id="@+id/ADMIN_lbl_apellidos_ModificarPerfilAdmin"
         style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/ADMIN_lbl_apellidos_ModificarMedicos"
+        android:paddingEnd="24dp"
+        android:text="@string/ADMIN_lbl_apellidos_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_nombre_ModificarMedicos" />
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_nombre_ModificarPerfilAdmin" />
 
     <TextView
-        android:id="@+id/ADMIN_lbl_numColegiado_ModificarMedicos"
+        android:id="@+id/ADMIN_lbl_numColegiado_ModificarPerfilAdmin"
         style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/ADMIN_lbl_numColegiado_ModificarMedicos"
+        android:paddingEnd="24dp"
+        android:text="@string/ADMIN_lbl_numColegiado_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_apellidos_ModificarMedicos" />
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_apellidos_ModificarPerfilAdmin" />
 
     <TextView
-        android:id="@+id/ADMIN_lbl_especialidad_ModificarMedicos"
+        android:id="@+id/ADMIN_lbl_especialidad_ModificarPerfilAdmin"
         style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/ADMIN_lbl_especialidad_ModificarMedicos"
+        android:paddingEnd="24dp"
+        android:text="@string/ADMIN_lbl_especialidad_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_numColegiado_ModificarMedicos" />
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_numColegiado_ModificarPerfilAdmin" />
 
     <TextView
-        android:id="@+id/ADMIN_lbl_centroTrabajo_ModificarMedicos"
+        android:id="@+id/ADMIN_lbl_centroTrabajo_ModificarPerfilAdmin"
+        style="@style/TextosAzul_tam20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:paddingEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/ADMIN_lbl_centroTrabajo_ModificarPerfilAdmin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_especialidad_ModificarPerfilAdmin" />
+
+    <TextView
+        android:id="@+id/ADMIN_lbl_telefono_ModificarPerfilAdmin"
         style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/ADMIN_lbl_centroTrabajo_ModificarMedicos"
+        android:paddingEnd="24dp"
+        android:text="@string/ADMIN_lbl_telefono_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_especialidad_ModificarMedicos" />
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_centroTrabajo_ModificarPerfilAdmin" />
 
     <TextView
-        android:id="@+id/ADMIN_lbl_telefono_ModificarMedicos"
+        android:id="@+id/ADMIN_lbl_email_ModificarPerfilAdmin"
         style="@style/TextosAzul_tam20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/ADMIN_lbl_telefono_ModificarMedicos"
+        android:paddingEnd="24dp"
+        android:text="@string/ADMIN_lbl_email_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_centroTrabajo_ModificarMedicos" />
-
-    <TextView
-        android:id="@+id/ADMIN_lbl_email_ModificarMedicos"
-        style="@style/TextosAzul_tam20"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/ADMIN_lbl_email_ModificarMedicos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_telefono_ModificarMedicos" />
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_telefono_ModificarPerfilAdmin" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/ADMIN_btn_administrador_ModificarMedicos"
+        android:id="@+id/ADMIN_btn_administrador_ModificarPerfilAdmin"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         style="@style/TextosAzul_tam20"
@@ -119,24 +126,22 @@
         app:trackTint="@color/switch_track_color"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/ADMIN_btn_administrador_ModificarMedicos"
+        android:text="@string/ADMIN_btn_administrador_ModificarPerfilAdmin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_email_ModificarMedicos"/>
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_email_ModificarPerfilAdmin"/>
 
     <Button
-        android:id="@+id/ADMIN_btn_aceptar_ModificarMedicos"
+        android:id="@+id/ADMIN_btn_aceptar_ModificarPerfilAdmin"
         style="@style/EstiloBotonesLogin"
         android:layout_width="275dp"
         android:layout_height="50dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="64dp"
-        android:text="@string/ADMIN_btn_aceptar_ModificarMedicos"
+        android:text="@string/ADMIN_btn_aceptar_ModificarPerfilAdmin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.607"
         app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

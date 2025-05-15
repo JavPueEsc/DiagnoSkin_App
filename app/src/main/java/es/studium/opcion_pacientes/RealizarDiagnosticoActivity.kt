@@ -436,4 +436,6 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         // Pulsa el botón volver
         btn_volver.performClick()
     }
+
+
 }

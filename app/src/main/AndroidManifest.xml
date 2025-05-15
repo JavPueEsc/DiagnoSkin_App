@@ -28,8 +28,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DiagnoSkin_app"
         tools:targetApi="31">
+
         <activity
-            android:name="es.studium.opcion_administrador.ModificarMedicoActivity"
+            android:name="es.studium.opcion_administrador.ModificarPerfilAdminActivity"
             android:exported="false" />
         <activity
             android:name="es.studium.opcion_administrador.PrincipalMedicosActivity"

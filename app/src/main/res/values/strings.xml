@@ -423,16 +423,20 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
     <string name="ADMIN_lbl_filtro_PrincipalMedicos">Filtrar por número de colegiado/a</string>
     <string name="ADMIN_txt_filtro_PrincipalMedicos">Introduzca un Núm. Colegiado/a</string>
 
-    <!--ModificarMedicosAvtivity-->
-    <string name="ADMIN_lbl_titulo_ModificarMedicos">Datos del médico #%1$s</string>
-    <string name="ADMIN_lbl_nombre_ModificarMedicos">Nombre: %1$s</string>
-    <string name="ADMIN_lbl_apellidos_ModificarMedicos">Apellidos: %1$s</string>
-    <string name="ADMIN_lbl_numColegiado_ModificarMedicos">Num. colegiado/a: %1$s</string>
-    <string name="ADMIN_lbl_especialidad_ModificarMedicos">Especialidad: %1$s</string>
-    <string name="ADMIN_lbl_centroTrabajo_ModificarMedicos">Centro de trabajo: %1$s</string>
-    <string name="ADMIN_lbl_telefono_ModificarMedicos">Teléfono: %1$s</string>
-    <string name="ADMIN_lbl_email_ModificarMedicos">Email: %1$s</string>
-    <string name="ADMIN_btn_administrador_ModificarMedicos">Administrador   </string>
-    <string name="ADMIN_btn_aceptar_ModificarMedicos">Aceptar</string>
+    <!--ModificarPerfilAdminAcvtivity-->
+    <string name="ADMIN_lbl_titulo_ModificarPerfilAdmin">Datos del médico #%1$s</string>
+    <string name="ADMIN_lbl_nombre_ModificarPerfilAdmin">Nombre: %1$s</string>
+    <string name="ADMIN_lbl_apellidos_ModificarPerfilAdmin">Apellidos: %1$s</string>
+    <string name="ADMIN_lbl_numColegiado_ModificarPerfilAdmin">Num. colegiado/a: %1$s</string>
+    <string name="ADMIN_lbl_especialidad_ModificarPerfilAdmin">Especialidad: %1$s</string>
+    <string name="ADMIN_lbl_centroTrabajo_ModificarPerfilAdmin">Centro de trabajo: %1$s</string>
+    <string name="ADMIN_lbl_telefono_ModificarPerfilAdmin">Teléfono: %1$s</string>
+    <string name="ADMIN_lbl_email_ModificarPerfilAdmin">Email: %1$s</string>
+    <string name="ADMIN_btn_administrador_ModificarPerfilAdmin">Administrador   </string>
+    <string name="ADMIN_btn_aceptar_ModificarPerfilAdmin">Aceptar</string>
+
+    <string name="ADMIN_toastErrorMismoUsuario_ModificarPerfilAdmin">No puede modificar sus privilegios de administrador</string>
+    <string name="ADMIN_toastConsultaOtroAdmin_ModificarPerfilAdmin">Consulte con otro administrador</string>
+    <string name="ADMIN_toastExito_ModificarPerfilAdmin">Permisos de acceso modificados con éxito</string>
 
 </resources>
