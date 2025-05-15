@@ -423,6 +423,14 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
     <string name="ADMIN_lbl_filtro_PrincipalMedicos">Filtrar por número de colegiado/a</string>
     <string name="ADMIN_txt_filtro_PrincipalMedicos">Introduzca un Núm. Colegiado/a</string>
 
+    <string name="ADMIN_toastErrorEliminarseAsiMismo_PrincipalMedicos">No puede eliminar su perfil de usuario</string>
+    <string name="ADMIN_mensajeDialogo_ModificarPerfilAdmin">¿Desea bloquear la cuenta de este usuario? La cuenta no se borrará pero el usuario no podrá acceder a ella.</string>
+
+    <string name="ADMIN_dlg_titulo">Confirmar bloqueo</string>
+    <string name="ADMIN_toast_errorBloqueo">Se ha producido un error al intentar bloquear al usuario</string>
+    <string name="ADMIN_toast_exitoBloqueo">Usuario bloqueado con éxito</string>
+
+
     <!--ModificarPerfilAdminAcvtivity-->
     <string name="ADMIN_lbl_titulo_ModificarPerfilAdmin">Datos del médico #%1$s</string>
     <string name="ADMIN_lbl_nombre_ModificarPerfilAdmin">Nombre: %1$s</string>
@@ -434,6 +442,8 @@ AIzaSyCRmzGe73zrIfdge_k4Hm-QtLLbsqUFNnU
     <string name="ADMIN_lbl_email_ModificarPerfilAdmin">Email: %1$s</string>
     <string name="ADMIN_btn_administrador_ModificarPerfilAdmin">Administrador   </string>
     <string name="ADMIN_btn_aceptar_ModificarPerfilAdmin">Aceptar</string>
+    <string name="ADMIN_btn_bloquearUsuario_ModificarPerfilAdmin">Bloquear usuario   </string>
+
 
     <string name="ADMIN_toastErrorMismoUsuario_ModificarPerfilAdmin">No puede modificar sus privilegios de administrador</string>
     <string name="ADMIN_toastConsultaOtroAdmin_ModificarPerfilAdmin">Consulte con otro administrador</string>

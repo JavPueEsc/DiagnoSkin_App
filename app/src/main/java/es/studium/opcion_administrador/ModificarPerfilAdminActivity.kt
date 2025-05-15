@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.StrictMode
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
@@ -32,6 +33,7 @@ class ModificarPerfilAdminActivity : AppCompatActivity() {
     private lateinit var lbl_numColegiado : TextView
     private lateinit var lbl_nombreCentro : TextView
     private lateinit var btn_esAdminMedico : SwitchCompat
+    private lateinit var btn_bloqueo : SwitchCompat
     private lateinit var btn_aceptar : Button
 
     //Declaracion de variables para recibir los extras
@@ -73,6 +75,7 @@ class ModificarPerfilAdminActivity : AppCompatActivity() {
         lbl_nombreCentro = findViewById(R.id.ADMIN_lbl_centroTrabajo_ModificarPerfilAdmin)
         btn_esAdminMedico = findViewById(R.id.ADMIN_btn_administrador_ModificarPerfilAdmin)
         btn_aceptar = findViewById(R.id.ADMIN_btn_aceptar_ModificarPerfilAdmin)
+        btn_bloqueo = findViewById(R.id.ADMIN_btn_bloquearUsuario_ModificarPerfilAdmin)
 
         //Setear los campos con los datos del médico
         lbl_id.text = getString(R.string.ADMIN_lbl_titulo_ModificarPerfilAdmin,idMedicoRecibido)
@@ -83,11 +86,26 @@ class ModificarPerfilAdminActivity : AppCompatActivity() {
         lbl_especialidad.text = getString(R.string.ADMIN_lbl_especialidad_ModificarPerfilAdmin, especialidadmedicoRecibida)
         lbl_numColegiado.text = getString(R.string.ADMIN_lbl_numColegiado_ModificarPerfilAdmin, numColegiadoMedicoRecibido)
         lbl_nombreCentro.text = getString(R.string.ADMIN_lbl_centroTrabajo_ModificarPerfilAdmin,consultaCentroMedico(idCentroMedicoFKRecibido))
-        if(esAdminMedicoRecibido.toInt()==0){
-            btn_esAdminMedico.isChecked = false
+        if(esAdminMedicoRecibido.toInt()==2){
+            btn_bloqueo.isChecked=true
+            btn_esAdminMedico.visibility=View.GONE
         }
         else{
-            btn_esAdminMedico.isChecked = true
+            if(esAdminMedicoRecibido.toInt()==0){
+                btn_esAdminMedico.isChecked = false
+            }
+            else{
+                btn_esAdminMedico.isChecked = true
+            }
+        }
+        //gestion del botón de bloqueo
+        btn_bloqueo.setOnClickListener{
+            if(btn_bloqueo.isChecked){
+                btn_esAdminMedico.visibility = View.GONE
+            }
+            else{
+                btn_esAdminMedico.visibility = View.VISIBLE
+            }
         }
 
         //Gestion boton Aceptar
@@ -105,11 +123,16 @@ class ModificarPerfilAdminActivity : AppCompatActivity() {
                 var especialidadMedicoModificado = especialidadmedicoRecibida
                 var numColegiadoMedicoModificado = numColegiadoMedicoRecibido
                 var esAdminMedicoModificado = ""
-                if(btn_esAdminMedico.isChecked){
-                    esAdminMedicoModificado="1"
+                if(btn_bloqueo.isChecked){
+                    esAdminMedicoModificado="2"
                 }
                 else{
-                    esAdminMedicoModificado="0"
+                    if(btn_esAdminMedico.isChecked){
+                        esAdminMedicoModificado="1"
+                    }
+                    else{
+                        esAdminMedicoModificado="0"
+                    }
                 }
                 var idCentroMedicoFKModificado = idCentroMedicoFKRecibido
                 var idUsuarioKFModificado = idUsuarioFKRecibido

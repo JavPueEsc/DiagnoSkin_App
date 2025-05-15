@@ -34,8 +34,12 @@ import es.studium.opcion_pacientes.AltaPacienteActivity
 import es.studium.opcion_pacientes.DatosDelPacienteActivity
 import es.studium.opcion_perfil.ModificarMedicoActivity
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
+import es.studium.operacionesbd_medicos.ModificacionRemotaMedicos
 import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
 import es.studium.operacionesbd_pacientes.EliminacionRemotaPacientes
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -126,26 +130,44 @@ class PrincipalMedicosActivity : AppCompatActivity() {
 
                 override fun onLongClick(view: View, position: Int) {
                     // Eliminación de un paciente - Pulsación larga
-                    /*val pacienteAEliminar = listaPacientes[position]
-                    val tituloPersonalizado = layoutInflater.inflate(R.layout.xx_titulo_dialogo_personalizado, null)
+                    val medicoAEliminar = listaMedicos[position]
+                    val tituloPersonalizado = layoutInflater.inflate(R.layout.xx_titulo_dialogo_personalizado_bloqueo, null)
                     val dialogo = AlertDialog
-                        .Builder(this@PrincipalPacientesActivity)
+                        .Builder(this@PrincipalMedicosActivity)
                         .setPositiveButton(view.context.getString(R.string.PA_dlg_opcionSi), object : DialogInterface.OnClickListener {
                             override fun onClick(dialogo: DialogInterface, which: Int) {
-                                if(esMedicoAdminRecibido=="0"){
-                                    Toast.makeText(this@PrincipalPacientesActivity, R.string.PA_toast_NoEsAdmin, Toast.LENGTH_SHORT).show()
+                                if(esMedicoAdminRecibido==medicoAEliminar.idMedico){
+                                    Toast.makeText(this@PrincipalMedicosActivity, R.string.ADMIN_toastErrorEliminarseAsiMismo_PrincipalMedicos, Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this@PrincipalMedicosActivity, R.string.ADMIN_toastConsultaOtroAdmin_ModificarPerfilAdmin, Toast.LENGTH_SHORT).show()
                                 }
                                 else{
-                                    val eliminacionRemota = EliminacionRemotaPacientes()
-                                    val resultado = eliminacionRemota.eliminarPaciente(pacienteAEliminar.idPaciente)
-
-                                    if (resultado) {
-                                        listaPacientes.clear()
-                                        cargarPacientes()
-                                        adaptadorPacientes.notifyDataSetChanged()
-
-                                    } else {
-                                        Toast.makeText(this@PrincipalPacientesActivity, R.string.PA_toast_errorEliminacion, Toast.LENGTH_SHORT).show()
+                                    // Realizar la actualización eb bbdd
+                                    val modificarcionMedico = ModificacionRemotaMedicos()
+                                    // Como ModificacionRemotaMedicos es suspend, se necesita una corrutina
+                                    CoroutineScope(Dispatchers.IO).launch {
+                                        val resultado = modificarcionMedico.modificarMedico(
+                                            medicoAEliminar.idMedico,
+                                            medicoAEliminar.nombreMedico,
+                                            medicoAEliminar.apellidosMedico,
+                                            medicoAEliminar.telefonoMedico,
+                                            medicoAEliminar.emailMedico,
+                                            medicoAEliminar.especialidadMedico,
+                                            medicoAEliminar.numColegiadoMedico,
+                                            "2",
+                                            medicoAEliminar.idCentroMedicoFK,
+                                            medicoAEliminar.idUsuarioFK
+                                        )
+                                        //Para poder usar un toast en la rutina hay que usar este bloque
+                                        runOnUiThread {
+                                            if (resultado) {
+                                                Toast.makeText(this@PrincipalMedicosActivity, R.string.ADMIN_toast_exitoBloqueo, Toast.LENGTH_SHORT).show()
+                                                listaMedicos.clear()
+                                                cargarMedicos()
+                                                adaptadorMedicos.notifyDataSetChanged()
+                                            } else {
+                                                Toast.makeText(this@PrincipalMedicosActivity, R.string.ADMIN_toast_errorBloqueo, Toast.LENGTH_SHORT).show()
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -156,13 +178,13 @@ class PrincipalMedicosActivity : AppCompatActivity() {
                             }
                         })
                         .setCustomTitle(tituloPersonalizado)
-                        .setMessage(view.context.getString(R.string.PA_dlg_mensaje))
+                        .setMessage(view.context.getString(R.string.ADMIN_mensajeDialogo_ModificarPerfilAdmin))
                         .create()
 
                     //El setOnShowListener permite que se apliquen los cambios en los colores cuando se muestre el dialogo
                     dialogo.setOnShowListener {
-                        val fondoDialogo = ContextCompat.getDrawable(this@PrincipalPacientesActivity, R.drawable.rectangulo_tarjetas)
-                        val textoAzulDialogo = ContextCompat.getColor(this@PrincipalPacientesActivity, R.color.azulBrillante)
+                        val fondoDialogo = ContextCompat.getDrawable(this@PrincipalMedicosActivity, R.drawable.rectangulo_tarjetas)
+                        val textoAzulDialogo = ContextCompat.getColor(this@PrincipalMedicosActivity, R.color.azulBrillante)
 
                         dialogo.window?.setBackgroundDrawable(fondoDialogo)
 
@@ -173,7 +195,7 @@ class PrincipalMedicosActivity : AppCompatActivity() {
                         dialogo.getButton(AlertDialog.BUTTON_NEGATIVE)?.setTextColor(textoAzulDialogo)
                     }
 
-                    dialogo.show()*/
+                    dialogo.show()
                 }
             })
         )
@@ -214,6 +236,7 @@ class PrincipalMedicosActivity : AppCompatActivity() {
                     esAdminMedicoBD = jsonObject.getString("esAdminMedico")
                     idCentroMedicoFKBD = jsonObject.getString("idCentroMedicoFK")
                     idUsuarioFKBD = jsonObject.getString("idUsuarioFK")
+
 
                     listaMedicos.add(ModeloMedico(idMedicoBD,nombreMedicoBD,apellidosMedicoBD,telefonoMedicoBD,
                         emailMedicoBD,especialidadMedicoBD,numColegiadoMedicoBD,esAdminMedicoBD,idCentroMedicoFKBD,idUsuarioFKBD))

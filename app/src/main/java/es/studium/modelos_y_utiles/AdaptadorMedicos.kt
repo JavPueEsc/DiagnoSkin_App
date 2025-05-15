@@ -16,8 +16,6 @@ class AdaptadorMedicos(
     var listaMedicos: MutableList<ModeloMedico>
 ) : RecyclerView.Adapter<AdaptadorMedicos.MyViewHolder>() {
 
-
-
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val lbl_idMedico : TextView =itemView.findViewById(R.id.ADMIN_lbl_id_tarjetaMedico)
         val lbl_apellidos_nombre : TextView =itemView.findViewById(R.id.ADMIN_lbl_apellidosNombre_tarjetaMedico)

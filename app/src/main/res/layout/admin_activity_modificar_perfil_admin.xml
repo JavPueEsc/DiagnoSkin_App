@@ -130,6 +130,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ADMIN_btn_bloquearUsuario_ModificarPerfilAdmin"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/ADMIN_btn_bloquearUsuario_ModificarPerfilAdmin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        style="@style/TextosAzul_tam20"
+        app:thumbTint="@color/switch_thumb_color"
+        app:trackTint="@color/switch_track_color"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/ADMIN_btn_bloquearUsuario_ModificarPerfilAdmin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ADMIN_lbl_email_ModificarPerfilAdmin"/>
 
     <Button
