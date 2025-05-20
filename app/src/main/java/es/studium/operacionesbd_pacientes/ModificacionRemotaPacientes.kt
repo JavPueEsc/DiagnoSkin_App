@@ -48,7 +48,7 @@ class ModificacionRemotaPacientes {
 
                 // Crear la solicitud PUT
                 val request = Request.Builder()
-                    .url("http://192.168.0.217/ApiRestDiagnoSkin/pacientes.php")
+                    .url("http://192.168.0.216/ApiRestDiagnoSkin/pacientes.php")
                     .put(formBody)
                     .build()
 

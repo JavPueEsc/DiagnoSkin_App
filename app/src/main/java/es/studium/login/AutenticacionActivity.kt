@@ -15,6 +15,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
@@ -33,7 +34,7 @@ class AutenticacionActivity : AppCompatActivity() {
     //Declaracion de las vistas
     private lateinit var txt_usuario: EditText
     private lateinit var txt_clave: EditText
-    private lateinit var swt_MostrarClave: Switch
+    private lateinit var swt_MostrarClave: SwitchCompat
     private lateinit var btn_cuadroHuella: View
     private lateinit var btn_IniciarSesion: Button
     private lateinit var btn_CrearNuevaCuenta: TextView

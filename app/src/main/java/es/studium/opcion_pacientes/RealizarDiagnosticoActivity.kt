@@ -267,6 +267,7 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
                     val savedUri = Uri.fromFile(photoFile)
                     Log.d(TAG, "Photo capture succeeded: $savedUri")
 
+                    img_foto.setImageURI(null)
                     // Mostrar la imagen en el ImageView
                     img_foto.setImageURI(savedUri)
                 }

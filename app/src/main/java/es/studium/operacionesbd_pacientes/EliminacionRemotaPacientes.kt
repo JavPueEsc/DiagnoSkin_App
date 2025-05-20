@@ -11,7 +11,7 @@ class EliminacionRemotaPacientes {
     fun eliminarPaciente(id: String): Boolean {
 
         var request = Request.Builder()
-            .url("http://192.168.0.217/ApiRestDiagnoSkin/pacientes.php?idPaciente=$id")
+            .url("http://192.168.0.216/ApiRestDiagnoSkin/pacientes.php?idPaciente=$id")
             .delete()
             .build()
         var call = client.newCall(request)

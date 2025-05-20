@@ -15,14 +15,14 @@ class ConsultaRemotaDiagnosticos {
     //Obtener todos los diagnosticos
     fun obtenerListado():JSONArray{
         val request = Request.Builder()
-            .url("http://192.168.0.217/ApiRestDiagnoSkin/diagnosticos.php")
+            .url("http://192.168.0.216/ApiRestDiagnoSkin/diagnosticos.php")
             .build()
         return ejecutarPeticion(request)
     }
 
     // Obtener los diagnosticos entre dos fechas
     fun obtenerListadoEntreFechas(fechaDesde: String, fechaHasta: String): JSONArray {
-        val url = "http://192.168.0.217/ApiRestDiagnoSkin/diagnosticos.php?fechaDesde=$fechaDesde&fechaHasta=$fechaHasta"
+        val url = "http://192.168.0.216/ApiRestDiagnoSkin/diagnosticos.php?fechaDesde=$fechaDesde&fechaHasta=$fechaHasta"
         val request = Request.Builder()
             .url(url)
             .build()
@@ -31,7 +31,7 @@ class ConsultaRemotaDiagnosticos {
 
     //Obtener diagnóstico por idPacienteFK
     fun obtenerDiagnosticoPorIdPacienteFK(idPacienteFK: String?): JSONArray {
-        val url = "http://192.168.0.217/ApiRestDiagnoSkin/diagnosticos.php?idDiagnostico=$idPacienteFK"
+        val url = "http://192.168.0.216/ApiRestDiagnoSkin/diagnosticos.php?idDiagnostico=$idPacienteFK"
         val request = Request.Builder()
             .url(url)
             .build()
@@ -40,7 +40,7 @@ class ConsultaRemotaDiagnosticos {
 
     //Obtener numero de diagnostico de una patologia determinada
     fun obtenerNumDiagPorPatologia(idCentroMedico: String?,patologia : String): JSONArray {
-        val url = "http://192.168.0.217/ApiRestDiagnoSkin/diagnosticos.php?centroMedicoId=${idCentroMedico}&diagnosticoDiagnostico=${patologia}"
+        val url = "http://192.168.0.216/ApiRestDiagnoSkin/diagnosticos.php?centroMedicoId=${idCentroMedico}&diagnosticoDiagnostico=${patologia}"
         val request = Request.Builder()
             .url(url)
             .build()

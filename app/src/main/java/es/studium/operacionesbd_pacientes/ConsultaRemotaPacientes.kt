@@ -13,21 +13,21 @@ class ConsultaRemotaPacientes {
     //obtener listado de todos los pacientes
     fun obtenerListado():JSONArray{
         val request = Request.Builder()
-            .url("http://192.168.0.217/ApiRestDiagnoSkin/pacientes.php")
+            .url("http://192.168.0.216/ApiRestDiagnoSkin/pacientes.php")
             .build()
         return ejecutarPeticion(request)
     }
 
     fun obtenerPacientePorNuhsa(nuhsaPaciente:String):JSONArray{
         val request = Request.Builder()
-            .url("http://192.168.0.217/ApiRestDiagnoSkin/pacientes.php?nuhsaPaciente=$nuhsaPaciente")
+            .url("http://192.168.0.216/ApiRestDiagnoSkin/pacientes.php?nuhsaPaciente=$nuhsaPaciente")
             .build()
         return ejecutarPeticion(request)
     }
 
     fun obtenerPacientePorId(idPaciente:String):JSONArray{
         val request = Request.Builder()
-            .url("http://192.168.0.217/ApiRestDiagnoSkin/pacientes.php?idPaciente=$idPaciente")
+            .url("http://192.168.0.216/ApiRestDiagnoSkin/pacientes.php?idPaciente=$idPaciente")
             .build()
         return ejecutarPeticion(request)
     }

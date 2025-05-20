@@ -13,13 +13,13 @@ class ConsultaRemotaUsuarios {
     //obtener listado de todos los usuarios
     fun obtenerListado():JSONArray{
         val request = Request.Builder()
-            .url("http://192.168.0.217/ApiRestDiagnoSkin/usuarios.php")
+            .url("http://192.168.0.216/ApiRestDiagnoSkin/usuarios.php")
             .build()
         return ejecutarPeticion(request)
     }
     //Obtener usuario por nombre
     fun obtenerIdUsuarioPorNombre(nombreUsuario: String): JSONArray {
-        val url = "http://192.168.0.217/ApiRestDiagnoSkin/usuarios.php?nombreUsuario=$nombreUsuario"
+        val url = "http://192.168.0.216/ApiRestDiagnoSkin/usuarios.php?nombreUsuario=$nombreUsuario"
         val request = Request.Builder()
             .url(url)
             .build()

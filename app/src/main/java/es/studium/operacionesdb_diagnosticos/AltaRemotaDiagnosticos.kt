@@ -35,7 +35,7 @@ class AltaRemotaDiagnosticos {
                     .build()
 
                 val request = Request.Builder()
-                    .url("http://192.168.0.217/ApiRestDiagnoSkin/diagnosticos.php")
+                    .url("http://192.168.0.216/ApiRestDiagnoSkin/diagnosticos.php")
                     .post(formBody)
                     .build()
 
