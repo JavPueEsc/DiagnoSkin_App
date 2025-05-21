@@ -273,6 +273,8 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
                 lbl_Dermatofibromas.visibility = View.GONE
                 lbl_Angiomas.visibility = View.GONE
                 lbl_Onicomicosis.visibility = View.GONE
+                txt_fechaDesde.setText("")
+                txt_fechaHasta.setText("")
                 //Redimensionar el mapa
                 val alturaDp = 250
                 val escala = resources.displayMetrics.density
