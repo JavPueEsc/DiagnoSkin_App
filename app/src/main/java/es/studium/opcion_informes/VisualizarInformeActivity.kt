@@ -253,7 +253,9 @@ class VisualizarInformeActivity : AppCompatActivity() {
                     idPacienteFKBD = jsonObject.getString("idPacienteFK")
 
                     if(idPacienteFKBD==idPaciente){
-                        break
+                        if(idDiagnosticoBD == idDiagnosticoRecibido){
+                            break
+                        }
                     }
                 }
             }
