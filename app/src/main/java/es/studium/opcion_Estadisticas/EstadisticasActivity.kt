@@ -267,6 +267,12 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
             val idCentro = marker.tag as? String
             idCentroSeleccionado = idCentro
             if(idCentro!=null){
+                //ocultar etiquetas de estadisticas si hay algunas mostradas
+                lbl_Melanomas.visibility = View.GONE
+                lbl_nevus.visibility = View.GONE
+                lbl_Dermatofibromas.visibility = View.GONE
+                lbl_Angiomas.visibility = View.GONE
+                lbl_Onicomicosis.visibility = View.GONE
                 //Redimensionar el mapa
                 val alturaDp = 250
                 val escala = resources.displayMetrics.density
