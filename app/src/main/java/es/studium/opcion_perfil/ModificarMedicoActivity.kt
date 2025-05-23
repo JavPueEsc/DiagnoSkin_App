@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
+import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_medicos.ModificacionRemotaMedicos
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -147,6 +148,9 @@ class ModificarMedicoActivity : AppCompatActivity() {
             }
             else if(numColegiadoMedicoModificado.isEmpty()){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_numColegiado_modificarMedico,Toast.LENGTH_SHORT).show()
+            }
+            else if((numColegiadoMedicoRecibido!=numColegiadoMedicoModificado)&&(consultarExistenciaMedico(numColegiadoMedicoModificado))){
+                Toast.makeText(this@ModificarMedicoActivity,"Existe otro médico con ese núm colegiado",Toast.LENGTH_SHORT).show()
             }
             else if(spinner_centroTrabajoMedico.selectedItemPosition==0){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_centroTrabajo_modificarMedico,Toast.LENGTH_SHORT).show()
@@ -302,5 +306,33 @@ class ModificarMedicoActivity : AppCompatActivity() {
             Log.e("ModificarMedicoActivity", "Error al procesar el JSON", e)
         }
         return idCentroMedicoFKModificado
+    }
+
+    fun consultarExistenciaMedico(numColegiadoMedico: String): Boolean {
+        var existeMedico: Boolean = false
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var consultaRemotaMedicos = ConsultaRemotaMedicos()
+        result = consultaRemotaMedicos.obtenerMedicoPorNumCol(numColegiadoMedico)
+        //Verificamos que result no está vacío
+        try {
+            if (result.length() > 0) {
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    var numColegiadoMedicoBD = jsonObject.getString("numColegiadoMedico")
+                    if (numColegiadoMedicoBD == numColegiadoMedico) {
+                        existeMedico = true
+                        break //<-- salimos del bucle
+                    }
+                }
+            } else {
+                Log.e("MainActivity", "El JSONObject está vacío")
+            }
+        } catch (e: JSONException) {
+            Log.e("MainActivity", "Error al procesar el JSON", e)
+        }
+        return existeMedico
     }
 }

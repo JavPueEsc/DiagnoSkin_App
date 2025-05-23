@@ -197,6 +197,8 @@
     <string name="PA_toastErrorVacio_apellidosPaciente">Debe introducir los apellidos del paciente</string>
     <string name="PA_toastErrorVacio_sexoPaciente">Debe seleccionar el sexo del paciente</string>
     <string name="PA_toastErrorVacio_nuhsaPaciente">Debe introducir el nuhsa del paciente</string>
+    <string name="PA_toastExistePaciente_nuhsaPaciente">Un paciente con ese nuhsa ya ha sido registrado</string>
+    <string name="PA_toastExistePacienteModificar_nuhsaPaciente">El nuhsa introducido pertenece a otro paciente registrado</string>
     <string name="PA_toastErrorVacio_telefonoPaciente">Debe introducir el telefono del paciente</string>
     <string name="PA_toastErrorVacio_emailPaciente">Debe introducir el email del paciente</string>
     <string name="PA_toastErrorVacio_dniPaciente">Debe introducir el dni del paciente</string>

@@ -3,7 +3,9 @@ package es.studium.opcion_pacientes
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.StrictMode
 import android.text.InputType
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.DatePicker
@@ -14,10 +16,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
+import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
 import es.studium.operacionesbd_pacientes.ModificacionRemotaPacientes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONArray
+import org.json.JSONException
+import org.json.JSONObject
 
 
 class ModificarPacienteActivity : AppCompatActivity() {
@@ -55,6 +61,11 @@ class ModificarPacienteActivity : AppCompatActivity() {
     private var esAdminMedicoRecibido: String? = ""
     private var idMedicoRecibido: String? = ""
     private var idUsuarioRecibido: String? = ""
+
+    //Variablespara la consulta de los pacientes en la base de datos.
+    private lateinit var result : JSONArray
+    private lateinit var jsonObject: JSONObject
+    private lateinit var nuhsaPacienteBD : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -171,6 +182,8 @@ class ModificarPacienteActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_sexoPaciente, Toast.LENGTH_SHORT).show()
             } else if (nuhsaPacienteModificado.isEmpty()) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_nuhsaPaciente, Toast.LENGTH_SHORT).show()
+            } else if((nuhsaPacienteModificado != nuhsaPacienteRecibido) && (existePaciente(nuhsaPacienteModificado))){
+                Toast.makeText(this, R.string.PA_toastExistePacienteModificar_nuhsaPaciente, Toast.LENGTH_SHORT).show()
             } else if (telefonoPacienteModificado.isEmpty()) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_telefonoPaciente, Toast.LENGTH_SHORT).show()
             }  else if (direccionPacienteModificado.isEmpty()) {
@@ -319,6 +332,37 @@ class ModificarPacienteActivity : AppCompatActivity() {
             dniPacienteRecibido, direccionPacienteRecibido, localidadPacienteRecibido, provinciaPacienteRecibido, codigoPostalPacienteRecibido,
             esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido
         )
+    }
+
+    fun existePaciente(nuhsa:String):Boolean{
+        //-----Cominucacion con la API-Rest-----------
+        if(android.os.Build.VERSION.SDK_INT > 9){
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+        }
+        var existePaciente = false
+        var consultaRemotaPacientes = ConsultaRemotaPacientes()
+        result = consultaRemotaPacientes.obtenerPacientePorNuhsa(nuhsa)
+        //verificamos que result no está vacio
+        try{
+            if(result.length() > 0){
+                for (i in 0 until result.length()) {
+                    jsonObject = result.getJSONObject(i)
+                    nuhsaPacienteBD = jsonObject.getString("nuhsaPaciente")
+                    if(nuhsaPacienteBD==nuhsa){
+                        existePaciente = true
+                        return existePaciente
+                    }
+                }
+            }
+            else{
+                Log.e("PrincipalPacientesActivity", "El JSONObject está vacío")
+            }
+        }
+        catch(e : JSONException){
+            Log.e("PrincipalPacientesActivity", "Error al procesar el JSON", e)
+        }
+        return existePaciente
     }
 
 }

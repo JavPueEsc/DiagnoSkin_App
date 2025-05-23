@@ -129,7 +129,7 @@ class PrincipalMedicosActivity : AppCompatActivity() {
                 }
 
                 override fun onLongClick(view: View, position: Int) {
-                    // Eliminación de un paciente - Pulsación larga
+                    // Bloqueo de un paciente - Pulsación larga
                     val medicoAEliminar = listaMedicos[position]
                     val tituloPersonalizado = layoutInflater.inflate(R.layout.xx_titulo_dialogo_personalizado_bloqueo, null)
                     val dialogo = AlertDialog
