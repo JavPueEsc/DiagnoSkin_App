@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.ValidacionMedicosUsuarios
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_medicos.ModificacionRemotaMedicos
@@ -131,28 +132,30 @@ class ModificarMedicoActivity : AppCompatActivity() {
             var idCentroMedicoFKModificado = obtenerIDCentroMedicoSeleccionado(nombreCentroTrabajoModificado)
 
             //control de errores
-            if(nombreMedicoModificado.isEmpty()){
+            var validacionMedUsu = ValidacionMedicosUsuarios()
+
+            if(!validacionMedUsu.esNombreMedicoValido(nombreMedicoModificado)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_nombre_modificarMedico,Toast.LENGTH_SHORT).show()
             }
-            else if(apellidosModificado.isEmpty()){
+            else if(!validacionMedUsu.esApellidosMedicoValidos(apellidosModificado)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_apellidos_modificarMedico,Toast.LENGTH_SHORT).show()
             }
-            else if(telefonoMedicoModificado.isEmpty()){
+            else if(!validacionMedUsu.esTelefonoValido(telefonoMedicoModificado)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_telefono_modificarMedico,Toast.LENGTH_SHORT).show()
             }
-            else if(emailMedicoModificado.isEmpty()){
+            else if(!validacionMedUsu.esEmailValido(emailMedicoModificado)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_email_modificarMedico,Toast.LENGTH_SHORT).show()
             }
-            else if(spinner_especialidadMedico.selectedItemPosition==0){
+            else if(!validacionMedUsu.esEspecialidadSeleccionada(spinner_especialidadMedico.selectedItemPosition)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_especialidad_modificarMedico,Toast.LENGTH_SHORT).show()
             }
-            else if(numColegiadoMedicoModificado.isEmpty()){
+            else if(!validacionMedUsu.esNumColegiadoValido(numColegiadoMedicoModificado)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_numColegiado_modificarMedico,Toast.LENGTH_SHORT).show()
             }
-            else if((numColegiadoMedicoRecibido!=numColegiadoMedicoModificado)&&(consultarExistenciaMedico(numColegiadoMedicoModificado))){
-                Toast.makeText(this@ModificarMedicoActivity,"Existe otro médico con ese núm colegiado",Toast.LENGTH_SHORT).show()
+            else if(!validacionMedUsu.esNumColegiadoValidoParaModificacion(numColegiadoMedicoModificado,numColegiadoMedicoRecibido)){
+                Toast.makeText(this@ModificarMedicoActivity,R.string.LO_Toast_MedicoExiste,Toast.LENGTH_SHORT).show()
             }
-            else if(spinner_centroTrabajoMedico.selectedItemPosition==0){
+            else if(!validacionMedUsu.esCentroMedicoSeleccionado(spinner_centroTrabajoMedico.selectedItemPosition)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_centroTrabajo_modificarMedico,Toast.LENGTH_SHORT).show()
             }
             else{

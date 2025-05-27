@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.ValidacionMedicosUsuarios
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.AltaRemotaMedicos
 import es.studium.operacionesbd_usuarios.AltaRemotaUsuarios
@@ -122,17 +123,19 @@ class AltaDatosPersonalesActivity : AppCompatActivity() {
         //Gestión botón Aceptar
         btn_Aceptar.setOnClickListener {
             //Control de errores
-            if (txt_Nombre.text.toString().isEmpty()) {
+            var validacionMedUsu = ValidacionMedicosUsuarios()
+
+            if (!validacionMedUsu.esNombreMedicoValido(txt_Nombre.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorNombre, Toast.LENGTH_SHORT).show()
-            } else if (txt_Apellidos.text.toString().isEmpty()) {
+            } else if (!validacionMedUsu.esApellidosMedicoValidos(txt_Apellidos.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorApellidos, Toast.LENGTH_SHORT).show()
-            } else if (spinner_Especialidad.selectedItemPosition == 0) {
+            } else if (!validacionMedUsu.esEspecialidadSeleccionada(spinner_Especialidad.selectedItemPosition)) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorEspecialidad, Toast.LENGTH_SHORT).show()
-            } else if (spinner_CentroMedico.selectedItemPosition == 0) {
+            } else if (!validacionMedUsu.esCentroMedicoSeleccionado(spinner_CentroMedico.selectedItemPosition)) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCentro, Toast.LENGTH_SHORT).show()
-            } else if (txt_telefono.text.toString().isEmpty()) {
+            } else if (!validacionMedUsu.esTelefonoValido(txt_telefono.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorTelefono, Toast.LENGTH_SHORT).show()
-            } else if (txt_email.text.toString().isEmpty()) {
+            } else if (!validacionMedUsu.esEmailValido(txt_email.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorEmail, Toast.LENGTH_SHORT).show()
             } else {
 

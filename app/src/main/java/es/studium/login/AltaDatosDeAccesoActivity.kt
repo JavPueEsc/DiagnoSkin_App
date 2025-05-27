@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.ValidacionMedicosUsuarios
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
@@ -62,26 +63,28 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
             clave2Introducida = txt_clave2.text.toString()
 
             //Control de errores
-            if (nombreUsuarioIntroducido.isEmpty()) {
+            var validacionMedUsu = ValidacionMedicosUsuarios()
+
+            if (!validacionMedUsu.esNombreUsuarioValido(nombreUsuarioIntroducido)) {
                 Toast.makeText(this, R.string.LO_Toast_NombreUsuarioVacio, Toast.LENGTH_SHORT)
                     .show()
-            } else if (numColegiadoIntroducido.isEmpty()) {
+            } else if (!validacionMedUsu.esNumColegiadoValido(numColegiadoIntroducido)) {
                 Toast.makeText(this, R.string.LO_Toast_NumColegiadoVacio, Toast.LENGTH_SHORT).show()
-            } else if (clave1Introducida.isEmpty()) {
+            } else if (!validacionMedUsu.esClave1Valida(clave1Introducida)) {
                 Toast.makeText(this, R.string.LO_Toast_Clave1Vacia, Toast.LENGTH_SHORT).show()
-            }else if(clave1Introducida.length<6){
+            }else if(!validacionMedUsu.esClave1LongitudCorrecta(clave1Introducida)){
                 Toast.makeText(this, R.string.LO_Toast_CleveMenos6caracteres, Toast.LENGTH_SHORT).show()
-            }else if (clave2Introducida.isEmpty()) {
+            }else if (!validacionMedUsu.esClave2Valida(clave2Introducida)) {
                 Toast.makeText(this, R.string.LO_Toast_Clave2Vacia, Toast.LENGTH_SHORT).show()
-            }else if (clave1Introducida != clave2Introducida) {
+            }else if (!validacionMedUsu.clavesCoinciden(clave1Introducida, clave2Introducida)) {
                 Toast.makeText(this, R.string.LO_Toast_ClavesNoCoinciden, Toast.LENGTH_SHORT)
                     .show()
             } else {
                 //1. Comprobación de que no existe el usuario en la BBDD
-                if (consultarExistenciaUsuario(nombreUsuarioIntroducido.trim())) {
+                if (validacionMedUsu.existeUsuario(nombreUsuarioIntroducido)) {
                     Toast.makeText(this, R.string.LO_Toast_NombreUsuarioExiste, Toast.LENGTH_SHORT)
                         .show()
-                } else if (consultarExistenciaMedico(numColegiadoIntroducido.trim())) {
+                } else if (validacionMedUsu.existeMedico(numColegiadoIntroducido)) {
                     Toast.makeText(this, R.string.LO_Toast_MedicoExiste, Toast.LENGTH_SHORT).show()
                 }  else {
                     val bundle = Bundle()
