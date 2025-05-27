@@ -14,4 +14,5 @@ data class ModeloPaciente (
     var localidadPaciente : String,
     var provinciaPaciente : String,
     var codigoPostalPaciente : String
+
 )

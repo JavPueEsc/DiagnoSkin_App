@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.ValidacionPacientes
 import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
 import es.studium.operacionesbd_pacientes.ModificacionRemotaPacientes
 import kotlinx.coroutines.CoroutineScope
@@ -174,27 +175,29 @@ class ModificarPacienteActivity : AppCompatActivity() {
             var codigoPostalPacienteModificado = txt_codigoPostalPaciente.text.toString()
 
             //control de errores
-            if (nombrePacienteModificado.isEmpty()) {
+            var validacionPacientes = ValidacionPacientes()
+
+            if (!validacionPacientes.esNombreValido(nombrePacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_NombrePaciente, Toast.LENGTH_SHORT).show()
-            } else if (apellidosPacienteModificado.toString().isEmpty()) {
+            } else if (!validacionPacientes.esApellidosValido(apellidosPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_apellidosPaciente, Toast.LENGTH_SHORT).show()
-            } else if (sexoPacienteModificado == getString(R.string.PA_itemCeroSpinner)) {
+            } else if (!validacionPacientes.esSexoValido(sexoPacienteModificado, getString(R.string.PA_itemCeroSpinner))) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_sexoPaciente, Toast.LENGTH_SHORT).show()
-            } else if (nuhsaPacienteModificado.isEmpty()) {
+            } else if (!validacionPacientes.esNuhsaValido(nuhsaPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_nuhsaPaciente, Toast.LENGTH_SHORT).show()
-            } else if((nuhsaPacienteModificado != nuhsaPacienteRecibido) && (existePaciente(nuhsaPacienteModificado))){
+            } else if(!validacionPacientes.esNuhsaValidoParaModificacion(nuhsaPacienteModificado, nuhsaPacienteRecibido ?:"")){
                 Toast.makeText(this, R.string.PA_toastExistePacienteModificar_nuhsaPaciente, Toast.LENGTH_SHORT).show()
-            } else if (telefonoPacienteModificado.isEmpty()) {
+            } else if (!validacionPacientes.esTelefonoValido(telefonoPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_telefonoPaciente, Toast.LENGTH_SHORT).show()
-            }  else if (direccionPacienteModificado.isEmpty()) {
+            }  else if (!validacionPacientes.esDireccionValida(direccionPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_direccionPaciente, Toast.LENGTH_SHORT).show()
-            } else if (localidadPacienteModificado.isEmpty()) {
+            } else if (!validacionPacientes.esLocalidadValida(localidadPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_localidadPaciente, Toast.LENGTH_SHORT).show()
-            } else if (provinciaPacienteModificado.isEmpty()) {
+            } else if (!validacionPacientes.esProvinciaValida(provinciaPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_provinciaPaciente, Toast.LENGTH_SHORT).show()
-            } else if (codigoPostalPacienteModificado.isEmpty()) {
+            } else if (!validacionPacientes.esCodigoPostalValido(codigoPostalPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_codigoPostalPaciente, Toast.LENGTH_SHORT).show()
-            } else if (codigoPostalPacienteModificado.length != 5) {
+            } else if (!validacionPacientes.esCodigoPostalLongitudCorrecta(codigoPostalPacienteModificado)) {
                 Toast.makeText(this, R.string.PA_toastErrorDistintoCinco_codigoPostalPaciente, Toast.LENGTH_SHORT).show()
             } else {
                 // Realizar la actualización eb bbdd

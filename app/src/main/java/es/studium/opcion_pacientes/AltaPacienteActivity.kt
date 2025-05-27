@@ -17,7 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
-import es.studium.modelos_y_utiles.ModeloPaciente
+import es.studium.modelos_y_utiles.ValidacionPacientes
 import es.studium.operacionesbd_pacientes.AltaRemotaPacientes
 import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
 import kotlinx.coroutines.CoroutineScope
@@ -123,30 +123,32 @@ class AltaPacienteActivity : AppCompatActivity() {
             var codigoPostalPacienteIntroducido = txt_codigoPostalPaciente.text.toString()
 
             //control de errores
-            if (nombrePacienteIntroducido.isEmpty()) {
+            var validacionPacientes = ValidacionPacientes()
+
+            if (!validacionPacientes.esNombreValido(nombrePacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_NombrePaciente, Toast.LENGTH_SHORT).show()
-            } else if (apellidosPacienteIntroducido.toString().isEmpty()) {
+            } else if (!validacionPacientes.esApellidosValido(apellidosPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_apellidosPaciente, Toast.LENGTH_SHORT).show()
-            } else if (sexoPacienteIntroducido == getString(R.string.PA_itemCeroSpinner)) {
+            } else if (!validacionPacientes.esSexoValido(sexoPacienteIntroducido,getString(R.string.PA_itemCeroSpinner))) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_sexoPaciente, Toast.LENGTH_SHORT).show()
-            } else if (nuhsaPacienteIntroducido.isEmpty()) {
+            } else if (!validacionPacientes.esNuhsaValido(nuhsaPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_nuhsaPaciente, Toast.LENGTH_SHORT).show()
-            }else if(existePaciente(nuhsaPacienteIntroducido)){
+            }else if(!validacionPacientes.esNuhsaUnico(nuhsaPacienteIntroducido)){
                 Toast.makeText(this, R.string.PA_toastExistePaciente_nuhsaPaciente, Toast.LENGTH_SHORT).show()
-            } else if (telefonoPacienteIntroducido.isEmpty()) {
+            } else if (!validacionPacientes.esTelefonoValido(telefonoPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_telefonoPaciente, Toast.LENGTH_SHORT).show()
-            }  else if (direccionPacienteIntroducido.isEmpty()) {
+            }  else if (!validacionPacientes.esDireccionValida(direccionPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_direccionPaciente, Toast.LENGTH_SHORT).show()
-            } else if (localidadPacienteIntroducido.isEmpty()) {
+            } else if (!validacionPacientes.esLocalidadValida(localidadPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_localidadPaciente, Toast.LENGTH_SHORT).show()
-            } else if (provinciaPacienteIntroducido.isEmpty()) {
+            } else if (!validacionPacientes.esProvinciaValida(provinciaPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_provinciaPaciente, Toast.LENGTH_SHORT).show()
-            } else if (codigoPostalPacienteIntroducido.isEmpty()) {
+            } else if (!validacionPacientes.esCodigoPostalValido(codigoPostalPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_codigoPostalPaciente, Toast.LENGTH_SHORT).show()
-            } else if (codigoPostalPacienteIntroducido.length != 5) {
+            } else if (!validacionPacientes.esCodigoPostalLongitudCorrecta(codigoPostalPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorDistintoCinco_codigoPostalPaciente, Toast.LENGTH_SHORT).show()
             } else {
-                // Realizar la actualización eb bbdd
+                // Realizar la actualización en bbdd
                 val altaPaciente = AltaRemotaPacientes()
                 // Como ModificacionRemotaPacientes es suspend, se necesita una corrutina
                 CoroutineScope(Dispatchers.IO).launch {

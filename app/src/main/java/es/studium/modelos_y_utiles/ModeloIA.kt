@@ -16,7 +16,7 @@ class ModeloIA(private val context: Context) {
 
     init {
         // Cargar el modelo .tflite
-        val model = FileUtil.loadMappedFile(context, "modelo_optimizado.tflite")
+        val model = FileUtil.loadMappedFile(context, "modelo_mejor_optimizado.tflite")
         tflite = org.tensorflow.lite.Interpreter(model)
     }
 
