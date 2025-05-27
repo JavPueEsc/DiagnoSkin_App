@@ -20,6 +20,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.ValidacionesOtras
 import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
 import es.studium.opcion_pacientes.ModificarPacienteActivity
 import es.studium.operacionesdb_diagnosticos.ConsultaRemotaDiagnosticos
@@ -148,16 +149,19 @@ class BuscadorInformesActivity : AppCompatActivity() {
             val fechaDesdeString = txt_fechaDesde.text.toString()
             val fechaHastaString = txt_fechaHasta.text.toString()
 
-            if (fechaDesdeString.isEmpty()) {
+            //Control de errores
+            var validacionesOtras = ValidacionesOtras()
+
+            if (!validacionesOtras.esFechaDesdeNoVacia(fechaDesdeString)) {
                 Toast.makeText(this, R.string.INF_toastErrorFechaDesdeVacia_BuscadorInformes, Toast.LENGTH_SHORT).show()
-            } else if (fechaHastaString.isEmpty()) {
+            } else if (!validacionesOtras.esFechaHastaNoVacia(fechaHastaString)) {
                 Toast.makeText(this, R.string.INF_toastErrorFechaHastaVacia_BuscadorInformes, Toast.LENGTH_SHORT).show()
             } else {
                 try {
                     val fechaDesde = formatoFecha.parse(fechaDesdeString)
                     var fechaHasta = formatoFecha.parse(fechaHastaString)
 
-                    if (fechaDesde != null && fechaHasta != null && fechaDesde.after(fechaHasta)) {
+                    if (!validacionesOtras.esRangoFechasValido(fechaDesde,fechaHasta)) {
                         Toast.makeText(this, R.string.INF_toastErrorFechaDesdeMayor_BuscadorInformes, Toast.LENGTH_SHORT).show()
                     } else {
                         //Toast.makeText(this, "Rango de fechas CORRECTO", Toast.LENGTH_SHORT).show()

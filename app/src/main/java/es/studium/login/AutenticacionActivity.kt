@@ -23,6 +23,7 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.ValidacionesOtras
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
@@ -50,7 +51,7 @@ class AutenticacionActivity : AppCompatActivity() {
     lateinit var nombreUsuarioBD: String
     lateinit var claveUsuarioBD: String
     lateinit var fechaAltaUsuarioBD: String
-    var credencialesCorrectas: Boolean = false
+
 
     //Declaración de las constantes necesarias para las shared Preferences
     val MyPREFERENCES = "credenciales_Acceso"
@@ -77,22 +78,23 @@ class AutenticacionActivity : AppCompatActivity() {
             //Comprobación de las credenciales introducidas
             comprobarCredenciales(usuarioIntroducido, claveIntroducida)
 
-            //Contro de errores
-            if (txt_usuario.text.toString().isEmpty()) {
+            //Control de errores
+            var validacionesOtras = ValidacionesOtras()
+
+            if (!validacionesOtras.esUsuarioValido(txt_usuario.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCampoUsuarioVacio, Toast.LENGTH_SHORT)
                     .show()
-            } else if (txt_clave.text.toString().isEmpty()) {
+            } else if (!validacionesOtras.esClaveValida(txt_clave.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCampoClaveVacio, Toast.LENGTH_SHORT)
                     .show()
-            } else if (credencialesCorrectas) {
-                if(comprobarBloqueo(usuarioIntroducido)){
+            } else if (validacionesOtras.sonCredencialesCorrectas(usuarioIntroducido, claveIntroducida)) {
+                if(validacionesOtras.estaBloqueado(usuarioIntroducido)){
                     Toast.makeText(this@AutenticacionActivity,R.string.LO_ToastUsuarioBloqueado, Toast.LENGTH_SHORT).show()
                     Toast.makeText(this@AutenticacionActivity,R.string.LO_ToastConsultaAdministrador, Toast.LENGTH_SHORT).show()
                 }
                 else{
                     Toast.makeText(this, R.string.LO_Toast_CredencialesCorrectas, Toast.LENGTH_SHORT)
                         .show()
-                    credencialesCorrectas = false //Reseteo de booleano
                     txt_usuario.setText("")
                     txt_clave.setText("")
                     //Comprobación de si hay Shared preferences guardadas
@@ -182,8 +184,10 @@ class AutenticacionActivity : AppCompatActivity() {
     }
 
     //Comprobar credenciales
-    fun comprobarCredenciales(usuarioIntroducido: String, claveIntroducida: String) {
+    fun comprobarCredenciales(usuarioIntroducido: String, claveIntroducida: String) : Boolean{
         //Comunicación con la API para realizar la consulta
+        var credencialesCorrectas: Boolean = false
+
         if (android.os.Build.VERSION.SDK_INT > 9) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
@@ -204,6 +208,7 @@ class AutenticacionActivity : AppCompatActivity() {
                         ))
                     ) {
                         credencialesCorrectas = true
+                        return credencialesCorrectas
                         break //<-- salimos del bucle
                     }
                 }
@@ -216,6 +221,7 @@ class AutenticacionActivity : AppCompatActivity() {
         } catch (e: JSONException) {
             Log.e("MainActivity", "Error al procesar el JSON", e)
         }
+        return credencialesCorrectas
     }
 
     //Comprobar usuario bloqueado
@@ -245,7 +251,7 @@ class AutenticacionActivity : AppCompatActivity() {
                 Log.d("DEBUG", "HASH BD: $claveUsuarioBD")
             } else {
                 Log.e("AutenticationActivity", "El JSONObject está vacío")
-                credencialesCorrectas = false
+                //credencialesCorrectas = false
             }
         } catch (e: JSONException) {
             Log.e("AutenticationActivity", "Error al procesar el JSON", e)

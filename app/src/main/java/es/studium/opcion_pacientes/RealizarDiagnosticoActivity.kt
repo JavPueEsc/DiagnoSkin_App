@@ -27,6 +27,7 @@ import androidx.core.content.FileProvider
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.ModeloIA
+import es.studium.modelos_y_utiles.ValidacionesOtras
 import es.studium.opcion_diagnosticos.PrincipalPacientes2Activity
 import java.io.File
 import java.io.FileOutputStream
@@ -141,6 +142,9 @@ class RealizarDiagnosticoActivity : AppCompatActivity() {
         //Gestión del botón predecir
         btn_diagnosticar.setOnClickListener {
             try {
+                //Control de errores
+                var validacionesOtras = ValidacionesOtras()
+
                 // Obtener la URI de la imagen cargada en el ImageView
                 val imageUri = getImageUriFromImageView()
                 if (imageUri != null) {

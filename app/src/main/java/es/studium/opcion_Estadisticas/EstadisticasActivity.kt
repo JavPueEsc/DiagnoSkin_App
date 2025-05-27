@@ -33,6 +33,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
 import es.studium.modelos_y_utiles.ModeloDiagnostico
+import es.studium.modelos_y_utiles.ValidacionesOtras
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesdb_diagnosticos.ConsultaRemotaDiagnosticos
 import org.json.JSONArray
@@ -214,16 +215,18 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
             val fechaDesdeString = txt_fechaDesde.text.toString()
             val fechaHastaString = txt_fechaHasta.text.toString()
 
-            if (fechaDesdeString.isEmpty()) {
+            var validacionesOtras = ValidacionesOtras()
+
+            if (!validacionesOtras.esFechaDesdeNoVacia(fechaDesdeString)) {
                 Toast.makeText(this, R.string.INF_toastErrorFechaDesdeVacia_BuscadorInformes, Toast.LENGTH_SHORT).show()
-            } else if (fechaHastaString.isEmpty()) {
+            } else if (!validacionesOtras.esFechaHastaNoVacia(fechaHastaString)) {
                 Toast.makeText(this, R.string.INF_toastErrorFechaHastaVacia_BuscadorInformes, Toast.LENGTH_SHORT).show()
             } else {
                 try {
                     val fechaDesde = formatoFecha.parse(fechaDesdeString)
                     var fechaHasta = formatoFecha.parse(fechaHastaString)
 
-                    if (fechaDesde != null && fechaHasta != null && fechaDesde.after(fechaHasta)) {
+                    if (!validacionesOtras.esRangoFechasValido(fechaDesde,fechaHasta)) {
                         Toast.makeText(this, R.string.INF_toastErrorFechaDesdeMayor_BuscadorInformes, Toast.LENGTH_SHORT).show()
                     } else {
                         lbl_Melanomas.text = getString(R.string.ES_lbl_Melanomas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Melanoma"))
