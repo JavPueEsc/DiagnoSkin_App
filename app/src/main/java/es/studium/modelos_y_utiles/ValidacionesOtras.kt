@@ -6,8 +6,6 @@ import java.util.Date
 
 class ValidacionesOtras {
 
-    val autenticacionActivity = AutenticacionActivity()
-
     //Login
     fun esUsuarioValido(usuario: String): Boolean {
         return usuario.isNotEmpty()
@@ -15,14 +13,6 @@ class ValidacionesOtras {
 
     fun esClaveValida(clave: String): Boolean {
         return clave.isNotEmpty()
-    }
-
-    fun sonCredencialesCorrectas(usuario: String, clave: String): Boolean {
-        return autenticacionActivity.comprobarCredenciales(usuario, clave)
-    }
-
-    fun estaBloqueado(usuario: String): Boolean {
-        return autenticacionActivity.comprobarBloqueo(usuario)
     }
 
     //Rangos de fechas válidos

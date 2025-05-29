@@ -74,4 +74,8 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     //Dependencias googleMaps
     implementation ("com.google.android.gms:play-services-maps:18.1.0")
+
+    //Test unitarios con Mockito
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
 }
+

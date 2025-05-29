@@ -10,14 +10,17 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.InterfazMedico
+import es.studium.modelos_y_utiles.InterfazUsuario
 import es.studium.modelos_y_utiles.ValidacionMedicosUsuarios
+import es.studium.modelos_y_utiles.ValidacionMedicosUsuariosBBDD
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class AltaDatosDeAccesoActivity : AppCompatActivity() {
+class AltaDatosDeAccesoActivity : AppCompatActivity(),InterfazUsuario, InterfazMedico {
     //Declaracion de las vistas
     private lateinit var txt_nombreUsuario: EditText
     private lateinit var txt_numColegiado: EditText
@@ -64,6 +67,7 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
 
             //Control de errores
             var validacionMedUsu = ValidacionMedicosUsuarios()
+            var validacionMedUsuBBDD = ValidacionMedicosUsuariosBBDD(this,this)
 
             if (!validacionMedUsu.esNombreUsuarioValido(nombreUsuarioIntroducido)) {
                 Toast.makeText(this, R.string.LO_Toast_NombreUsuarioVacio, Toast.LENGTH_SHORT)
@@ -81,10 +85,10 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
                     .show()
             } else {
                 //1. Comprobación de que no existe el usuario en la BBDD
-                if (validacionMedUsu.existeUsuario(nombreUsuarioIntroducido)) {
+                if (validacionMedUsuBBDD.existeUsuario(nombreUsuarioIntroducido)) {
                     Toast.makeText(this, R.string.LO_Toast_NombreUsuarioExiste, Toast.LENGTH_SHORT)
                         .show()
-                } else if (validacionMedUsu.existeMedico(numColegiadoIntroducido)) {
+                } else if (validacionMedUsuBBDD.existeMedico(numColegiadoIntroducido)) {
                     Toast.makeText(this, R.string.LO_Toast_MedicoExiste, Toast.LENGTH_SHORT).show()
                 }  else {
                     val bundle = Bundle()
@@ -100,7 +104,7 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
         }
     }
 
-    fun consultarExistenciaUsuario(nombreUsuario: String): Boolean {
+    override fun consultarExistenciaUsuario(nombreUsuario: String): Boolean {
         var existeUsuario: Boolean = false
         if (android.os.Build.VERSION.SDK_INT > 9) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -132,7 +136,7 @@ class AltaDatosDeAccesoActivity : AppCompatActivity() {
         return existeUsuario
     }
 
-    fun consultarExistenciaMedico(numColegiadoMedico: String): Boolean {
+    override fun consultarExistenciaMedico(numColegiadoMedico: String): Boolean {
         var existeMedico: Boolean = false
         if (android.os.Build.VERSION.SDK_INT > 9) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()

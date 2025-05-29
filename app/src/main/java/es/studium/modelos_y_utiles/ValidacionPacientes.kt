@@ -4,7 +4,7 @@ import es.studium.opcion_pacientes.AltaPacienteActivity
 
 class ValidacionPacientes {
 
-    val altaPacienteActivity = AltaPacienteActivity()
+
 
     fun esNombreValido(nombre: String): Boolean {
         return nombre.isNotEmpty()
@@ -22,17 +22,11 @@ class ValidacionPacientes {
         return nuhsa.isNotEmpty()
     }
 
-    fun esNuhsaUnico(nuhsa: String): Boolean {
-        return !altaPacienteActivity.existePaciente(nuhsa)
-    }
 
     fun esTelefonoValido(telefono: String): Boolean {
         return telefono.isNotEmpty()
     }
 
-    fun esNuhsaValidoParaModificacion(nuhsaModificado: String, nuhsaOriginal: String): Boolean {
-        return (nuhsaModificado == nuhsaOriginal) || !altaPacienteActivity.existePaciente(nuhsaModificado)
-    }
 
     fun esDireccionValida(direccion: String): Boolean {
         return direccion.isNotEmpty()

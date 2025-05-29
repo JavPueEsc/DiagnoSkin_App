@@ -4,8 +4,7 @@ import es.studium.login.AltaDatosDeAccesoActivity
 import es.studium.opcion_perfil.ModificarMedicoActivity
 
 class ValidacionMedicosUsuarios {
-    var altaDatosDeAccesoActivity = AltaDatosDeAccesoActivity()
-    var modificarMedicoActivity = ModificarMedicoActivity()
+
 
     fun esNombreUsuarioValido(nombre: String): Boolean {
         return nombre.isNotEmpty()
@@ -29,14 +28,6 @@ class ValidacionMedicosUsuarios {
 
     fun clavesCoinciden(clave1: String, clave2: String): Boolean {
         return clave1 == clave2
-    }
-
-    fun existeUsuario(nombreUsuario: String): Boolean {
-        return altaDatosDeAccesoActivity.consultarExistenciaUsuario(nombreUsuario.trim())
-    }
-
-    fun existeMedico(numColegiado: String): Boolean {
-        return altaDatosDeAccesoActivity.consultarExistenciaMedico(numColegiado.trim())
     }
 
     fun esNombreMedicoValido(nombre: String): Boolean {
@@ -63,8 +54,5 @@ class ValidacionMedicosUsuarios {
         return email.isNotEmpty()
     }
 
-    fun esNumColegiadoValidoParaModificacion(numColegiadoModificado: String, numColegiadoOriginal: String
-    ): Boolean {
-        return (numColegiadoModificado == numColegiadoOriginal) || !modificarMedicoActivity.consultarExistenciaMedico(numColegiadoModificado)
-    }
+
 }

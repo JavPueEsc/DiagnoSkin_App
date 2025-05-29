@@ -14,7 +14,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.InterfazMedico
+import es.studium.modelos_y_utiles.InterfazUsuario
 import es.studium.modelos_y_utiles.ValidacionMedicosUsuarios
+import es.studium.modelos_y_utiles.ValidacionMedicosUsuariosBBDD
 import es.studium.operacionesbd_centrosmedicos.ConsultaRemotaCentrosMedicos
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_medicos.ModificacionRemotaMedicos
@@ -25,7 +28,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class ModificarMedicoActivity : AppCompatActivity() {
+class ModificarMedicoActivity : AppCompatActivity(), InterfazUsuario, InterfazMedico {
     //Declaración de las vistas
     private lateinit var lbl_idMedico: TextView
     private lateinit var txt_nombreMedico: EditText
@@ -133,6 +136,7 @@ class ModificarMedicoActivity : AppCompatActivity() {
 
             //control de errores
             var validacionMedUsu = ValidacionMedicosUsuarios()
+            var validacionMedUsuBBDD = ValidacionMedicosUsuariosBBDD(this,this)
 
             if(!validacionMedUsu.esNombreMedicoValido(nombreMedicoModificado)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_nombre_modificarMedico,Toast.LENGTH_SHORT).show()
@@ -152,7 +156,7 @@ class ModificarMedicoActivity : AppCompatActivity() {
             else if(!validacionMedUsu.esNumColegiadoValido(numColegiadoMedicoModificado)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.PER_toastError_numColegiado_modificarMedico,Toast.LENGTH_SHORT).show()
             }
-            else if(!validacionMedUsu.esNumColegiadoValidoParaModificacion(numColegiadoMedicoModificado,numColegiadoMedicoRecibido)){
+            else if(!validacionMedUsuBBDD.esNumColegiadoValidoParaModificacion(numColegiadoMedicoModificado,numColegiadoMedicoRecibido)){
                 Toast.makeText(this@ModificarMedicoActivity,R.string.LO_Toast_MedicoExiste,Toast.LENGTH_SHORT).show()
             }
             else if(!validacionMedUsu.esCentroMedicoSeleccionado(spinner_centroTrabajoMedico.selectedItemPosition)){
@@ -311,7 +315,11 @@ class ModificarMedicoActivity : AppCompatActivity() {
         return idCentroMedicoFKModificado
     }
 
-    fun consultarExistenciaMedico(numColegiadoMedico: String): Boolean {
+    override fun consultarExistenciaUsuario(nombreUsuario: String): Boolean {
+        return true
+    }
+
+    override fun consultarExistenciaMedico(numColegiadoMedico: String): Boolean {
         var existeMedico: Boolean = false
         if (android.os.Build.VERSION.SDK_INT > 9) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()

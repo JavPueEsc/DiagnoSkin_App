@@ -23,7 +23,9 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 import es.studium.diagnoskin_app.MainActivity
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.InterfazCredenciales
 import es.studium.modelos_y_utiles.ValidacionesOtras
+import es.studium.modelos_y_utiles.ValidacionesOtrasBBDD
 import es.studium.operacionesbd_medicos.ConsultaRemotaMedicos
 import es.studium.operacionesbd_usuarios.ConsultaRemotaUsuarios
 import org.json.JSONArray
@@ -31,7 +33,7 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.security.MessageDigest
 
-class AutenticacionActivity : AppCompatActivity() {
+class AutenticacionActivity : AppCompatActivity(), InterfazCredenciales {
     //Declaracion de las vistas
     private lateinit var txt_usuario: EditText
     private lateinit var txt_clave: EditText
@@ -80,6 +82,7 @@ class AutenticacionActivity : AppCompatActivity() {
 
             //Control de errores
             var validacionesOtras = ValidacionesOtras()
+            var validacionesOtrasBBDD = ValidacionesOtrasBBDD(this)
 
             if (!validacionesOtras.esUsuarioValido(txt_usuario.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCampoUsuarioVacio, Toast.LENGTH_SHORT)
@@ -87,8 +90,8 @@ class AutenticacionActivity : AppCompatActivity() {
             } else if (!validacionesOtras.esClaveValida(txt_clave.text.toString())) {
                 Toast.makeText(this, R.string.LO_Toast_ErrorCampoClaveVacio, Toast.LENGTH_SHORT)
                     .show()
-            } else if (validacionesOtras.sonCredencialesCorrectas(usuarioIntroducido, claveIntroducida)) {
-                if(validacionesOtras.estaBloqueado(usuarioIntroducido)){
+            } else if (validacionesOtrasBBDD.sonCredencialesCorrectas(usuarioIntroducido, claveIntroducida)) {
+                if(validacionesOtrasBBDD.estaBloqueado(usuarioIntroducido)){
                     Toast.makeText(this@AutenticacionActivity,R.string.LO_ToastUsuarioBloqueado, Toast.LENGTH_SHORT).show()
                     Toast.makeText(this@AutenticacionActivity,R.string.LO_ToastConsultaAdministrador, Toast.LENGTH_SHORT).show()
                 }
@@ -184,7 +187,7 @@ class AutenticacionActivity : AppCompatActivity() {
     }
 
     //Comprobar credenciales
-    fun comprobarCredenciales(usuarioIntroducido: String, claveIntroducida: String) : Boolean{
+    override fun comprobarCredenciales(usuarioIntroducido: String, claveIntroducida: String) : Boolean{
         //Comunicación con la API para realizar la consulta
         var credencialesCorrectas: Boolean = false
 
@@ -225,7 +228,7 @@ class AutenticacionActivity : AppCompatActivity() {
     }
 
     //Comprobar usuario bloqueado
-    fun comprobarBloqueo(usuario: String) : Boolean{
+    override fun comprobarBloqueo(usuario: String) : Boolean{
         //Comunicación con la API para realizar la consulta
         if (android.os.Build.VERSION.SDK_INT > 9) {
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()

@@ -17,7 +17,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
 import es.studium.diagnoskin_app.R
+import es.studium.modelos_y_utiles.InterfazPaciente
 import es.studium.modelos_y_utiles.ValidacionPacientes
+import es.studium.modelos_y_utiles.ValidacionPacientesBBDD
 import es.studium.operacionesbd_pacientes.AltaRemotaPacientes
 import es.studium.operacionesbd_pacientes.ConsultaRemotaPacientes
 import kotlinx.coroutines.CoroutineScope
@@ -27,7 +29,7 @@ import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class AltaPacienteActivity : AppCompatActivity() {
+class AltaPacienteActivity : AppCompatActivity(), InterfazPaciente {
     //Declaración de las vistas
     private lateinit var lbl_idPaciente: TextView
     private lateinit var txt_nombrePaciente: EditText
@@ -124,6 +126,7 @@ class AltaPacienteActivity : AppCompatActivity() {
 
             //control de errores
             var validacionPacientes = ValidacionPacientes()
+            var validacionPacientesBBDD = ValidacionPacientesBBDD(this)
 
             if (!validacionPacientes.esNombreValido(nombrePacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_NombrePaciente, Toast.LENGTH_SHORT).show()
@@ -133,7 +136,7 @@ class AltaPacienteActivity : AppCompatActivity() {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_sexoPaciente, Toast.LENGTH_SHORT).show()
             } else if (!validacionPacientes.esNuhsaValido(nuhsaPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_nuhsaPaciente, Toast.LENGTH_SHORT).show()
-            }else if(!validacionPacientes.esNuhsaUnico(nuhsaPacienteIntroducido)){
+            }else if(!validacionPacientesBBDD.esNuhsaUnico(nuhsaPacienteIntroducido)){
                 Toast.makeText(this, R.string.PA_toastExistePaciente_nuhsaPaciente, Toast.LENGTH_SHORT).show()
             } else if (!validacionPacientes.esTelefonoValido(telefonoPacienteIntroducido)) {
                 Toast.makeText(this, R.string.PA_toastErrorVacio_telefonoPaciente, Toast.LENGTH_SHORT).show()
@@ -252,7 +255,7 @@ class AltaPacienteActivity : AppCompatActivity() {
         enviarIntentVolver(esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido)
     }
 
-    fun existePaciente(nuhsa:String):Boolean{
+    override fun existePaciente(nuhsa:String):Boolean{
         //-----Cominucacion con la API-Rest-----------
         if(android.os.Build.VERSION.SDK_INT > 9){
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
