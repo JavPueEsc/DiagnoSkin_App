@@ -39,8 +39,8 @@ class ConsultaRemotaDiagnosticos {
     }
 
     //Obtener numero de diagnostico de una patologia determinada
-    fun obtenerNumDiagPorPatologia(idCentroMedico: String?,patologia : String): JSONArray {
-        val url = "http://192.168.0.216/ApiRestDiagnoSkin/diagnosticos.php?centroMedicoId=${idCentroMedico}&diagnosticoDiagnostico=${patologia}"
+    fun obtenerNumDiagPorPatologia(idCentroMedico: String?, patologia: String, fechaDesde: String, fechaHasta: String): JSONArray {
+        val url = "http://192.168.0.216/ApiRestDiagnoSkin/diagnosticos.php?idCentroMedico=${idCentroMedico}&diagnosticoDiagnostico=${patologia}&fechaDesde=${fechaDesde}&fechaHasta=${fechaHasta}"
         val request = Request.Builder()
             .url(url)
             .build()
@@ -52,15 +52,23 @@ class ConsultaRemotaDiagnosticos {
         try {
             val response = client.newCall(request).execute()
             if (response.isSuccessful) {
-                resultado = JSONArray(response.body?.string())
+                val bodyString = response.body?.string() ?: ""
+                Log.d("ConsultaRemotaDiagnosticos", "Respuesta: $bodyString")  // Para ver qué recibes
+
+                return try {
+                    JSONArray(bodyString)  // Intentas parsear aquí
+                } catch (e: JSONException) {
+                    Log.e("ConsultaRemotaDiagnosticos", "Respuesta no es JSON válido")
+                    Log.e("ConsultaRemotaDiagnosticos", bodyString)
+                    JSONArray()  // Devuelves un JSONArray vacío para evitar crash
+                }
             } else {
-                Log.e("ConsultaRemotaDiagnosticos", response.message)
+                Log.e("ConsultaRemotaDiagnosticos", "Error HTTP: ${response.code} - ${response.message}")
             }
         } catch (e: IOException) {
             Log.e("ConsultaRemotaDiagnosticos", e.message ?: "Error desconocido")
-        } catch (e: JSONException) {
-            throw RuntimeException(e)
         }
-        return resultado
+        return JSONArray()  // Devuelve vacío si falla
     }
+
 }

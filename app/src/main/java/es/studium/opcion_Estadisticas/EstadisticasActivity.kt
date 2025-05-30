@@ -229,15 +229,16 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
                     if (!validacionesOtras.esRangoFechasValido(fechaDesde,fechaHasta)) {
                         Toast.makeText(this, R.string.INF_toastErrorFechaDesdeMayor_BuscadorInformes, Toast.LENGTH_SHORT).show()
                     } else {
-                        lbl_Melanomas.text = getString(R.string.ES_lbl_Melanomas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Melanoma"))
+
+                        lbl_Melanomas.text = getString(R.string.ES_lbl_Melanomas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Melanoma",fechaDesdeString, fechaHastaString))
                         lbl_Melanomas.visibility = View.VISIBLE
-                        lbl_Angiomas.text = getString(R.string.ES_lbl_Angiomas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Angioma"))
+                        lbl_Angiomas.text = getString(R.string.ES_lbl_Angiomas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Angioma",fechaDesdeString, fechaHastaString))
                         lbl_Angiomas.visibility = View.VISIBLE
-                        lbl_nevus.text = getString(R.string.ES_lbl_Nevus_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Nevus"))
+                        lbl_nevus.text = getString(R.string.ES_lbl_Nevus_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Nevus",fechaDesdeString, fechaHastaString))
                         lbl_nevus.visibility = View.VISIBLE
-                        lbl_Onicomicosis.text = getString(R.string.ES_lbl_Onicomicosis_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Onicomicosis"))
+                        lbl_Onicomicosis.text = getString(R.string.ES_lbl_Onicomicosis_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Onicomicosis",fechaDesdeString, fechaHastaString))
                         lbl_Onicomicosis.visibility = View.VISIBLE
-                        lbl_Dermatofibromas.text = getString(R.string.ES_lbl_Dermatofibromas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Dermatofibroma"))
+                        lbl_Dermatofibromas.text = getString(R.string.ES_lbl_Dermatofibromas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Dermatofibroma",fechaDesdeString, fechaHastaString))
                         lbl_Dermatofibromas.visibility = View.VISIBLE
                     }
                 } catch (e: ParseException) {
@@ -460,7 +461,7 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
             ?: getString(R.string.LO_ErrorExtraNoRecibido)
     }
 
-    fun consultarNumeroDeDiagnosticos(idCentroMedico : String?, patologia: String) : String{
+    fun consultarNumeroDeDiagnosticos(idCentroMedico : String?, patologia: String, fechaDesde : String , fechaHasta: String) : String{
         //-----Cominucacion con la API-Rest-----------
         if(android.os.Build.VERSION.SDK_INT > 9){
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -468,9 +469,11 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
         }
         var numeroDeDiagnosticos =""
         var consultaRemotaDiagnosticos = ConsultaRemotaDiagnosticos()
-        result = consultaRemotaDiagnosticos.obtenerNumDiagPorPatologia(idCentroMedico,patologia)
+        result = consultaRemotaDiagnosticos.obtenerNumDiagPorPatologia(idCentroMedico,patologia, fechaEuropeaAMysql(fechaDesde), fechaEuropeaAMysql(fechaHasta))
 
         try{
+            Log.d("JSON_RESULT_apirest", result.toString())
+
             if(result.length() > 0){
                 for (i in 0 until result.length()) {
                     jsonObject = result.getJSONObject(i)
@@ -485,5 +488,17 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
             Log.e("EstadisticasActivity_consultaDiagnosticos", "Error al procesar el JSON", e)
         }
         return numeroDeDiagnosticos
+    }
+
+    //Metodo para pasar fechas Europeas a MySQL
+    fun fechaEuropeaAMysql(fecha: String): String {
+        lateinit var fechaTransformada: String
+        var elementosFecha = fecha.split("/")
+        if (elementosFecha.size == 3) {
+            fechaTransformada = "${elementosFecha[2]}-${elementosFecha[1]}-${elementosFecha[0]}"
+        } else {
+            fechaTransformada = "Error al formatear fechas"
+        }
+        return fechaTransformada
     }
 }
