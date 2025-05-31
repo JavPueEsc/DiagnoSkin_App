@@ -228,6 +228,11 @@ class EstadisticasActivity : FragmentActivity(), OnMapReadyCallback {
 
                     if (!validacionesOtras.esRangoFechasValido(fechaDesde,fechaHasta)) {
                         Toast.makeText(this, R.string.INF_toastErrorFechaDesdeMayor_BuscadorInformes, Toast.LENGTH_SHORT).show()
+                        lbl_Melanomas.visibility = View.GONE
+                        lbl_Onicomicosis.visibility = View.GONE
+                        lbl_Angiomas.visibility = View.GONE
+                        lbl_Dermatofibromas.visibility = View.GONE
+                        lbl_nevus.visibility = View.GONE
                     } else {
 
                         lbl_Melanomas.text = getString(R.string.ES_lbl_Melanomas_Estadisticas,consultarNumeroDeDiagnosticos(idCentroSeleccionado,"Melanoma",fechaDesdeString, fechaHastaString))

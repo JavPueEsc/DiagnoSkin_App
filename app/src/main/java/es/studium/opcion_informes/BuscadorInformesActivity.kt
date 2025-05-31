@@ -230,11 +230,16 @@ class BuscadorInformesActivity : AppCompatActivity() {
 
         //Gestión del botón visualizar
         btn_visualizar.setOnClickListener {
-            enviarIntentSiguiente(
-                VisualizarInformeActivity::class.java,"BuscadorDeInformesActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
-                sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
-                emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
-                esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido, idDiagnosticoSeleccionado)
+            if(spinner_diagnosticos.selectedItemPosition == 0){
+                Toast.makeText(this@BuscadorInformesActivity,R.string.INF_toastDiagnosticoNoseleccionado_BuscadorInformes,Toast.LENGTH_SHORT).show()
+            }
+            else{
+                enviarIntentSiguiente(
+                    VisualizarInformeActivity::class.java,"BuscadorDeInformesActivity",idPacienteRecibido,nombrePacienteRecibido,apellidosPacienteRecibido,
+                    sexoPacienteRecibido,fechaNacPacienteRecibido,nuhsaPacienteRecibido,telefonoPacienteRecibido,
+                    emailPacienteRecibido,dniPacienteRecibido,direccionPacienteRecibido,localidadPacienteRecibido,provinciaPacienteRecibido,codigoPostalPacienteRecibido,
+                    esAdminMedicoRecibido,idMedicoRecibido,idUsuarioRecibido, idDiagnosticoSeleccionado)
+            }
         }
 
 

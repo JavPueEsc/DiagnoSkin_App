@@ -313,6 +313,7 @@
     <string name="INF_toastErrorFechaHastaVacia_BuscadorInformes">Debe seleccionar una fecha HASTA</string>
     <string name="INF_toastErrorFechaDesdeMayor_BuscadorInformes">La fecha DESDE no puede ser superior a la fecha HASTA</string>
     <string name="INF_toastErrorFormatoFechas_BuscadorInformes">Error en el formato de fechas</string>
+    <string name="INF_toastDiagnosticoNoseleccionado_BuscadorInformes">Debe seleccionar un diagnóstico</string>
 
     <string name="INF_spinner_NoExistenDiagnosticos">No existen diagnósticos disponibles</string>
     <string name="INF_spinner_Seleccion">Seleccione un diagnóstico</string>
