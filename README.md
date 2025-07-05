@@ -18,3 +18,8 @@ Una vez creada y configurada la clave, añádala en el archivo res/values/string
 ```xml
 <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AQUÍ_SU_CLAVE_API</string>
 
+👉 Enlace de descarga de la API REST de la aplicación. Si se usa en localhost con XAMPP, colocar en la ruta C:\xampp\htdocs\ApiRestDiagnoSkin
+https://drive.google.com/uc?id=1lP74z2jNM48mx9X_feIYpIo55G3aRY5m
+
+👉 Acceso al código fuente del modelo de IA en Python.
+https://github.com/JavPueEsc/DiagnoSkin_App_ModeloIA.git
